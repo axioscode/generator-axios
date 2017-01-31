@@ -1,0 +1,23 @@
+{
+  "name": "generator-axios",
+  "version": "0.1.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/axioscode/generator-axios"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "axios"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^1.0.0"
+  },
+  "devDependencies": {
+    "mkdirp": "^0.5.1",
+    "slugify": "^1.1.0"
+  }
+}
