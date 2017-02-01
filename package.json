@@ -1,7 +1,10 @@
 {
   "name": "generator-axios",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "",
+  "scripts": {
+    "setup": "npm install -g yo yeoman-generator && npm install"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/axioscode/generator-axios"
@@ -13,6 +16,8 @@
     "yeoman-generator",
     "axios"
   ],
+  "author": "Alex Duner <duner@axios.com>, Gerald Rich <gerald@axios.com>",
+  "license": "MIT",
   "dependencies": {
     "yeoman-generator": "^1.0.0"
   },
