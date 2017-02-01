@@ -18,6 +18,7 @@ jspm_packages
 
 # Optional npm cache directory
 .npm
+.aws_cache
 
 #Other
 .DS_Store
