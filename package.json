@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "setup": "npm install -g yo yeoman-generator && npm install && npm link"
+    "setup": "pip install awscli && npm install -g yo yeoman-generator && npm install && npm link"
   },
   "repository": {
     "type": "git",
