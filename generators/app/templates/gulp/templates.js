@@ -15,7 +15,7 @@ const bs = require('./browsersync')
 const config = require('./config');
 const projectConfig = require('./../project.config');
 
-const IS_PRODUCTION = gutil.env.env === 'production'
+const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
 var staticUrl = function(p) {
   if (IS_PRODUCTION) p = path.join(projectConfig.s3.folder, p)
@@ -31,8 +31,6 @@ var imageUrl = function(p) {
 var toFixed2 = function(p) {
   return p.toFixed(2);
 }
-
-
 
 module.exports = () => {
   var handlebarsStream = handlebars({bustCahce: true})

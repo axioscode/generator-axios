@@ -12,7 +12,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const bs = require('./browsersync')
 const config = require('./config');
 
-const IS_PRODUCTION = gutil.env.env === 'production'
+const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
 module.exports = () => {
   return gulp.src(config.paths.src.sass + "/*.scss")

@@ -14,7 +14,7 @@ const projectConfig = require('./../project.config');
 
 const debugMode = false;
 
-const IS_PRODUCTION = gutil.env.env === 'production'
+const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
 module.exports = () => {
 
