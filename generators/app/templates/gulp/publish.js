@@ -1,7 +1,7 @@
 'use strict';
 
-const gulp = require('gulp')
-const gulpIf = require('gulp-if')
+const gulp = require('gulp');
+const gulpIf = require('gulp-if');
 const awspublish = require('gulp-awspublish');
 const prompt = require('gulp-prompt');
 const rename = require('gulp-rename');
@@ -14,7 +14,7 @@ const projectConfig = require('./../project.config');
 
 const debugMode = false;
 
-const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+const IS_PRODUCTION = gutil.env.env === 'production'
 
 module.exports = () => {
 

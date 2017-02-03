@@ -15,8 +15,7 @@ const buffer = require('vinyl-buffer');
 const bs = require('./browsersync')
 const config = require('./config');
 
-const IS_PRODUCTION = process.env.NODE_ENV === 'production'
-
+const IS_PRODUCTION = gutil.env.env === 'production'
 
 var props = { entries: [config.paths.src.js + "/app.js"] };
 if (!IS_PRODUCTION) {
