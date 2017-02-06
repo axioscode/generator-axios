@@ -21,7 +21,7 @@ yo axios
 
 The following will ask you for your Github username & password. Once authorized, it will create number of default Github issues & labels relevant to most, but not all, projects.
 
-You can change which tickets and labels get created by editing `etc/default_tickets.csv` and `etc/default_labels.csv`, respectively.
+You can change which tickets and labels get created by editing `etc/default_tickets.csv` and `utils/default_labels.csv`, respectively.
 
 ```bash
 pip install -r etc/requirements.txt
