@@ -1,7 +1,6 @@
 'use strict';
 
 const gulp = require('gulp');
-const size = require('gulp-size');
 
 const bs = require('./browsersync')
 const config = require('./config');

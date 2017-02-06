@@ -2,36 +2,35 @@
 
 const gulp = require("gulp");
 const env = require("gulp-env");
+const gutil = require("gulp-util");
 const runSequence = require('run-sequence');
 const gulpConfig = require('./gulp/config');
 
+// Core Sub-Tasks For Processing Static Files
 gulp.task('styles', require('./gulp/styles'));
 gulp.task('templates', require('./gulp/templates'));
 gulp.task('scripts', require('./gulp/scripts').build);
 gulp.task('scripts:watch', require('./gulp/scripts').watch);
 gulp.task('images', require('./gulp/images'))
 
-gulp.task('set-prd-env', function () {
-  env({
-    vars: { NODE_ENV: "production"}
-  })
+gulp.task('set-dev-node-env', function() {
+   return process.env.NODE_ENV = gutil.env.env = 'development';
+});
+gulp.task('set-prd-node-env', function() {
+   return process.env.NODE_ENV = gutil.env.env = 'production';
 });
 
-gulp.task('set-dev-env', function () {
-  env({
-    vars: { NODE_ENV: "development"}
-  })
-});
-
+// Basic Tasks
 gulp.task('clean', require('./gulp/clean'))
 
-gulp.task('build', ['clean'], (done) => {
+gulp.task('build', ['set-prd-node-env', 'clean'], (done) => {
+  runSequence(['images'], ['styles', 'templates', 'scripts'], done)
+})
+gulp.task('build:prd', ['build'])
+gulp.task('build:dev', ['set-dev-node-env', 'clean'], (done) => {
   runSequence(['images'], ['styles', 'templates', 'scripts'], done)
 })
 
-gulp.task('build:prd', ['set-prd-env'], function (done) {
-  runSequence(['build'], done)
-})
 
 gulp.task('watch', ['images', 'styles', 'templates', 'scripts:watch'], function (done) {
 	gulp.watch(gulpConfig.paths.src.sass + "/**", ['styles']);
@@ -40,5 +39,6 @@ gulp.task('watch', ['images', 'styles', 'templates', 'scripts:watch'], function 
 });
 
 gulp.task('serve', ['watch'], require('./gulp/serve'));
-gulp.task('publish', ['build:prd'], require('./gulp/publish'));
+gulp.task('publish', ['build'], require('./gulp/publish'));
+
 gulp.task('default', ['build'])

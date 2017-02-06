@@ -17,7 +17,6 @@ const config = require('./config');
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
-
 var props = { entries: [config.paths.src.js + "/app.js"] };
 if (!IS_PRODUCTION) {
   var props = Object.assign(props, {
