@@ -6,10 +6,13 @@ Yeoman generator to make developing graphics at Axios simpler and faster.
 `npm run setup`
 
 This will
-* Install global dependencies: `yo`, `yeoman-generator`
+* Install global dependencies: `yo`, `yeoman-generator`, `gulp-cli`
 * Install local dependencies
 * Link `generators/app/` to `yo`
 
 ## Generate Project
 
-`yo axios`
+```bash
+mkdir [project-name] && cd $_
+yo axios
+```
