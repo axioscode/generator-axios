@@ -26,3 +26,5 @@ node_modules
 
 # Local configs
 .env
+
+.DS_Store
