@@ -33,7 +33,7 @@ var rebundle = function(pkg) {
     .pipe(gulpIf(IS_PRODUCTION, buffer()))
     .pipe(gulpIf(IS_PRODUCTION, sourcemaps.init({loadMaps: true})))
     .pipe(gulpIf(IS_PRODUCTION, sourcemaps.write('./')))
-    // .pipe(gulpIf(IS_PRODUCTION, uglify().on("error", gutil.log)))
+    .pipe(gulpIf(IS_PRODUCTION, uglify().on("error", gutil.log)))
     .pipe(gulpIf(IS_PRODUCTION, gulp.dest(config.paths.dist.js + "/")))
     .pipe(bs.stream({match: '**/*.js'}))
     .pipe(size({title: 'scripts', showFiles: true}))
