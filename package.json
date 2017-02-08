@@ -22,6 +22,8 @@
     "yeoman-generator": "^1.0.0"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "babelify": "^7.3.0",
     "mkdirp": "^0.5.1",
     "slugify": "^1.1.0"
   }

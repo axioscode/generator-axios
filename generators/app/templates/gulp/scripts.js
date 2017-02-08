@@ -1,6 +1,7 @@
 'use strict';
 
 const browserify = require('browserify');
+const babelify = require('babelify');
 const watchify = require('watchify');
 const envify = require('envify');
 const gulp = require('gulp');
@@ -17,7 +18,10 @@ const config = require('./config');
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
-var props = { entries: [config.paths.src.js + "/app.js"] };
+var props = {
+  transform: [["babelify", { "presets": ["es2015"] }]],
+  entries: [config.paths.src.js + "/app.js"]
+};
 if (!IS_PRODUCTION) {
   var props = Object.assign(props, {
     debug: true,
