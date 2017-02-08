@@ -23,11 +23,11 @@ module.exports = () => {
       ],
       precision: 10
     }).on('error', sass.logError))
-    // .pipe(sourcemaps.init())
+    .pipe(sourcemaps.init())
     .pipe(autoprefixer())
-    .pipe(gulp.dest(config.paths.tmp.css))
-    // .pipe(gulpIf(IS_PRODUCTION, sourcemaps.write('./')))
     .pipe(gulpIf(IS_PRODUCTION, cleancss()))
+    .pipe(sourcemaps.write(''))
+    .pipe(gulp.dest(config.paths.tmp.css))
     .pipe(gulpIf(IS_PRODUCTION, gulp.dest(config.paths.dist.css)))
     .pipe(bs.stream({match: '**/*.css'}))
     .pipe(size({title: 'templates', showFiles: true}))
