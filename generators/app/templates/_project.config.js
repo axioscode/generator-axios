@@ -1,12 +1,12 @@
 module.exports = {
   "project": {
-    "name": "",
-    "slug": "",
+    "name": "<%= meta.name %>",
+    "slug": "<%= meta.slug %>",
     "description": "",
   },
   "s3": {
-    "bucket": "graphics.axios.com",
-    "folder": "2017-01-30-healthcare-ceos"
+    "bucket": "<%= meta.s3bucket %>",
+    "folder": "<%= meta.s3folder %>"
   },
   "files": [
     {
