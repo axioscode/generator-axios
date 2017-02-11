@@ -19,11 +19,12 @@
   "author": "Alex Duner <duner@axios.com>, Gerald Rich <gerald@axios.com>",
   "license": "MIT",
   "dependencies": {
-    "yeoman-generator": "^1.0.0"
+    "yeoman-generator": "^1.1.0"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.22.0",
     "babelify": "^7.3.0",
+    "dateformat": "^2.0.0",
     "mkdirp": "^0.5.1",
     "slugify": "^1.1.0"
   }

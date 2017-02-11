@@ -1,12 +1,12 @@
 var path = require('path');
 var slugify = require('slugify');
 var mkdirp = require('mkdirp');
+var dateFormat = require('dateformat');
 
 var Generator = require('yeoman-generator');
 
 
 module.exports = Generator.extend({
-
   constructor: function () {
     Generator.apply(this, arguments);
     this.option('skip-install-message', {
@@ -27,11 +27,12 @@ module.exports = Generator.extend({
   prompting: {
     meta: function() {
       var done = this.async();
+      var dateString = dateFormat(new Date(), 'yyyy-mm-dd')
       this.prompt([{
-          type    : 'input',
-          name    : 'name',
-          message : 'Project Name:',
-          default : this.appname      // Default to current folder name
+        type    : 'input',
+        name    : 'name',
+        message : 'Project Name:',
+        default : this.appname      // Default to current folder name
       },{
         type    : 'input',
         name    : 'slug',
@@ -46,7 +47,7 @@ module.exports = Generator.extend({
         type    : 'input',
         name    : 's3folder',
         message : 'Project S3 Folder:',
-        default : slugify(this.appname)      // Default to current folder name
+        default : dateString + '-' + slugify(this.appname)      // Default to current folder name
       }]).then(function(answers, err) {
         this.meta = {};
         this.meta.name = answers.name;
@@ -83,65 +84,65 @@ module.exports = Generator.extend({
       this.fs.copy(
         this.templatePath('_gitignore'),
         this.destinationPath('.gitignore'));
-    },
-    readme: function () {
-      this.fs.copy(
-        this.templatePath('_README.md'),
-        this.destinationPath('README.md'));
-    },
-    gulp: function() {
-      this.fs.copy(
-        this.templatePath('gulp'),
-        this.destinationPath('gulp')
-      );
-    }
-  },
+      },
+      readme: function () {
+        this.fs.copy(
+          this.templatePath('_README.md'),
+          this.destinationPath('README.md'));
+        },
+        gulp: function() {
+          this.fs.copy(
+            this.templatePath('gulp'),
+            this.destinationPath('gulp')
+          );
+        }
+      },
 
-  writing: {
-    misc: function () {
-      mkdirp('data');
-      mkdirp('src/img');
-      mkdirp('src/templates/partials');
-      mkdirp('src/sass');
-      mkdirp('src/js');
-      this.fs.write(this.destinationPath('data/.gitkeep'), '');
-      this.fs.write(this.destinationPath('src/img/.gitkeep'), '');
-      this.fs.write(this.destinationPath('src/templates/partials/.gitkeep'), '');
+      writing: {
+        misc: function () {
+          mkdirp('data');
+          mkdirp('src/img');
+          mkdirp('src/templates/partials');
+          mkdirp('src/sass');
+          mkdirp('src/js');
+          this.fs.write(this.destinationPath('data/.gitkeep'), '');
+          this.fs.write(this.destinationPath('src/img/.gitkeep'), '');
+          this.fs.write(this.destinationPath('src/templates/partials/.gitkeep'), '');
+        },
+        sass: function() {
+          this.fs.copyTpl(
+            this.templatePath('src/_main.scss'),
+            this.destinationPath('src/sass/main.scss')
+          );
+        },
+        handlebars: function() {
+          this.fs.copyTpl(
+            this.templatePath('src/_index.hbs'),
+            this.destinationPath('src/templates/index.hbs'),
+            { meta: this.meta }
+          );
+          this.fs.copyTpl(
+            this.templatePath('src/_base.hbs'),
+            this.destinationPath('src/templates/layouts/base.hbs'),
+            { meta: this.meta }
+          );
+        },
+        js: function() {
+          this.fs.copyTpl(
+            this.templatePath('src/_app.js'),
+            this.destinationPath('src/js/app.js'),
+            { meta: this.meta }
+          );
+        }
 
-    },
-    sass: function() {
-      this.fs.copyTpl(
-        this.templatePath('src/_main.scss'),
-        this.destinationPath('src/sass/main.scss')
-      );
-    },
-    handlebars: function() {
-      this.fs.copyTpl(
-        this.templatePath('src/_index.hbs'),
-        this.destinationPath('src/templates/index.hbs'),
-        { meta: this.meta }
-      );
-      this.fs.copyTpl(
-        this.templatePath('src/_base.hbs'),
-        this.destinationPath('src/templates/layouts/base.hbs'),
-        { meta: this.meta }
-      );
-    },
-    js: function() {
-      this.fs.copyTpl(
-        this.templatePath('src/_app.js'),
-        this.destinationPath('src/js/app.js'),
-        { meta: this.meta }
-      );
-    }
+      },
 
-  },
+      install: function () {
+        this.installDependencies({
+          bower: false,
+          skipMessage: this.options['skip-install-message'],
+          skipInstall: this.options['skip-install']
+        });
+      },
 
-  install: function () {
-    this.installDependencies({
-      skipMessage: this.options['skip-install-message'],
-      skipInstall: this.options['skip-install']
     });
-  },
-
-});

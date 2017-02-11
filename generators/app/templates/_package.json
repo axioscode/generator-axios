@@ -1,5 +1,5 @@
 {
-  "name": ""<%= meta.slug %>"",
+  "name": "<%= meta.slug %>",
   "version": "1.0.0",
   "description": "description here",
   "main": "index.js",

@@ -1,6 +1,7 @@
 var path = require('path');
 
 var dirs = {
+	root: './',
 	tmp: './.tmp',
 	src: './src',
 	dist: './dist',
@@ -8,6 +9,7 @@ var dirs = {
 };
 
 var paths = {
+	projectConfig: dirs.root + 'project.config.json',
 	src: {
 		img: dirs.src + '/img',
 		js: dirs.src + '/js',
@@ -31,13 +33,7 @@ var paths = {
 	}
 };
 
-var server = {
-	port: '8080',
-	root: path.resolve('./'),
-};
-
 module.exports = {
 	dirs: dirs,
-  paths: paths,
-	server: server
+	paths: paths,
 };
