@@ -7,13 +7,13 @@ const config = require('./config');
 
 module.exports = () => {
   bs.init({
-  	server: {
+    server: {
       baseDir: config.dirs.tmp,
       middleware: function (req, res, next) {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();
       }
     },
-		open: false
-	});
+    open: false
+  });
 }
