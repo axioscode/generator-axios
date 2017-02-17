@@ -32,6 +32,9 @@ var b = browserify(props);
 
 var rebundle = function(pkg) {
   return pkg.bundle()
+    .on('error', function(error) {
+      console.log(error.stack, error.message);
+    })
     .pipe(source("bundle.js"))
     .pipe(gulp.dest(config.paths.tmp.js +  "/"))
     .pipe(gulpIf(IS_PRODUCTION, buffer()))
@@ -46,18 +49,10 @@ var rebundle = function(pkg) {
 
 module.exports = {
   build: function() {
-    b.on('error', function(error) {
-      console.log(error.stack, error.message);
-      this.emit('end');
-      process.exit(0);
-    })
     return (rebundle(b));
   },
   watch: function() {
     var w = watchify(b);
-    w.on('error', function(error) {
-      console.log(error.stack, error.message);
-    });
     w.on('update', function() {
       rebundle(w);
       gutil.log('Rebundle...');
