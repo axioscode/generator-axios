@@ -12,6 +12,7 @@ gulp.task('templates', require('./gulp/templates'));
 gulp.task('scripts', require('./gulp/scripts').build);
 gulp.task('scripts:watch', require('./gulp/scripts').watch);
 gulp.task('images', require('./gulp/images'))
+gulp.task('cachebust', require('./gulp/cachebust'))
 
 gulp.task('set-dev-node-env', function() {
    return process.env.NODE_ENV = gutil.env.env = 'development';
@@ -24,7 +25,7 @@ gulp.task('set-prd-node-env', function() {
 gulp.task('clean', require('./gulp/clean'))
 
 gulp.task('build', ['set-prd-node-env', 'clean'], (done) => {
-  runSequence(['images'], ['styles', 'templates', 'scripts'], done)
+  runSequence(['images'], ['styles', 'templates', 'scripts'], ['cachebust'], done)
 })
 gulp.task('build:prd', ['build'])
 gulp.task('build:dev', ['set-dev-node-env', 'clean'], (done) => {
@@ -42,3 +43,4 @@ gulp.task('serve', ['watch'], require('./gulp/serve'));
 gulp.task('publish', ['build'], require('./gulp/publish'));
 
 gulp.task('default', ['build'])
+
