@@ -22,7 +22,7 @@
     "gulp-awspublish": "^3.3.0",
     "gulp-cache": "^0.4.5",
     "gulp-cache-bust": "^1.1.0",
-    "gulp-clean-css": "^2.3.2",
+    "gulp-clean-css": "^3.0.3",
     "gulp-debug": "^3.0.0",
     "gulp-env": "^0.4.0",
     "gulp-handlebars": "^4.0.0",
