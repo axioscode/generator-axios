@@ -31,7 +31,7 @@ module.exports = () => {
     .pipe(sourcemaps.init())
     .pipe(autoprefixer())
     .pipe(gulp.dest(config.paths.tmp.css))
-    .pipe(gulpIf(process.env.NODE_ENV, prdTasks()))
+    .pipe(gulpIf(process.env.NODE_ENV === "production", prdTasks()))
     .pipe(bs.stream({match: '**/*.css'}))
     .pipe(size({title: 'templates', showFiles: true}))
 }
