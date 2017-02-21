@@ -19,7 +19,7 @@ module.exports = () => {
 
   return gulp.src(config.paths.src.img + "/**")
     .pipe(gulp.dest(config.paths.tmp.img))
-    .pipe(gulpIf(process.env.NODE_ENV, prdTasks()))
+    .pipe(gulpIf(process.env.NODE_ENV === "production", prdTasks()))
     .pipe(size({title: 'images'}));
 }
 
