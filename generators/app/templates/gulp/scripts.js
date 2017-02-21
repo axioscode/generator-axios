@@ -12,36 +12,45 @@ const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
+const lazypipe = require('lazypipe');
 
 const bs = require('./browsersync')
 const config = require('./config');
 
-const IS_PRODUCTION = process.env.NODE_ENV === 'production'
+var getBundle = function() {
+  var props = {
+    transform: [["babelify", { "presets": ["es2015"] }]],
+    entries: [config.paths.src.js + "/app.js"]
+  };
 
-var props = {
-  transform: [["babelify", { "presets": ["es2015"] }]],
-  entries: [config.paths.src.js + "/app.js"]
+  // If we're not in a production environment, build sourcemaps and preserve module IDs (I don't
+  // konw what that second thing means).
+  if (process.env.NODE_ENV !== "production") {
+    var props = Object.assign(props, {
+      debug: true,
+      fullPaths: true
+    });
+  }
+
+  return browserify(props);
 };
-if (!IS_PRODUCTION) {
-  var props = Object.assign(props, {
-    debug: true,
-    fullPaths: true
-  });
-}
-var b = browserify(props);
 
 var rebundle = function(pkg) {
+  // Bundle and lazy-evaluate the production tasks.
+  var prdTasks = lazypipe()
+    .pipe(buffer)
+    .pipe(sourcemaps.init, {loadMaps: true})
+    .pipe(uglify)
+    .pipe(sourcemaps.write, "./")
+    .pipe(gulp.dest, config.paths.dist.js + "/")
+
   return pkg.bundle()
     .on('error', function(error) {
       console.log(error.stack, error.message);
     })
     .pipe(source("bundle.js"))
     .pipe(gulp.dest(config.paths.tmp.js +  "/"))
-    .pipe(gulpIf(IS_PRODUCTION, buffer()))
-    .pipe(gulpIf(IS_PRODUCTION, sourcemaps.init({loadMaps: true})))
-    .pipe(gulpIf(IS_PRODUCTION, uglify().on("error", gutil.log)))
-    .pipe(gulpIf(IS_PRODUCTION, sourcemaps.write('./')))
-    .pipe(gulpIf(IS_PRODUCTION, gulp.dest(config.paths.dist.js + "/")))
+    .pipe(gulpIf(process.env.NODE_ENV == "production", prdTasks()))
     .pipe(bs.stream({match: '**/*.js'}))
     .pipe(size({title: 'scripts', showFiles: true}))
 }
@@ -49,10 +58,10 @@ var rebundle = function(pkg) {
 
 module.exports = {
   build: function() {
-    return (rebundle(b));
+    return (rebundle(getBundle()));
   },
   watch: function() {
-    var w = watchify(b);
+    var w = watchify(getBundle());
     w.on('update', function() {
       rebundle(w);
       gutil.log('Rebundle...');
@@ -60,3 +69,4 @@ module.exports = {
     return rebundle(w);
   }
 }
+

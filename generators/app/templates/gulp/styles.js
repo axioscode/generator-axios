@@ -8,13 +8,18 @@ const sass = require('gulp-sass')
 const size = require('gulp-size');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
+const lazypipe = require('lazypipe');
 
 const bs = require('./browsersync')
 const config = require('./config');
 
-const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
 module.exports = () => {
+  var prdTasks = lazypipe()
+    .pipe(cleancss)
+    .pipe(sourcemaps.write, '')
+    .pipe(gulp.dest, config.paths.dist.css);
+
   return gulp.src(config.paths.src.sass + "/*.scss")
     .pipe(sass({
       includePaths: [
@@ -26,9 +31,8 @@ module.exports = () => {
     .pipe(sourcemaps.init())
     .pipe(autoprefixer())
     .pipe(gulp.dest(config.paths.tmp.css))
-    .pipe(gulpIf(IS_PRODUCTION, cleancss()))
-    .pipe(gulpIf(IS_PRODUCTION, sourcemaps.write('')))
-    .pipe(gulpIf(IS_PRODUCTION, gulp.dest(config.paths.dist.css)))
+    .pipe(gulpIf(process.env.NODE_ENV, prdTasks()))
     .pipe(bs.stream({match: '**/*.css'}))
     .pipe(size({title: 'templates', showFiles: true}))
 }
+

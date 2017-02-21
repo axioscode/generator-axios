@@ -14,8 +14,6 @@ const projectConfig = require('./../project.config');
 
 const debugMode = false;
 
-const IS_PRODUCTION = process.env.NODE_ENV === 'production'
-
 module.exports = () => {
 
   var publisher = awspublish.create({
@@ -43,3 +41,4 @@ module.exports = () => {
     .pipe(publisher.cache())
     .pipe(awspublish.reporter());
 }
+
