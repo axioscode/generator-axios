@@ -40,7 +40,7 @@ var rebundle = function(pkg) {
   var prdTasks = lazypipe()
     .pipe(buffer)
     .pipe(sourcemaps.init, {loadMaps: true})
-    .pipe(uglify)
+    .pipe(uglify, {compress: {drop_console: true}})
     .pipe(sourcemaps.write, "./")
     .pipe(gulp.dest, config.paths.dist.js + "/")
 
