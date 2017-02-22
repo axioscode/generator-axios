@@ -70,6 +70,8 @@ Processes each Handlebars file in `src/templates/*.hbs`.
 #### `gulp scripts` and `gulp scripts:watch`
 Processes `src/scripts/app.js` with Browserify.
 
+**Note:** When run in development mode, Browserify is configured to run with inline sourcemaps, greatly increasing the size of the generated bundle. In production, the sourcemap is external and will not be downloaded by default.
+
 #### `gulp images`
 Copies files from `src/img`.
 
