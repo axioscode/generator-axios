@@ -15,10 +15,10 @@ gulp.task('images', require('./gulp/images'))
 gulp.task('cachebust', require('./gulp/cachebust'))
 
 gulp.task('set-dev-node-env', function() {
-   return process.env.NODE_ENV = gutil.env.env = 'development';
+   return process.env.NODE_ENV = 'development';
 });
 gulp.task('set-prd-node-env', function() {
-   return process.env.NODE_ENV = gutil.env.env = 'production';
+   return process.env.NODE_ENV = 'production';
 });
 
 // Basic Tasks
