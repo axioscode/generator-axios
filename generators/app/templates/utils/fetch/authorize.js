@@ -18,13 +18,13 @@ if (process.env.CLIENT_SECRETS_FILE) {
   CLIENT_SECRETS_FILE = path.join(os.homedir(), '.axios_kit_google_client_secrets.json')
 }
 
-var secrets
+var secrets;
 
 try {
   secrets = JSON.parse(fs.readFileSync(CLIENT_SECRETS_FILE, 'utf8')).installed
 } catch (e) {
   if (e.code === 'ENOENT') {
-    console.log(chalk.red("Could not find the client secrets file at %s. Are you sure it's there? Talk to Alex or Matt if you don't have it"), CLIENT_SECRETS_FILE)
+    console.log(chalk.red("Could not find the client secrets file at %s. Are you sure it's there? Talk to Alex or Matt or Gerald if you don't have it"), CLIENT_SECRETS_FILE)
   } else {
     throw e
   }
@@ -33,7 +33,7 @@ try {
 const GOOGLE_CLIENT_ID = secrets.client_id
 const GOOGLE_CLIENT_SECRET = secrets.client_secret
 const GOOGLE_REDIRECT_URI = secrets.redirect_uris[0]
-const GOOGLE_TOKEN_FILE = process.env.GOOGLE_TOKEN_FILE ? process.env.GOOGLE_TOKEN_FILE : path.join(os.homedir(), '.google_drive_fetch_token')
+const GOOGLE_TOKEN_FILE = process.GOOGLE_TOKEN_FILE ? process.env.GOOGLE_TOKEN_FILE : path.join(os.homedir(), '.google_drive_fetch_token')
 
 function authorize (callback) {
   const OAuth2 = google.auth.OAuth2
