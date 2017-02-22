@@ -5,6 +5,7 @@ const fs = require('fs')
 const path = require('path')
 
 const config = require('../../project.config')
+const gulpConfig = require('../../gulp/config')
 const fetch = require('./fetch')
 const htmlToArchieML = require('./html-to-archieml')
 const xlsxToCopyText = require('./xlsx-to-copytext')
@@ -12,7 +13,7 @@ const xlsxToCopyText = require('./xlsx-to-copytext')
 fetch(config.files, (err, data, file) => {
   if (err) throw err
 
-  const filePath = path.join(config.dataDir, `${file.name}.json`)
+  const filePath = path.join(gulpConfig.dirs.data, `${file.name}.json`)
 
   if (file.type === 'doc') {
     htmlToArchieML(data, (err, d) => {

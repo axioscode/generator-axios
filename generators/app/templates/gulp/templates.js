@@ -14,7 +14,7 @@ const lazypipe = require('lazypipe');
 
 const bs = require('./browsersync')
 const config = require('./config');
-const projectConfig = require('./../project.config');
+const projectConfig = require('./../project.config.json');
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
@@ -65,4 +65,3 @@ module.exports = () => {
     .pipe(bs.stream({once: true}))
     .pipe(size({title: 'templates', showFiles: true}))
 }
-

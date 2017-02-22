@@ -14,6 +14,13 @@ gulp.task('scripts:watch', require('./gulp/scripts').watch);
 gulp.task('images', require('./gulp/images'))
 gulp.task('cachebust', require('./gulp/cachebust'))
 
+// Google Drive Tasks
+gulp.task('gdrive:add', require('./gulp/gdrive').addFile)
+// gulp.task('gdrive:fetch', require('./gulp/cachebust').fetch)
+// gulp.task('fetch-data', require('./gulp/cachebust').fetch)
+
+
+// Env Tasks
 gulp.task('set-dev-node-env', function() {
    return process.env.NODE_ENV = 'development';
 });
@@ -43,4 +50,3 @@ gulp.task('serve', ['watch'], require('./gulp/serve'));
 gulp.task('publish', ['build'], require('./gulp/publish'));
 
 gulp.task('default', ['build'])
-
