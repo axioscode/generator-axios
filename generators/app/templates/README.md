@@ -44,10 +44,10 @@ explanatino here.
 ### Main Gulp Tasks
 
 #### `gulp` and `gulp build`
-Creates your project. You can run `NODE_ENV=production gulp` to generate the version of your project to put on S3.
+Creates your project. You can run `gulp` to generate the version of your project to put on S3.
 
 #### `gulp serve`
-Sets up a local server run out of `/.tmp`. Watches your Sass, Handlebars and Javascript files and updates live in the browser.
+Sets up a local server run out of `.tmp`. Watches your Sass, Handlebars and Javascript files and updates live in the browser.
 
 #### `gulp watch`
 Like `gulp serve`, but without setting up a server for you to look at you project.
@@ -56,19 +56,22 @@ Like `gulp serve`, but without setting up a server for you to look at you projec
 If you've set up your AWS credentials correctly and have the proper s3 configuration in `project.config.js` then this command will automatically run the production build script and deploy the s3 folder you specified.
 
 ### Under the Hood
-There are six main Gulp tasks that handle various aspects of processing static assets. Each behaves slightly differently when the NODE_ENV is set to 'production'. The rig expects certain files to be in certain places — look in `/gulp/config.js` to see which paths Gulp uses to find your static files.
+There are seven main Gulp tasks that handle various aspects of processing static assets. Each behaves slightly differently when the NODE_ENV is set to 'production'. The rig expects certain files to be in certain places — look in `gulp/config.js` to see which paths Gulp uses to find your static files.
 
 #### `gulp clean`
- Cleans `/.tmp` and `/dist` in preparation for future scripts.
+Cleans `.tmp` and `dist` in preparation for future scripts.
 
 #### `gulp styles`
-Processes each Sass file in `/src/sass/*.scss`.
+Processes each Sass file in `src/sass/*.scss`.
 
 #### `gulp templates`
-Processes each Handlebars file in `/src/templates/*.hbs`.
+Processes each Handlebars file in `src/templates/*.hbs`.
 
 #### `gulp scripts` and `gulp scripts:watch`
-Processes `/src/scripts/app.js` with Browserify.
+Processes `src/scripts/app.js` with Browserify.
 
 #### `gulp images`
-Copies files from `/src/img`.
+Copies files from `src/img`.
+
+#### `gulp cachebust`
+Rewrite URLs in `dist/**/*.html` to add timestamps for cachebusting.
