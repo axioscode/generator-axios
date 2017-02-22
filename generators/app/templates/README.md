@@ -13,7 +13,10 @@ The primary place to configure your project is `project.config.js` in the root d
 explanantino goes here.
 
 #### Setting your Credentials
-instructions here.
+* Log in to <https://console.developers.google.com/>, you should see a project called "Visuals Rig Copyflow" (If not, ask the devs to set you up with access)
+* Make sure you are in the "API Manager" section. Click **Credentials**. Under **OAuth 2.0 client IDs**, download **Axios Visuals Rig Copyflow Keys**.
+* `mv [DOWNLOADED FILE] ~/.axios_kit_google_client_secrets.json`
+* Run `npm run data:fetch` and it will prompt you to visit a URL and copy an access token.
 
 #### Adding files
 explain `gulp gdrive:add` here
