@@ -15,9 +15,9 @@ gulp.task('images', require('./gulp/images'))
 gulp.task('cachebust', require('./gulp/cachebust'))
 
 // Google Drive Tasks
-gulp.task('gdrive:add', require('./gulp/cachebust').addFile)
-gulp.task('gdrive:fetch', require('./gulp/cachebust').fetch)
-gulp.task('fetch-data', require('./gulp/cachebust').fetch)
+gulp.task('gdrive:add', require('./gulp/gdrive').addFile)
+// gulp.task('gdrive:fetch', require('./gulp/cachebust').fetch)
+// gulp.task('fetch-data', require('./gulp/cachebust').fetch)
 
 
 // Env Tasks
