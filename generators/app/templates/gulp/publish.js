@@ -10,7 +10,7 @@ const AWS = require('aws-sdk');
 const debug = require('gulp-debug');
 
 const config = require('./config');
-const projectConfig = require('./../project.config');
+const projectConfig = require('./../project.config.json');
 
 const debugMode = false;
 
@@ -41,4 +41,3 @@ module.exports = () => {
     .pipe(publisher.cache())
     .pipe(awspublish.reporter());
 }
-

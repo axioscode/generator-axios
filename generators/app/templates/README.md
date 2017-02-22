@@ -16,7 +16,7 @@ explanantino goes here.
 instructions here.
 
 #### Adding files
-explain `gulp gdrive:add` here
+Adding a new Google Drive file is easy with `gulp gdrive:add`. Just run the command and it will walk you through a series of prompts and will save your responses in the right place in `project.config.json`. You can pick between a document parsed with ArchieML and a spreadsheet parsed either as a table or as a key-value store.
 
 #### Updating Copy
 instructinos here

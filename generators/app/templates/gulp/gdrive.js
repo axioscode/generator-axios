@@ -7,7 +7,7 @@ const prompt = require('gulp-prompt');
 const config = require('./config');
 const fs = require('fs');
 
-var projectConfig = require('./../project.config');
+var projectConfig = require('./../project.config.json');
 
 // Add File
 var addFile = function() {
