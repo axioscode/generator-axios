@@ -4,7 +4,6 @@
   "description": "description here",
   "main": "index.js",
   "scripts": {
-    "data:fetch": "node ./utils/fetch/get-data.js",
     "test": "mocha"
   },
   "devDependencies": {
