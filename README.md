@@ -17,6 +17,22 @@ mkdir [project-name] && cd $_
 yo axios
 ```
 
+OR To setup using one line in your terminal, add this shell script to your `.bash_profile`
+
+```bash
+# Create a new project using the axios generator
+# Example:
+# > axiosviz TKTKTK
+# Note:
+# TKTK is the project slug & must be an empty folder
+function axiosviz() {
+	git clone git@github.com:axioscode/generator-axios.git "$@"
+	cd "$@"
+	npm run setup
+	yo axios
+}
+```
+
 ## Add default Github issues
 
 The following will ask you for your Github username & password. Once authorized, it will create number of default Github issues & labels relevant to most, but not all, projects.
