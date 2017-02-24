@@ -39,5 +39,11 @@ module.exports = () => {
     // .pipe(awspublish.gzip({ ext: '.gz' }))
     .pipe(publisher.publish({}, {simulate: false, createOnly: false}))
     .pipe(publisher.cache())
-    .pipe(awspublish.reporter());
+    .pipe(awspublish.reporter())
+    .on("end", () => {
+      gutil.log("")
+      gutil.log("🎉 ", gutil.colors.green.bold("Success!"), gutil.colors.blue("Your project can be accessed at:"))
+      gutil.log(`https://${projectConfig.s3.bucket}/${projectConfig.s3.folder}/index.html`)
+      gutil.log("")
+    });
 }
