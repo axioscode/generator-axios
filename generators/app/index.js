@@ -48,39 +48,48 @@ module.exports = Generator.extend({
         name    : 's3folder',
         message : 'Project S3 Folder:',
         default : dateString + '-' + slugify(this.appname)      // Default to current folder name
+      },{
+        type    : 'confirm',
+        name    : 'gitInit',
+        message : 'Initialize empty git repository:',
+        default : true,
       }]).then(function(answers, err) {
         this.meta = {};
         this.meta.name = answers.name;
         this.meta.slug = answers.slug;
         this.meta.s3bucket = answers.s3bucket;
         this.meta.s3folder = answers.s3folder;
+        this.gitInit = answers.gitInit;
         done(err);
       }.bind(this));
     }
   },
 
-  configuring: {
-    all: function() {
-      // Copy all the normal files.
-      this.fs.copyTpl(
-        this.templatePath("**/*"),
-        this.destinationRoot(),
-        { meta: this.meta }
-      );
+  configuring: function() {
+    // Copy all the normal files.
+    this.fs.copyTpl(
+      this.templatePath("**/*"),
+      this.destinationRoot(),
+      { meta: this.meta }
+    );
 
-      // Copy all the dotfiles.
-      this.fs.copyTpl(
-        this.templatePath("**/.*"),
-        this.destinationRoot(),
-        { meta: this.meta }
-      );
-    },
-    install: function () {
-      this.installDependencies({
-        bower: false,
-        skipMessage: this.options['skip-install-message'],
-        skipInstall: this.options['skip-install']
-      });
-    },
+    // Copy all the dotfiles.
+    this.fs.copyTpl(
+      this.templatePath("**/.*"),
+      this.destinationRoot(),
+      { meta: this.meta }
+    );
+  },
+  install: function () {
+    this.installDependencies({
+      bower: false,
+      skipMessage: this.options['skip-install-message'],
+      skipInstall: this.options['skip-install']
+    });
+  },
+  end: function() {
+    if (this.gitInit) {
+      this.spawnCommand('git', ['init'])
+    }
   }
 });
