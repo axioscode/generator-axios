@@ -26,9 +26,8 @@ OR To setup using one line in your terminal, add this shell script to your `.bas
 # Note:
 # TKTK is the project slug & must be an empty folder
 function axiosviz() {
-	git clone git@github.com:axioscode/generator-axios.git "$@"
+	mkdir "$@"
 	cd "$@"
-	npm run setup
 	yo axios
 }
 ```
