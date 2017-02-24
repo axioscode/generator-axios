@@ -51,7 +51,7 @@ var addFile = function() {
     }));
 }
 
-
 module.exports = {
-  addFile: addFile
+  addFile: addFile,
+  fetch: require('../utils/fetch/get-data'),
 }

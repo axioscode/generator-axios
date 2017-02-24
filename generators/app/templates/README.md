@@ -16,13 +16,13 @@ explanantino goes here.
 * Log in to <https://console.developers.google.com/>, you should see a project called "Visuals Rig Copyflow" (If not, ask the devs to set you up with access)
 * Make sure you are in the "API Manager" section. Click **Credentials**. Under **OAuth 2.0 client IDs**, download **Axios Visuals Rig Copyflow Keys**.
 * `mv [DOWNLOADED FILE] ~/.axios_kit_google_client_secrets.json`
-* Run `npm run data:fetch` and it will prompt you to visit a URL and copy an access token.
+* The first time you run `gulp fetch-data` or `gulp gdrive:fetch`, you will be prompted to visit a URL and copy/paste an access token.
 
 #### Adding files
 Adding a new Google Drive file is easy with `gulp gdrive:add`. Just run the command and it will walk you through a series of prompts and will save your responses in the right place in `project.config.json`. You can pick between a document parsed with ArchieML and a spreadsheet parsed either as a table or as a key-value store.
 
-#### Updating Copy
-instructinos here
+#### Updating Data
+Running `gulp fetch-data` or `gulp gdrive:fetch` will pull Google Drive sheets stored in your project config.
 
 
 ### Working with S3
