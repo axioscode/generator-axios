@@ -2,6 +2,7 @@
 
 const gulp = require('gulp');
 const gutil = require('gulp-util');
+const plumber = require('gulp-plumber');
 const handlebars = require('gulp-hb');
 const gulpIf = require('gulp-if');
 const size = require('gulp-size');
@@ -52,6 +53,7 @@ module.exports = () => {
     .pipe(gulp.dest, config.dirs.dist)
 
   return gulp.src(config.paths.src.templates + '/*.hbs')
+    .pipe(gulpIf(process.env.NODE_ENV !== "production", plumber()))
     .pipe(handlebarsStream)
     .pipe(rename((file) => {
       if (file.basename !== 'index') {
