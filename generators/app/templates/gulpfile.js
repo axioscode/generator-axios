@@ -17,7 +17,7 @@ gulp.task('cachebust', require('./gulp/cachebust'))
 // Google Drive Tasks
 gulp.task('gdrive:add', require('./gulp/gdrive').addFile)
 gulp.task('gdrive:fetch', require('./gulp/gdrive').fetch)
- gulp.task('fetch-data', ['gdrive:fetch'])
+gulp.task('fetch-data', ['gdrive:fetch'])
 
 
 // Env Tasks
@@ -41,9 +41,9 @@ gulp.task('build:dev', ['set-dev-node-env', 'clean'], (done) => {
 
 
 gulp.task('watch', ['images', 'styles', 'templates', 'scripts:watch'], function (done) {
-	gulp.watch(gulpConfig.paths.src.sass + "/**", ['styles']);
-	gulp.watch(gulpConfig.paths.src.templates + "/**", ['templates']);
-	done();
+  gulp.watch(gulpConfig.paths.src.sass + "/**", ['styles']);
+  gulp.watch(gulpConfig.paths.src.templates + "/**", ['templates']);
+  done();
 });
 
 gulp.task('serve', ['watch'], require('./gulp/serve'));
