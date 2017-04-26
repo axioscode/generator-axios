@@ -22,3 +22,14 @@ jspm_packages
 
 #Other
 .DS_Store
+env.json
+*.zip
+tmp/*.zip
+
+functions/*/**
+!functions/*/*.py
+!functions/*/*.js
+!functions/*/*.json
+!functions/*/*.txt
+
+**/.DS_Store
