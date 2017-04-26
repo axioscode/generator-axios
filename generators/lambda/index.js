@@ -41,7 +41,7 @@ module.exports = Generator.extend({
         type    : 'input',
         name    : 's3bucket',
         message : 'Project S3 Bucket:',
-        default : 'graphics.axios.com'      // Default to current folder name
+        default : 'static.axios.com'      // Default to current folder name
       },{
         type    : 'input',
         name    : 's3folder',

@@ -1,0 +1,11 @@
+{
+  "name": "babel",
+  "description": "Node.js Babel (using webpack) example project",
+  "role": "arn:aws:iam::293503197324:role/apex_lambda_function",
+  "runtime": "nodejs",
+  "handler": "lib.default",
+  "hooks": {
+    "build": "../../node_modules/.bin/webpack --config ../../webpack.config.js --bail",
+    "clean": "rm -fr lib"
+  }
+}

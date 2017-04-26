@@ -1,0 +1,8 @@
+{
+  "runtime": "nodejs6.10",
+  "handler": "lib.default",
+  "hooks": {
+    "build": "../../node_modules/.bin/webpack --config ../../webpack.config.babel.js --bail",
+    "clean": "rm -fr lib"
+  }
+}
