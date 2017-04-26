@@ -30,7 +30,7 @@ Check `_examples` for how to configure your local lambda folder
 ## Deploying
 
 ### Connecting to AWS Lambda
-We use a build tool `apex`
+We use a build tool `apex`. For more information, documentation, and examples visit [apex.run](http://apex.run).
 
 ```
 apex init
@@ -82,6 +82,15 @@ Output zip to out.zip:
 $ apex build foo > out.zip
 $ apex deploy foo --zip tmp/foo.zip
 ```
+
+## Scheduling
+Scheduleding a Lambda function must be down within the AWS interface. Login to view the function apex deployed via (console.aws.amazon.com)[https://console.aws.amazon.com/lambda/home?region=us-east-1#/]
+
+### Testing
+Select "Scheduled Event" from the dropdown to simulate cron trigger a lambda function
+
+### Triggering
+Under the "Triggers" table, add a "CloudWatch Events - Schedule" trigger. If you have not set up a CloudWatch Event to trigger a lambda function, you may do so by (creating a CloudWatch Event rule)[https://us-east-1.console.aws.amazon.com/cloudwatch/home?region=us-east-1#rules:]
 
 ## Troubleshooting
 
