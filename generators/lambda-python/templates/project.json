@@ -1,0 +1,5 @@
+{
+  "name": "axios_apex_lambda",
+  "description": "Axios AWS Lambda example project",
+  "role": "arn:aws:iam::148400639408:role/axios_apex_default_lambda_function"
+}
