@@ -1,5 +1,0 @@
-{
-  "description": "Node.js example function with more memory and higher timeout",
-  "timeout": 10,
-  "memory": 128
-}

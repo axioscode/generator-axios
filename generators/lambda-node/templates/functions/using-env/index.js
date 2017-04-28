@@ -1,5 +1,7 @@
 
 console.log('start using-env LOGGLY_TOKEN=%s', process.env.LOGGLY_TOKEN)
+
+// MUST export "handle" function
 exports.handle = function(e, ctx, cb) {
   console.log('processing event: %j', e)
   cb(null, {

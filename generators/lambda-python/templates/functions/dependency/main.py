@@ -9,7 +9,7 @@ import requests
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-
+# MUST include "handle" function
 def handle(event, context):
     """
     Lambda handler

@@ -1,16 +1,16 @@
 # The Axios Lambda Kit
-This project was created with `generator-axios:lambda`, Axios' yeoman generator for making AWS Lambda functions for bots, cron jobs, and APIs. This documentation will help you work with the lambda rig to make awesome internet things.
+This project was created with `generator-axios:lambda-python`, Axios' yeoman generator for making AWS Lambda functions for bots, cron jobs, and APIs. This documentation will help you work with the lambda rig to make awesome internet things.
 
-`yo axios:lambda`
+`yo axios:lambda-python`
 
 ## Getting Started
 If this is your first time making a lambda function with this rig, be sure to follow these instructions first.
 
 ### Installing Dependencies
-The following, one line command will install everything you need. If you need more, this command can be edited in `setup.sh`
+The following, one-line command will install everything you need. If you need to install anything more, please edit `setup.sh`
 
 ```
-npm run setup
+sh setup.sh
 ```
 
 ### Setting your Credentials

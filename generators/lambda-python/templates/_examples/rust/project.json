@@ -1,8 +1,0 @@
-{
-    "name": "test",
-    "description": "rust example project",
-    "memory": 128,
-    "timeout": 5,
-    "role": "arn:aws:iam::908572518007:role/test_lambda_function",
-    "environment": {}
-}
