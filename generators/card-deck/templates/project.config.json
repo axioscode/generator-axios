@@ -1,0 +1,21 @@
+{
+  "project": {
+    "name": "<%= meta.name %>",
+    "slug": "<%= meta.slug %>",
+    "description": ""
+  },
+  "s3": {
+    "bucket": "<%= meta.s3bucket %>",
+    "folder": "<%= meta.s3folder %>"
+  },
+  "files": [
+    {
+      "type": "<%= meta.docType %>",
+      "opts": {
+        "processor": "table"
+      },
+      "fileId": "<%= meta.fieldId %>",
+      "name": "copy"
+    }
+  ]
+}
