@@ -3,7 +3,22 @@ This project was created with `generator-axios`, Axios' yeoman generator for mak
 
 **Note** — You may also want to look at the documentation for the generator for some additional understanding of what each of the files in this project does and how they all work together.
 
-### Configuration
+## Developing the Card deck
+Card decks central logic hinge on creating easy-to-read, evenly porportioned card decks. The following notes are to help you edit the template to create a new card deck.
+
+### Templates
+The actual card format can be edited in the template in `src/templates`. The current template assumes you will use a header, body, and footer
+
+**Additional elements must be placed within the following tag either in the header, body, or footer. This tag is used by the JS to calculate the heights for the cards.**
+
+`<div class="card-module-row"></div>`
+
+### Styles
+Styles can be edited in `src/sass`. The stylesheet roughly follows [BEM conventions](http://getbem.com/naming/). **NOTE: style organization is a WIP.**
+
+To edit spacing between sections in the card, edit **padding** first so the JS can properly calculate the section's dimensions.
+
+## Configuration
 Most of this configuration should be accomplished already if you set up this project with `yo axios:card-deck`. If you want to understand more of what's happening, here's some information.
 
 The primary place to configure your project is `project.config.js` in the root directory. This is where you define where on S3 your project will live (this is important for how the rig handles static URLs when building for production). There is also some configuration stuff that happens in `/gulp/config.js` so if you're changing the names of folders or putting things where the rig doesn't expect them to be, that might be where you can fix that problem.
