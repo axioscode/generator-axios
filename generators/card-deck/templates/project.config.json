@@ -2,7 +2,7 @@
   "project": {
     "name": "<%= meta.name %>",
     "slug": "<%= meta.slug %>",
-    "description": ""
+    "description": "<%= meta.description %>"
   },
   "s3": {
     "bucket": "<%= meta.s3bucket %>",

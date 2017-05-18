@@ -39,6 +39,11 @@ module.exports = Generator.extend({
         message : 'Project Slug:',
         default : slugify(this.appname)      // Default to current folder name
       },{
+        type    : 'input',
+        name    : 'description',
+        message : 'Project Slug:',
+        default : 'An interactive card deck for axios.com'      // Default to current folder name
+      },{
         type    : 'list',
         name    : 'docType',
         message : 'Using a Google Doc or Spreadsheet?',
@@ -73,6 +78,7 @@ module.exports = Generator.extend({
         this.meta = {};
         this.meta.name = answers.name;
         this.meta.slug = answers.slug;
+        this.meta.description = answers.description;
         this.meta.s3bucket = answers.s3bucket;
         this.meta.s3folder = answers.s3folder;
         this.gitInit = answers.gitInit;
