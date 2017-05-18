@@ -3,8 +3,10 @@ import CardDeck from './carddeck';
 
 var pymChild = null;
 
-window.onload = function() {
+document.addEventListener("DOMContentLoaded", function() {
   pymChild = new pym.Child();
-  var scotusCardDeck = new CardDeck('#<%= meta.slug %>');
-  pymChild.sendHeight();
-}
+  window.onload = function() {
+  	var scotusCardDeck = new CardDeck('#<%= meta.slug %>');
+  	pymChild.sendHeight();
+  }
+});
