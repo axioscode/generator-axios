@@ -1,5 +1,8 @@
-# <%= meta.name %>
+<%= meta.name %>
+---
+
 <%= meta.description %>
+
 This project was created with `generator-axios:lambda-node`, Axios' yeoman generator for making AWS Lambda functions for bots, cron jobs, and APIs. This documentation will help you work with the lambda rig to make awesome internet things.
 
 `yo axios:lambda-node function_name`
