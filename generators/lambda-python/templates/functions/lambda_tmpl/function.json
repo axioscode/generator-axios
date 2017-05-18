@@ -1,0 +1,6 @@
+{
+  "description": "<%= meta.description %>",
+  "hooks":{
+    "build": "pip install -r requirements.txt -t ."
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "description": "<%= meta.description %>",
+  "hooks":{
+    "build": "npm install"
+  }
+}

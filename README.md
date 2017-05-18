@@ -1,6 +1,20 @@
 # generator-axios-graphic
 Yeoman generator to make developing graphics at Axios simpler and faster.
 
+## Generators
+
+`yo axios`
+
+Generate an interactive graphic to be displayed in an iframe on Axios.com
+
+`yo axios:lambda-node function_name`
+
+Generate an AWS Lambda project with a Node.js function, named `function_name`
+
+`yo axios:lambda-python function_name`
+
+Generate an AWS Lambda project with a Python function, named `function_name`
+
 ## Setup
 
 `npm run setup`

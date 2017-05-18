@@ -12,6 +12,7 @@ module.exports = Generator.extend({
 
     this.argument('function-name', {
       desc: 'Name of the function to generate',
+      type: String,
       required: true
     });
 
@@ -78,6 +79,19 @@ module.exports = Generator.extend({
       this.templatePath("**/.*"),
       this.destinationRoot(),
       { meta: this.meta }
+    );
+  },
+  writing: function () {
+    var generatorName = this.fs.readJSON(this.destinationPath('project.json')).name;
+
+    this.fs.copyTpl(
+      this.templatePath('functions/lambda_tmpl/**'),
+      this.destinationPath(path.join('functions', this.options['function-name'])),
+      { meta: this.meta }
+    );
+
+    this.fs.delete(
+      this.destinationPath(path.join('functions','lambda_tmpl'))
     );
   },
   install: function () {

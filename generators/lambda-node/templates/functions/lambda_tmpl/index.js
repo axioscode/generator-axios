@@ -1,5 +1,4 @@
-
-console.log('start simple')
+var AWS = require("aws-sdk")
 
 // MUST export "handle" function
 exports.handle = function(e, ctx, cb) {

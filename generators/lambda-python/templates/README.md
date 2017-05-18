@@ -1,7 +1,11 @@
-# The Axios Lambda Kit
+# <%= meta.name %>
+<%= meta.description %>
+
 This project was created with `generator-axios:lambda-python`, Axios' yeoman generator for making AWS Lambda functions for bots, cron jobs, and APIs. This documentation will help you work with the lambda rig to make awesome internet things.
 
-`yo axios:lambda-python`
+`yo axios:lambda-python function_name`
+
+Where function_name is the name of the specific Lambda function you which to generate. On AWS, grouped are a project with its own unique name.
 
 ## Getting Started
 If this is your first time making a lambda function with this rig, be sure to follow these instructions first.
