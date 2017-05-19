@@ -1,11 +1,11 @@
 var path = require('path');
 
 var dirs = {
-	root: './',
-	tmp: './.tmp',
-	src: './src',
-	dist: './dist',
-	data: './data'
+  root: './',
+	tmp: '.tmp',
+	src: 'src',
+	dist: 'dist',
+	data: 'data'
 };
 
 var paths = {
