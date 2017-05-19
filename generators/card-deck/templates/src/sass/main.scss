@@ -1,0 +1,329 @@
+@import 'feta';
+
+$background-color: #D8D4CE;
+$card-padding: 20px; // update in js if changes (it's itemMargin over there)
+$card-width: 350px; // update in js if changes (it's cardWidth over there)
+$peek-amount: 10px;
+$diagonal-height: 20px;
+
+body {
+  font-family: $sans;
+  background-color: $background-color;
+  color: $grey-darker;
+  height: 200%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: subpixel-antialiased;
+  shape-rendering: crispEdges;
+}
+
+// CARD DECK
+.card-deck { width: 100vw; }
+
+.card-deck__container {
+  margin: 0 auto;
+  overflow-x: hidden;
+  backface-visibility: hidden;
+  transform: translate(0,0);
+  transform-style: preserve-3d;
+}
+
+.card-deck__carousel {
+  cursor: grab;
+  position: relative;
+  transform: translate(0,0);
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+
+  .card-deck__item {
+    float: left;
+    margin: $card-padding;
+    width: $card-width;
+    max-width: $card-width;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transform: translate(0,0);
+  }
+
+  &--animate {
+    transition: transform .25s linear;
+  }
+
+  &--dragging { cursor: grabbing; }
+}
+
+
+// THE CARD
+.card {
+  background-color: #fff;
+  box-shadow: -4px 4px 18px -2px rgba(0, 0, 0, .4);
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__header {
+  background-color: $blue;
+  color: $grey-lightest;
+  height: 5rem;
+  display: flex;
+  flex-direction: column-reverse;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+}
+
+.card__body {
+  padding: 0 $card-padding 2rem;
+  font-size: 1em;
+}
+
+.card__footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0 $card-padding;
+  color: $grey;
+  text-align: center;
+  .card-module-row {
+    padding-bottom: $card-padding !important;
+  }
+  p {
+    width: 100%;
+    margin: 0;
+    font-weight: 500;
+    line-height: 1.6;
+    font-size: 10px;
+  }
+
+  img {
+    vertical-align: middle;
+    padding: 4px;
+  }
+}
+
+// CARD MODULES
+.card-module-row {
+  display: flex;
+  min-height: 50px;
+
+  .card-module {
+    flex-basis: 100%;
+  }
+
+  &.card-module-row--two {
+    .card-module {
+      &:first-of-type { margin-left: 0em; }
+      &:last-of-type { margin-right: 0em; }
+      margin: 0 $card-padding/2;
+      flex-basis: 50%;
+    }
+  }
+
+  &.card-module-row--no-margin {
+    margin-left: -$card-padding;
+    margin-right: -$card-padding;
+  }
+}
+
+.card-module-row:not(:last-child) .card-module {
+  margin-bottom: 1.25rem;
+}
+.card-module-row:last-child .card-module {
+  margin-bottom: $card-padding * 2.5;
+}
+
+.card-module__header {
+  color: $grey-darker;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.5rem;
+  font-weight: 400;
+  margin-bottom: .75rem;
+
+  .card-module-row--two & {
+    &:before {
+      width: calc(100%);
+    }
+  }
+}
+
+.card-module {
+  &.card-module--image {
+    margin: 0 !important;
+    img {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  &.card-module--paragraph {
+    h2 {
+      text-align: left;
+      font-weight: 500;
+      line-height: 1.55;
+      font-size: 18px;
+      letter-spacing: -0.5px;
+      margin: 0.5rem 0 !important;
+    }
+    p {
+      font-family: $serif;
+      font-size: 15px;
+      margin-bottom: .375rem;
+      line-height: 1.6;
+      font-size: .8rem;
+      text-align: left;
+    }
+  }
+
+  p { font-size: .875rem; }
+  &.card-module--small {
+    p { font-size: .75rem;; }
+  }
+  &.card-module--medium {
+    p { font-size: 0.875rem; }
+  }
+  &.card-module--big {
+    p { font-size: 1em; }
+  }
+  &.card-module--bigger {
+    p { font-size: 1.125em; }
+  }
+  &.card-module--giant {
+    margin-bottom: .675rem;
+    p {
+      font-weight: 500;
+      font-size: 3.125rem;
+    }
+  }
+}
+
+// NAVIGATION AND PAGINATION
+.card-deck__nav {
+    margin-bottom: 1rem;
+
+    font-family: $mono;
+    color: $grey-darker;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    user-select: none;
+
+  .arrow {
+    flex-basis: 75px;
+  }
+}
+
+.arrow {
+  width: 60px;
+  height: 36px;
+  font-size: 2rem;
+  transition: opacity .25s linear;
+
+  span {
+    width: 36px;
+    text-align: center;
+  }
+
+  svg {
+    height: 12px;
+    top: -4px;
+    position: relative;
+    g {
+      fill: $grey-dark;
+      transition: .25s fill linear;
+    }
+  }
+
+  &:hover svg {
+    g { fill: $grey-darker; }
+  }
+
+  &.arrow--disabled {
+    opacity: 0;
+  }
+  &:not(.arrow--disabled) { cursor: pointer; }
+}
+
+
+// TRANSITIONS
+.card-deck__item--next,
+.card-deck__item--prev {
+  transition: transform .2s ease;
+}
+
+.card-deck__item--next:hover {
+  transform: translateX(-$peek-amount);
+}
+
+.card-deck__item--prev:hover {
+  transform: translateX($peek-amount);
+}
+
+@keyframes peek {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-$peek-amount); }
+  100% { transform: translateX(0); }
+}
+@keyframes peek-reverse {
+  0% { transform: translateX(0); }
+  50% { transform: translateX($peek-amount); }
+  100% { transform: translateX(0); }
+}
+
+
+.card-deck__item--peek {
+  animation-name: peek;
+  animation-duration: .4s;
+  animation-timing-function: ease-in-out;
+}
+
+.card-deck__item--peek-reverse {
+  animation-name: peek-reverse;
+  animation-duration: .4s;
+  animation-timing-function: ease-in-out;
+  animation-direction: reverse;
+}
+
+@mixin card-last-row-color($color: $purple) {
+    .card-module-row:last-of-type {
+      background-color: $color;
+      &:before {
+        border-color: transparent transparent $color transparent;
+      }
+    }
+}
+
+// Additional styling
+.card__header {
+  height: auto;
+  background-color: #fff;
+}
+
+.card__body {
+  padding-bottom: 0;
+}
+
+.card-module--big p {
+  width: 85%; // widows
+}
+
+// Diagonal Line
+.card {
+  overflow: hidden; // keep triangle okay if smaller than max card width
+
+  .card-module-row:last-of-type {
+    margin-bottom: 0;
+    // padding: $diagonal-height $card-padding;
+    position: relative;
+    .card-module__header {
+      color: #fff;
+      &:before {
+        display: none;
+      }
+    }
+
+  }
+}

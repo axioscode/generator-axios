@@ -1,0 +1,58 @@
+{{#extend "base"}}
+{{#content "main"}}
+
+<div class="card-deck" id="<%= meta.slug %>">
+  <div class="card-deck__container">
+    <div class="card-deck__carousel">
+
+      {{#each copy.cards}}
+      <div class="card-deck__item card" id="card--{{id}}">
+        <div class="card__header">
+          <div class="card-module-row">
+            <div class="card-module card-module--image">
+              <img src="img/{{id}}.png" />
+            </div>
+          </div>
+        </div>
+        <div class="card__body">
+          <div class="card-module-row">
+            <div class="card-module card-module--paragraph">
+              <div class="card-module__body">
+                <h2>{{hed}}</h2>
+                <p>{{body}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card__footer">
+          <div class="card-module-row">
+            <p>
+              AXIOS STUDIOS
+            </p>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="card-deck__nav">
+    <div class="arrow arrow__prev arrrow--disabled">
+      <span class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" height="36px" width="36px" viewBox="0 0 36 36"><g><polygon points="0 18 36 0 36 36 0 18"/></g></svg>
+      </span>
+    </div>
+    <div class="pagination">
+      <span class="pagination__current"></span> / <span class="pagination__total"></span>
+    </div>
+    <div class="arrow arrow__next">
+      <span class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" height="36px" width="36px" viewBox="0 0 36 36"><g><polygon points="36 18 0 36 0 0 36 18"/></g></svg>
+      </span>
+    </div>
+  </div>
+</div>
+
+
+{{/content}}
+{{/extend}}

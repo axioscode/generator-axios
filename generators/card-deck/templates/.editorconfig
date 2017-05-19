@@ -1,0 +1,17 @@
+# EditorConfig docs: http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Defaults for all files. (2 spaces, utf-8, EOF newlines)
+[*]
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 2
+charset = utf-8
+
+# Python gets 4 spaces
+[*.py]
+indent_size = 4
+
