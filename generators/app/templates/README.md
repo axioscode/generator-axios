@@ -10,7 +10,6 @@ Most of this configuration should be accomplished already if you set up this pro
 The primary place to configure your project is `project.config.js` in the root directory. This is where you define where on S3 your project will live (this is important for how the rig handles static URLs when building for production). There is also some configuration stuff that happens in `/gulp/config.js` so if you're changing the names of folders or putting things where the rig doesn't expect them to be, that might be where you can fix that problem.
 
 ### Working with Google Drive
-explanantino goes here.
 
 #### Setting your Credentials
 * Log in to <https://console.developers.google.com/>, you should see a project called "Visuals Rig Copyflow" (If not, ask the devs to set you up with access)
@@ -28,10 +27,10 @@ Running `gulp fetch-data` or `gulp gdrive:fetch` will pull Google Drive sheets s
 ### Working with S3
 
 #### Setting your Credentials
-To publish to S3 you'll need to create an `axios` profile in your `~/.aws/credentials` file. You will need to have the aws command line tools installed to do this (`pip install awscli`). To set up your credentials, simply run:
+To publish to S3 you'll need to create a `default` profile in your `~/.aws/credentials` file. You will need to have the aws command line tools installed to do this (`pip install awscli`). To set up your credentials, simply run:
 
 ```bash
-$ aws configure --profile axios
+$ aws configure --profile default
 AWS Access Key ID [None]: [PUT YOUR ACCESS_KEY HERE]
 AWS Secret Access Key [None]: [PUT YOUR SECRET_ACCESS_KEY HERE]
 Default region name [None]: us-east-1
@@ -39,8 +38,9 @@ Default output format [None]: text
 ```
 
 #### Publishing to S3
-explanatino here.
+Once you've configured your AWS credentials, you can publish using the command
 
+`gulp publish`
 
 ## Gulp
 
