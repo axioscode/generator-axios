@@ -5,7 +5,6 @@ const env = require("gulp-env");
 const gutil = require("gulp-util");
 const runSequence = require('run-sequence');
 const gulpConfig = require('./gulp/config');
-const browserSync = require('./gulp/browsersync')
 
 // Core Sub-Tasks For Processing Static Files
 gulp.task('styles', require('./gulp/styles'));
@@ -18,7 +17,7 @@ gulp.task('cachebust', require('./gulp/cachebust'))
 // Google Drive Tasks
 gulp.task('gdrive:add', require('./gulp/gdrive').addFile)
 gulp.task('gdrive:fetch', require('./gulp/gdrive').fetch)
-gulp.task('fetch-data', ['gdrive:fetch'])
+ gulp.task('fetch-data', ['gdrive:fetch'])
 
 
 // Env Tasks
@@ -42,16 +41,10 @@ gulp.task('build:dev', ['set-dev-node-env', 'clean'], (done) => {
 
 
 gulp.task('watch', ['images', 'styles', 'templates', 'scripts:watch'], function (done) {
-  gulp.watch(gulpConfig.paths.src.sass + "/**", ['styles']);
-  gulp.watch(gulpConfig.paths.src.templates + "/**", ['templates']);
-  gulp.watch(gulpConfig.paths.src.img + "/**", ['images'])
-
-  gulp.watch(gulpConfig.data + "/**", () => {
-    gulp.src(gulpConfig.data + "/**")
-      .pipe(browserSync.stream({match: "**/*.json"}))
-  })
-
-  done();
+	gulp.watch(gulpConfig.paths.src.sass + "/**", ['styles']);
+	gulp.watch(gulpConfig.paths.src.templates + "/**", ['templates']);
+  gulp.watch(gulpConfig.paths.src.img + "/**", ['images']);
+	done();
 });
 
 gulp.task('serve', ['watch'], require('./gulp/serve'));

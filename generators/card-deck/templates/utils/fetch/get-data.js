@@ -29,7 +29,7 @@ module.exports = () => {
     }
 
     if (file.type === 'sheet') {
-      xlsxToCopyText(data, file.opts, (err, d) => {
+      xlsxToCopyText(data, file.copytext, (err, d) => {
         if (err) throw err
         fs.writeFileSync(filePath, JSON.stringify(d, null, 2))
         logDownload(file.name, file.fileId, 'cyan')

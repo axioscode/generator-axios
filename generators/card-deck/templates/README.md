@@ -1,15 +1,34 @@
-# The Axios Graphics Kit
-This project was created with `generator-axios`, Axios' yeoman generator for making static interactive graphics that can be embedded in our news stream. This documentation will help you work with the graphics rig to make awesome internet things.
+<%= meta.name %>
+---
+<%= meta.description %>
+
+This project was created with `generator-axios`, Axios' yeoman generator for making interactive card decks that can be embedded in our news stream. This documentation will help you work with the graphics rig to make awesome internet things.
 
 **Note** — You may also want to look at the documentation for the generator for some additional understanding of what each of the files in this project does and how they all work together.
 
+## Developing the Card deck
+Card decks central logic hinge on creating easy-to-read, evenly porportioned card decks. The following notes are to help you edit the template to create a new card deck.
+
+### Templates
+The actual card format can be edited in the template in `src/templates`. The current template assumes you will use a header, body, and footer
+
+**Additional elements must be placed within the following tag either in the header, body, or footer. This tag is used by the JS to calculate the heights for the cards.**
+
+`<div class="card-module-row"></div>`
+
+### Styles
+Styles can be edited in `src/sass`. The stylesheet roughly follows [BEM conventions](http://getbem.com/naming/). **NOTE: style organization is a WIP.**
+
+To edit spacing between sections in the card, edit **padding** first so the JS can properly calculate the section's dimensions.
 
 ## Configuration
-Most of this configuration should be accomplished already if you set up this project with `yo axios`. If you want to understand more of what's happening, here's some information.
+Most of this configuration should be accomplished already if you set up this project with `yo axios:card-deck`. If you want to understand more of what's happening, here's some information.
 
 The primary place to configure your project is `project.config.js` in the root directory. This is where you define where on S3 your project will live (this is important for how the rig handles static URLs when building for production). There is also some configuration stuff that happens in `/gulp/config.js` so if you're changing the names of folders or putting things where the rig doesn't expect them to be, that might be where you can fix that problem.
 
-### Step 1) Google Drive
+### Working with Google Drive
+
+Spreadsheet for `copy.json` ([link](https://docs.google.com/spreadsheets/d/1k91vZX2Gg8sLPNPX1Q6rzaomIQM_s3Ol8zUVsAEpQFI/edit#gid=0))
 
 #### Setting your Credentials
 * Log in to <https://console.developers.google.com/>, you should see a project called "Visuals Rig Copyflow" (If not, ask the devs to set you up with access)
@@ -23,14 +42,13 @@ Adding a new Google Drive file is easy with `gulp gdrive:add`. Just run the comm
 #### Updating Data
 Running `gulp fetch-data` or `gulp gdrive:fetch` will pull Google Drive sheets stored in your project config.
 
-
-### Step 2) S3
+### Working with S3
 
 #### Setting your Credentials
-To publish to S3 you'll need to create a `default` profile in your `~/.aws/credentials` file. You will need to have the aws command line tools installed to do this (`pip install awscli`). To set up your credentials, simply run:
+To publish to S3 you'll need to create an `axios` profile in your `~/.aws/credentials` file. You will need to have the aws command line tools installed to do this (`pip install awscli`). To set up your credentials, simply run:
 
 ```bash
-$ aws configure --profile default
+$ aws configure --profile axios
 AWS Access Key ID [None]: [PUT YOUR ACCESS_KEY HERE]
 AWS Secret Access Key [None]: [PUT YOUR SECRET_ACCESS_KEY HERE]
 Default region name [None]: us-east-1
@@ -38,9 +56,6 @@ Default output format [None]: text
 ```
 
 #### Publishing to S3
-Once you've configured your AWS credentials, you can publish using the command
-
-`gulp publish`
 
 ## Gulp
 
