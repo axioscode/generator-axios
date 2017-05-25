@@ -41,6 +41,7 @@ module.exports = Generator.extend({
         default : this.options['function-name']      // Default to current folder name
       }]).then(function(answers, err) {
         this.meta = {};
+        this.meta.functionName = this.options['function-name'];
         this.meta.description = answers.description;
         done(err);
       }.bind(this));
@@ -68,6 +69,13 @@ module.exports = Generator.extend({
       this.destinationPath(path.join('functions','lambda_tmpl'))
     );
   },
+  install: function () {
+    var currSubFolder = 'functions/' + this.options['function-name'];
+    var currRequirements = currSubFolder + '/requirements.txt';
+    this.spawnCommand('cd',[currSubFolder])
+    this.spawnCommand('pip', ['install', '-r', currRequirements, '-t', currSubFolder])
+  },
+
   end: function() {
     this.log("Success! You may edit your new function in the 'functions/' folder\n")
   }

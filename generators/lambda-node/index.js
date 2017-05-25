@@ -41,6 +41,7 @@ module.exports = Generator.extend({
         default : this.options['function-name']      // Default to current folder name
       }]).then(function(answers, err) {
         this.meta = {};
+        this.meta.functionName = this.options['function-name'];
         this.meta.description = answers.description;
         done(err);
       }.bind(this));
@@ -69,11 +70,8 @@ module.exports = Generator.extend({
     );
   },
   install: function () {
-    this.installDependencies({
-      bower: false,
-      skipMessage: this.options['skip-install-message'],
-      skipInstall: this.options['skip-install']
-    });
+    var currSubFolder = 'functions/' + this.options['function-name'] + "/"
+    this.spawnCommand('npm', ['install', '--prefix', currSubFolder, currSubFolder])
   },
   end: function() {
     this.log("Success! You may edit your new function in the 'functions/' folder\n")
