@@ -3,7 +3,7 @@
 
 <%= meta.description %>
 
-This project was created with `generator-axios:lambda`, Axios' yeoman generator for making AWS Lambda functions for bots, cron jobs, and APIs. This documentation will help you work with the lambda rig to make awesome internet things.
+This project was created with `generator-axios:lambda`, Axios' Yeoman generator for making AWS Lambda functions for bots, cron jobs, and APIs. Once created, these are deployed using a tool called Apex. This documentation will help you work with the Lambda rig to make awesome internet things.
 
 `yo axios:lambda`
 
@@ -29,6 +29,8 @@ Default output format [None]: text
 ```
 
 ## Developing
+
+Checkout our deploy tool's Github repo, Apex, for [more examples](https://github.com/apex/apex/tree/master/_examples) of developing AWS Lambda functions in different languages. If you're writing functions in Node.js or Python, you can use the generator again.
 
 ### axios:lambda-node
 

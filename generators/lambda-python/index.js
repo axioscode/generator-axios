@@ -68,11 +68,7 @@ module.exports = Generator.extend({
       this.destinationPath(path.join('functions','lambda_tmpl'))
     );
   },
-  install: function () {
-    this.installDependencies({
-      bower: false,
-      skipMessage: this.options['skip-install-message'],
-      skipInstall: this.options['skip-install']
-    });
+  end: function() {
+    this.log("Success! You may edit your new function in the 'functions/' folder\n")
   }
 });

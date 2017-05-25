@@ -74,5 +74,8 @@ module.exports = Generator.extend({
       skipMessage: this.options['skip-install-message'],
       skipInstall: this.options['skip-install']
     });
+  },
+  end: function() {
+    this.log("Success! You may edit your new function in the 'functions/' folder\n")
   }
 });

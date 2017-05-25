@@ -75,16 +75,16 @@ module.exports = Generator.extend({
       { meta: this.meta }
     );
   },
-  install: function () {
-    this.installDependencies({
-      bower: false,
-      skipMessage: this.options['skip-install-message'],
-      skipInstall: this.options['skip-install']
-    });
-  },
   end: function() {
-    if (this.gitInit) {
-      this.spawnCommand('git', ['init'])
-    }
+    this.log("Success! Welcome to your new lambda apex project. Next steps are:\n")
+    this.log("1. Make sure you have awscli and Apex installed\n")
+    this.log("\t> aws --help")
+    this.log("\t> apex --help")
+    this.log("\n2. If either command errors, run the following command:\n")
+    this.log("\t> ./setup.sh\n")
+    this.log("3. Create Python or Node.js functions for your project:\n")
+    this.log("\t> yo axios:lambda-node <function name>\n")
+    this.log("OR...\n")
+    this.log("\t> axios:lambda-python <function name>")
   }
 });
