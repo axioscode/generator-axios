@@ -1,5 +1,0 @@
-{
-  "name": "<%= meta.name %>",
-  "description": "<%= meta.description %>",
-  "role": "arn:aws:iam::148400639408:role/axios_apex_default_lambda_function"
-}
