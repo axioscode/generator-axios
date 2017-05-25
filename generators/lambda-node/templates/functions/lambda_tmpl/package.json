@@ -1,0 +1,12 @@
+{
+  "name": "<%= meta.functionName %>",
+  "version": "1.0.0",
+  "description": "<%= meta.description %>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.7.20"
+  }
+}

@@ -1,3 +1,4 @@
+'use strict';
 var path = require('path');
 var slugify = require('slugify');
 var mkdirp = require('mkdirp');
@@ -8,6 +9,7 @@ var Generator = require('yeoman-generator');
 module.exports = Generator.extend({
   constructor: function () {
     Generator.apply(this, arguments);
+
     this.option('skip-install-message', {
       desc: 'Skips the message after the installation of dependencies',
       type: Boolean
@@ -34,19 +36,14 @@ module.exports = Generator.extend({
         default : this.appname      // Default to current folder name
       },{
         type    : 'input',
-        name    : 'slug',
-        message : 'Project Slug:',
-        default : slugify(this.appname)      // Default to current folder name
+        name    : 'description',
+        message : 'Project Description:',
+        default : this.appname      // Default to current folder name
       },{
         type    : 'input',
-        name    : 's3bucket',
-        message : 'Project S3 Bucket:',
-        default : 'graphics.axios.com'      // Default to current folder name
-      },{
-        type    : 'input',
-        name    : 's3folder',
-        message : 'Project S3 Folder:',
-        default : dateString + '-' + slugify(this.appname)      // Default to current folder name
+        name    : 'timeout',
+        message : 'Timeout integer, in seconds, before function is terminated. Defaults to 30:',
+        default : 30    // Default to current folder name
       },{
         type    : 'confirm',
         name    : 'gitInit',
@@ -55,9 +52,8 @@ module.exports = Generator.extend({
       }]).then(function(answers, err) {
         this.meta = {};
         this.meta.name = answers.name;
-        this.meta.slug = answers.slug;
-        this.meta.s3bucket = answers.s3bucket;
-        this.meta.s3folder = answers.s3folder;
+        this.meta.description = answers.description;
+        this.meta.timeout = answers.timeout;
         this.gitInit = answers.gitInit;
         done(err);
       }.bind(this));
@@ -79,16 +75,16 @@ module.exports = Generator.extend({
       { meta: this.meta }
     );
   },
-  install: function () {
-    this.installDependencies({
-      bower: false,
-      skipMessage: this.options['skip-install-message'],
-      skipInstall: this.options['skip-install']
-    });
-  },
   end: function() {
-    if (this.gitInit) {
-      this.spawnCommand('git', ['init'])
-    }
+    this.log("Success! Welcome to your new lambda apex project. Next steps are:\n")
+    this.log("1. Make sure you have awscli and Apex installed\n")
+    this.log("\t> aws --help")
+    this.log("\t> apex --help")
+    this.log("\n2. If either command errors, run the following command:\n")
+    this.log("\t> ./setup.sh\n")
+    this.log("3. Create Python or Node.js functions for your project:\n")
+    this.log("\t> yo axios:lambda-node <function name>\n")
+    this.log("OR...\n")
+    this.log("\t> axios:lambda-python <function name>")
   }
 });

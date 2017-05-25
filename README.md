@@ -1,16 +1,13 @@
 # generator-axios-graphic
 Yeoman generator to make developing graphics at Axios simpler and faster.
 
-## Setup
+## Generators
 
-`npm run setup`
+### axios
 
-This will
-* Install global dependencies: `yo`, `yeoman-generator`, `gulp-cli`
-* Install local dependencies
-* Link `generators/app/` to `yo`
+`yo axios`
 
-## Generate Project
+Generate an interactive graphic to be displayed in an iframe on Axios.com
 
 ```bash
 mkdir [project-name] && cd $_
@@ -22,15 +19,111 @@ OR To setup using one line in your terminal, add this shell script to your `.bas
 ```bash
 # Create a new project using the axios generator
 # Example:
-# > axiosviz TKTKTK
+# > av-viz TKTKTK
 # Note:
 # TKTK is the project slug & must be an empty folder
-function axiosviz() {
+function av-viz() {
 	mkdir "$@"
 	cd "$@"
 	yo axios
 }
 ```
+
+### axios:card-deck
+
+`yo axios:card-deck`
+Generate and interactive Axios card deck based on a Google Spreadsheet or Google Doc. Card decks are HTML pages, along with static assets, which are placed in an iframe and published on axios.com
+
+```bash
+mkdir [project-name] && cd $_
+yo axios:card-deck
+```
+
+OR To setup using one line in your terminal, add this shell script to your `.bash_profile`
+
+```bash
+# Create a new project using the axios generator
+# Example:
+# > av-card-deck TKTKTK
+# Note:
+# TKTK is the project slug & must be an empty folder
+function av-card-deck() {
+	mkdir "$@"
+	cd "$@"
+	yo axios:card-deck
+}
+```
+
+### axios:lambda
+
+`yo axios:lambda`
+Generate the boilerplate AWS Lambda project to be deployed using Apex
+
+```bash
+mkdir [project-name] && cd $_
+yo axios:lambda
+```
+
+OR To setup using one line in your terminal, add this shell script to your `.bash_profile`
+
+```bash
+# Create a new project using the axios generator
+# Example:
+# > av-lambda TKTKTK
+# Note:
+# TKTK is the project slug & must be an empty folder
+function av-lambda() {
+	mkdir "$@"
+	cd "$@"
+	yo axios:lambda
+} 
+
+### axios:lambda-node
+
+`yo axios:lambda-node function_name`
+
+Generate an AWS Lambda project with a Node.js function, named `function_name`
+
+```bash
+mkdir [project-name] && cd $_
+yo axios:lambda-node [function-name]
+```
+
+#### Multiple functions
+
+To generate multiple Lambda functions within a project, just re-use the generator
+
+```bash
+yo axios:lambda-node [function-name]
+```
+
+### axios:lambda-python
+
+`yo axios:lambda-python function_name`
+
+Generate an AWS Lambda project with a Python function, named `function_name`
+
+```bash
+mkdir [project-name] && cd $_
+yo axios:lambda-python [function-name]
+```
+
+#### Multiple functions
+
+To generate multiple Lambda functions within a project, just re-use the generator
+
+```bash
+yo axios:lambda-python [function-name]
+```
+
+## Setup
+
+`npm run setup`
+
+This will
+* Install global dependencies: `yo`, `yeoman-generator`, `gulp-cli`
+* Install local dependencies
+* Link `generators/app/` to `yo`
 
 ## Add default Github issues
 
