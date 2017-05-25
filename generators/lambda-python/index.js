@@ -31,6 +31,23 @@ module.exports = Generator.extend({
     this.pkg = require('../../package.json');
   },
 
+  prompting: {
+    meta: function() {
+      var done = this.async();
+      this.prompt([{
+        type    : 'input',
+        name    : 'description',
+        message : 'Function Description:',
+        default : this.options['function-name']      // Default to current folder name
+      }]).then(function(answers, err) {
+        this.meta = {};
+        this.meta.description = answers.description;
+        done(err);
+      }.bind(this));
+    }
+  },
+
+
   configuring: function() {
     // Copy all the normal files.
     this.fs.copy(
@@ -57,10 +74,5 @@ module.exports = Generator.extend({
       skipMessage: this.options['skip-install-message'],
       skipInstall: this.options['skip-install']
     });
-  },
-  end: function() {
-    if (this.gitInit) {
-      this.spawnCommand('git', ['init'])
-    }
   }
 });
