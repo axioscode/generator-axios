@@ -29,7 +29,44 @@ Default output format [None]: text
 ```
 
 ## Developing
-Check `_examples` for how to configure your local lambda folder
+
+### axios:lambda-node
+
+`yo axios:lambda-node function_name`
+
+Generate an AWS Lambda project with a Node.js function, named `function_name`
+
+```bash
+mkdir [project-name] && cd $_
+yo axios:lambda-node [function-name]
+```
+
+#### Multiple functions
+
+To generate multiple Lambda functions within a project, just re-use the generator
+
+```bash
+yo axios:lambda-node [function-name]
+```
+
+### axios:lambda-python
+
+`yo axios:lambda-python function_name`
+
+Generate an AWS Lambda project with a Python function, named `function_name`
+
+```bash
+mkdir [project-name] && cd $_
+yo axios:lambda-python [function-name]
+```
+
+#### Multiple functions
+
+To generate multiple Lambda functions within a project, just re-use the generator
+
+```bash
+yo axios:lambda-python [function-name]
+```
 
 ## Deploying
 
