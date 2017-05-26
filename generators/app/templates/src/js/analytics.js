@@ -6,7 +6,7 @@ if (PRODUCTION) {
   AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = '<%= meta.stageAnalytics %>';
 }
 
-const AXIOS_VISUALS_CATEGORY = '<%= meta.slug %>'
+const AXIOS_VISUALS_CATEGORY = '<%= meta.GoogleAnalyticsCategory %>'
 
 // Heavily inspired by our friends at NPR
 // https://github.com/nprapps/anno-docs/blob/a3bae37a467217a4e446861a57df7dd49f7570f6/www/js/analytics.js

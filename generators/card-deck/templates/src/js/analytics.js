@@ -1,5 +1,12 @@
-const AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = 'UA-87586659-4'
-const AXIOS_VISUALS_CATEORGY = '<%= meta.googleAnalyticsCategory %>' // this is the s3 path
+let AXIOS_VISUEALS_GOOGLE_ANALYTICS_ID;
+
+if (PRODUCTION) {
+  AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = '<%= meta.prodAnalytics %>'
+} else {
+  AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = '<%= meta.stageAnalytics %>';
+}
+
+const AXIOS_VISUALS_CATEGORY = '<%= meta.GoogleAnalyticsCategory %>'
 
 // Heavily inspired by our friends at NPR
 // https://github.com/nprapps/anno-docs/blob/a3bae37a467217a4e446861a57df7dd49f7570f6/www/js/analytics.js
@@ -32,7 +39,7 @@ var setupVisualsGoogleAnalytics = function() {
 var trackEvent = function(action, label, value) {
   var eventData = {
       'hitType': 'event',
-      'eventCategory': AXIOS_VISUALS_CATEORGY, // this is the s3 path
+      'eventCategory': AXIOS_VISUALS_CATEORGY,
       'eventAction': action
   }
 

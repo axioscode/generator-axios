@@ -67,8 +67,16 @@ module.exports = Generator.extend({
       },{
         type    : 'input',
         name    : 'googleAnalyticsCategory',
-        message : 'A new, unique Google Analytics event category name:',
+        message : 'A unique Google Analytics event category name:',
         default : dateString + '-' + slugify(this.appname) + '-v0.1'      // Default to current folder name
+      },{
+        type    : 'input',
+        name    : 'prodAnalytics',
+        message : 'Google Analytics production bucket ID:',
+      },{
+        type    : 'input',
+        name    : 'stageAnalytics',
+        message : 'Google Analytics staging bucket ID:',
       },{
         type    : 'confirm',
         name    : 'gitInit',
@@ -81,6 +89,9 @@ module.exports = Generator.extend({
         this.meta.description = answers.description;
         this.meta.s3bucket = answers.s3bucket;
         this.meta.s3folder = answers.s3folder;
+        this.meta.googleAnalyticsCategory = answers.googleAnalyticsCategory;
+        this.meta.prodAnalytics = answers.prodAnalytics;
+        this.meta.stageAnalytics = answers.stageAnalytics;
         this.gitInit = answers.gitInit;
         done(err);
       }.bind(this));
