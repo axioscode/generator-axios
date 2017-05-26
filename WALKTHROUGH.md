@@ -67,11 +67,11 @@ yo axios
 ### Getting Started
 Yeoman will walk you through a series of prompts to get you setup.
 
-![](WALKTHROUGH/https://cloud.githubusercontent.com/assets/1578563/26507657/37e6d7ce-4206-11e7-9deb-94c67386f4f8.png)
+![](https://cloud.githubusercontent.com/assets/1578563/26507657/37e6d7ce-4206-11e7-9deb-94c67386f4f8.png)
 
 Once you’re all done it will prompt you with where you can go next!
 
-![](WALKTHROUGH/https://cloud.githubusercontent.com/assets/1578563/26507846/0a37553c-4207-11e7-9b6e-30b1b89f035c.png)
+![](https://cloud.githubusercontent.com/assets/1578563/26507846/0a37553c-4207-11e7-9b6e-30b1b89f035c.png)
 
 Or, if you want to start writing and testing code…
 
@@ -123,7 +123,7 @@ Accepts three parameters and returns `undefined`. To be placed inside an event l
 ## Step 3. Publishing an Interactive Graphic
 Once you’ve got it all working you can publish it to s3. Afterward, the script will tell you the URL and give you the shortcode for you to copy and paste and see it in the CMS.
 
-![](WALKTHROUGH/https://cloud.githubusercontent.com/assets/1578563/26508043/f09357b0-4207-11e7-9108-2a40f7236ddc.png)
+![](https://cloud.githubusercontent.com/assets/1578563/26508043/f09357b0-4207-11e7-9108-2a40f7236ddc.png)
 
 ### CMS Shortcode
 
