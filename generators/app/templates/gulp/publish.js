@@ -45,10 +45,10 @@ module.exports = () => {
       gutil.log("🎉 ", gutil.colors.green.bold("Success!"), gutil.colors.blue("Your project can be accessed at:"))
       gutil.log(`https://${projectConfig.s3.bucket}/${projectConfig.s3.folder}/index.html`)
       gutil.log("")
-      gutil.log("👇", gutil.colors.blue("To embed into the Axios CMS, copy the following shortcode:"))
+      gutil.log("👇 ", gutil.colors.blue("To embed into the Axios CMS, copy the following shortcode:"))
       gutil.log(`[shortcode-pym-iframe id="${projectConfig.project.slug}" url="https://${projectConfig.s3.bucket}/${projectConfig.s3.folder}/index.html"]`)
       gutil.log("")
-      gutil.log("👉", gutil.colors.blue.bold("Then login to the Axios CMS"))
+      gutil.log("👉 ", gutil.colors.blue.bold("Then login to the Axios CMS"))
       gutil.log("https://www.axios.com/core/dashboard/drafts")
     });
 }
