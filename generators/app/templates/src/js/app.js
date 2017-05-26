@@ -1,3 +1,6 @@
+var setupVisualsGoogleAnalytics = require('./analytics.js').setupVisualsGoogleAnalytics;
+var trackEvent = require('./analytics.js').trackEvent;
+
 var pym = require('pym.js');
 
 var pymChild = null;

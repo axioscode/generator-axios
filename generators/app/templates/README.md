@@ -80,3 +80,21 @@ Copies files from `src/img`.
 
 #### `gulp cachebust`
 Rewrite URLs in `dist/**/*.html` to add timestamps for cachebusting.
+
+## Analytics
+
+### setupVisualsAnalytics
+
+`setupVisualsAnalytics()`
+
+Accepts no parameters, returns `undefined`. Necessary to call before attempting to record user interactions.
+
+### trackEvent
+
+`trackEvent(action, label (optional), value (optional))`
+
+Accepts three parameters and returns `undefined`. To be placed inside an event listener.
+
+* *action*: a string describing the event, e.g. scroll, tap, or graphic-visible
+* *label*: an optional string describing the event, e.g. clicked-dropdown
+* *value*: an option integer describing the event. useful for tracking time, e.g. 200

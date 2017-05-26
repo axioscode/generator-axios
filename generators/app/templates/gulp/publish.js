@@ -45,5 +45,8 @@ module.exports = () => {
       gutil.log("🎉 ", gutil.colors.green.bold("Success!"), gutil.colors.blue("Your project can be accessed at:"))
       gutil.log(`https://${projectConfig.s3.bucket}/${projectConfig.s3.folder}/index.html`)
       gutil.log("")
+      gutil.log("To embed it into the Axios CMS, use the following shortcode:")
+      gutil.log(`[shortcode-pym-iframe id="${projectConfig.project.slug}" url="https://${projectConfig.s3.bucket}/${projectConfig.s3.folder}/index.html"]`)
+      gutil.log("")
     });
 }

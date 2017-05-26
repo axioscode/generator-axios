@@ -48,6 +48,14 @@ module.exports = Generator.extend({
         message : 'Project S3 Folder:',
         default : dateString + '-' + slugify(this.appname)      // Default to current folder name
       },{
+        type    : 'input',
+        name    : 'prodAnalytics',
+        message : 'Google Analytics production bucket ID:',
+      },{
+        type    : 'input',
+        name    : 'stageAnalytics',
+        message : 'Google Analytics staging bucket ID:',
+      },{
         type    : 'confirm',
         name    : 'gitInit',
         message : 'Initialize empty git repository:',
@@ -58,6 +66,8 @@ module.exports = Generator.extend({
         this.meta.slug = answers.slug;
         this.meta.s3bucket = answers.s3bucket;
         this.meta.s3folder = answers.s3folder;
+        this.meta.prodAnalytics = answers.prodAnalytics;
+        this.meta.stageAnalytics = answers.stageAnalytics;
         this.gitInit = answers.gitInit;
         done(err);
       }.bind(this));
@@ -90,5 +100,26 @@ module.exports = Generator.extend({
     if (this.gitInit) {
       this.spawnCommand('git', ['init'])
     }
+    this.log(`
+      Nice! You're ready to start making an Axios interactive!
+      Start by writing code into files in the src/ director
+
+      1. Add data from Google Drive, docs or spreadsheets:
+
+        > gulp gdrive:add
+        > gulp gdrive:fetch
+
+      2. Preview it locally on browsers and devices to make sure it looks ok:
+
+        > gulp serve
+
+      3. Troubleshooting? Check the logs when you compile everything:
+
+        > gulp build
+
+      4. Publish!
+
+        > gulp publish
+    `)
   }
 });
