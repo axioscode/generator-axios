@@ -45,7 +45,7 @@ module.exports = () => {
         'img': imageUrl,
         'toFixed2': toFixed2
       })
-      .data(config.dirs.data + '/**/*.{js,json}');
+      .data(config.paths.src.data + '/**/*.{js,json}');
 
   // Production tasks.
   var prdTasks = lazypipe()
