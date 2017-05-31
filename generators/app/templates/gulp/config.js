@@ -1,10 +1,10 @@
 var path = require('path');
 
 var dirs = {
-  root: './',
-  tmp: '.tmp',
-  src: 'src',
-  dist: 'dist'
+	root: './',
+	tmp: '.tmp',
+	src: 'src',
+	dist: 'dist'
 };
 
 var paths = {
@@ -13,9 +13,9 @@ var paths = {
 		img: dirs.src + '/img',
 		js: dirs.src + '/js',
 		sass: dirs.src + '/sass',
-        templates: dirs.src + '/templates',
-        assets: dirs.src + '/assets',
-        data: dirs.src + '/data'
+		templates: dirs.src + '/templates',
+		assets: dirs.src + '/assets',
+		data: dirs.src + '/data'
 	},
 	tmp: {
 		css: dirs.tmp + '/css',
