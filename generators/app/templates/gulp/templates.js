@@ -17,8 +17,6 @@ const bs = require('./browsersync')
 const config = require('./config');
 const projectConfig = require('./../project.config.json');
 
-const IS_PRODUCTION = process.env.NODE_ENV === 'production'
-
 var staticUrl = function(p) {
   if (process.env.NODE_ENV === 'production') p = path.join(projectConfig.s3.folder, p)
   return url.resolve('/', p)
