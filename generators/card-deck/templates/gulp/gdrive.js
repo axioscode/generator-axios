@@ -53,5 +53,5 @@ var addFile = function() {
 
 module.exports = {
   addFile: addFile,
-  fetch: require('../utils/fetch/get-data'),
+  fetch: require('./fetch/get-data'),
 }
