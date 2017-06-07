@@ -1,9 +1,10 @@
-let AXIOS_VISUEALS_GOOGLE_ANALYTICS_ID;
+let AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = 'UA-87586659-3';
+const PRODUCTION = window.location.hostname.indexOf('localhost.com') === -1;
 
 if (PRODUCTION) {
-  AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = '<%= meta.prodAnalytics %>'
+  AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = 'UA-87586659-4';
 } else {
-  AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = '<%= meta.stageAnalytics %>';
+  AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = 'UA-87586659-3';
 }
 
 const AXIOS_VISUALS_CATEGORY = '<%= meta.GoogleAnalyticsCategory %>'
