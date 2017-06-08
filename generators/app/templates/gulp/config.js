@@ -31,7 +31,7 @@ var paths = {
 		js: dirs.dist + '/js',
 		fonts: dirs.dist + '/fonts',
 		assets: dirs.dist + '/assets',
-		data: data.dist + '/data'
+		data: dirs.dist + '/data'
 	}
 };
 
