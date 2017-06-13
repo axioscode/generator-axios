@@ -40,7 +40,7 @@ var setupVisualsGoogleAnalytics = function() {
 var trackEvent = function(action, label, value) {
   var eventData = {
       'hitType': 'event',
-      'eventCategory': AXIOS_VISUALS_CATEORGY,
+      'eventCategory': AXIOS_VISUALS_CATEGORY,
       'eventAction': action
   }
 
