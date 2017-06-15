@@ -23,3 +23,4 @@ module.exports = () => {
     .pipe(size({title: 'images'}))
     .pipe(bs.stream());
 }
+

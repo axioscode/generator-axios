@@ -44,13 +44,12 @@ var trackEvent = function(action, label, value) {
       'eventAction': action
   }
 
+  // an optional string
   if (label) { eventData['eventLabel'] = label; }
+  // an optional integer
   if (value) { eventData['eventValue'] = value; }
 
   ga('send', eventData);
 }
 
-module.exports = {
-  setupVisualsGoogleAnalytics: setupVisualsGoogleAnalytics,
-  trackEvent: trackEvent
-}
+module.exports = { setupVisualsGoogleAnalytics,trackEvent }

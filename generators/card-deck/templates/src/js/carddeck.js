@@ -300,7 +300,7 @@ export default class CardDeck {
   setContainerOffset(percent, animate) {
     if (animate) { this.carousel.classList.add("card-deck__carousel--animate"); }
     var centerAmount = (this.containerWidth > this.maxItemWidth) ? (this.containerWidth/2 - this.itemWidth/2) : 0;
-    var transformStr = "translateX(calc("+ percent +"% + " + centerAmount +"px))";
+    var transformStr = "translateX("+ percent +"%) translateX(" + centerAmount +"px)";
     this.carousel.style.transform = transformStr;
   }
 

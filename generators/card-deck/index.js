@@ -67,7 +67,7 @@ module.exports = Generator.extend({
       },{
         type    : 'input',
         name    : 'googleAnalyticsCategory',
-        message : 'A new, unique Google Analytics event category name:',
+        message : 'A unique Google Analytics event category name:',
         default : dateString + '-' + slugify(this.appname) + '-v0.1'      // Default to current folder name
       },{
         type    : 'confirm',
@@ -81,6 +81,7 @@ module.exports = Generator.extend({
         this.meta.description = answers.description;
         this.meta.s3bucket = answers.s3bucket;
         this.meta.s3folder = answers.s3folder;
+        this.meta.googleAnalyticsCategory = answers.googleAnalyticsCategory;
         this.gitInit = answers.gitInit;
         done(err);
       }.bind(this));
