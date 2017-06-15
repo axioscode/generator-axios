@@ -25,6 +25,7 @@ jspm_packages
 env.json
 *.zip
 tmp/*.zip
+dist/*.zip
 
 functions/*/**
 !functions/*/*.py

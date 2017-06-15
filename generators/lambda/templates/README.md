@@ -122,27 +122,14 @@ Apex generates a zip file for you upon deploy, however sometimes it can be usefu
 Output zip to out.zip:
 
 ```sh
-$ apex build foo > tmp/out.zip
-$ apex deploy foo --zip tmp/foo.zip
+$ apex build foo > dist/out.zip
+$ apex deploy foo --zip dist/foo.zip
 ```
 
 OR
 
 ```sh
-$ apex deploy foo -z tmp/foo.zip
-```
-
-Use environment variables
-
-```sh
-$ apex build foo > tmp/out.zip
-$ apex deploy foo --env-file env.json --zip tmp/foo.zip
-```
-
-OR
-
-```sh
-$ apex deploy foo -E env.json -z tmp/foo.zip
+$ apex deploy foo -z dist/foo.zip
 ```
 
 ## Scheduling
