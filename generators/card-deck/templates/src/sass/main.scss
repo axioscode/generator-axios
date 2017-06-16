@@ -7,6 +7,27 @@ $card-width: 350px; // update in js if changes (it's cardWidth over there)
 $peek-amount: 10px;
 $diagonal-height: 20px;
 
+// COLORS
+$grey-darkest:       #222222 !default;
+$grey-darker:        #4A4A4A !default;
+$grey-dark:          #848484 !default;
+$grey:               #c2c2c2 !default;
+$grey-light:         #dcdcdc !default;
+$grey-lighter:       #F0F0F0 !default;
+$grey-lightest:      #F9F9F9 !default;
+$blue:               #008dc8 !default;
+$blue-secondary:     #175B87 !default;
+$navy:               #01356E !default;
+$navy-secondary:     #175B87 !default;
+$red:                #E74E2A !default;
+$red-secondary:      #AB361A !default;
+$orange:             #FF6602 !default;
+$orange-secondary:   #CA5508 !default;
+$khaki:              #B09D86 !default;
+$khaki-secondary:    #7F684E !default;
+$purple:             #5827AE !default;
+$purple-secondary:   #310F6B !default;
+
 body {
   font-family: $sans;
   background-color: $background-color;
@@ -314,10 +335,12 @@ body {
 // Diagonal Line
 .card {
   overflow: hidden; // keep triangle okay if smaller than max card width
-
-  .card-module-row:last-of-type {
+  .card-module-row--highlighted-text {
+    margin-top: 1.125rem;
+    color: #fff;
     margin-bottom: 0;
-    // padding: $diagonal-height $card-padding;
+    padding: $diagonal-height $card-padding;
+    text-align: right;
     position: relative;
     .card-module__header {
       color: #fff;
@@ -326,5 +349,27 @@ body {
       }
     }
 
+    &:before {
+      content: '';
+      display: block;
+      height: 0;
+      width: 0;
+      left: 0px;
+      top: -$diagonal-height;
+      border-style: solid;
+      border-width: 0 0 $diagonal-height $card-width;
+      position: absolute;
+    }
   }
+  // #card {
+  //   &--freedom-of-speech { @include card-last-row-color(#76B2D3); }
+  //   &--education { @include card-last-row-color(#5C8463); }
+  //   &--native-rights { @include card-last-row-color(#D5A552); }
+  //   &--police-brutality { @include card-last-row-color(#4D5486); }
+  //   &--church-and-state { @include card-last-row-color(#AB6459); }
+  //   &--due-process { @include card-last-row-color(#62A9A8); }
+  //   &--intellectual-property { @include card-last-row-color(#695D8B); }
+  //   &--withholding-evidence { @include card-last-row-color(#A46E8A); }
+  //   &--class-action { @include card-last-row-color(#BC9D7E); }
+  // }
 }

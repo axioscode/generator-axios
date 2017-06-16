@@ -58,6 +58,7 @@ module.exports = Generator.extend({
         message : 'Initialize empty git repository:',
         default : true,
       }]).then(function(answers, err) {
+        done(err);
         this.meta = {};
         this.meta.name = answers.name;
         this.meta.slug = answers.slug;
@@ -65,7 +66,6 @@ module.exports = Generator.extend({
         this.meta.s3folder = answers.s3folder;
         this.meta.googleAnalyticsCategory = answers.googleAnalyticsCategory;
         this.gitInit = answers.gitInit;
-        done(err);
       }.bind(this));
     }
   },

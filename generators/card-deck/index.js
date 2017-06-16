@@ -23,46 +23,42 @@ module.exports = Generator.extend({
     this.pkg = require('../../package.json');
   },
 
-  // prompting: {
-  //   meta: function() {
-  //     var done = this.async();
-  //     var dateString = dateFormat(new Date(), 'yyyy-mm-dd')
-  //     this.prompt([{
-  //       type    : 'input',
-  //       name    : 'name',
-  //       message : 'Project Name:',
-  //       default : this.appname      // Default to current folder name
-  //     },{
-  //       type    : 'input',
-  //       name    : 'slug',
-  //       message : 'Project Slug:',
-  //       default : slugify(this.appname)      // Default to current folder name
-  //     },{
-  //       type    : 'input',
-  //       name    : 's3bucket',
-  //       message : 'Project S3 Bucket:',
-  //       default : 'graphics.axios.com'      // Default to current folder name
-  //     },{
-  //       type    : 'input',
-  //       name    : 's3folder',
-  //       message : 'Project S3 Folder:',
-  //       default : dateString + '-' + slugify(this.appname)      // Default to current folder name
-  //     },{
-  //       type    : 'input',
-  //       name    : 'googleAnalyticsCategory',
-  //       message : 'A unique Google Analytics event category name:',
-  //       default : dateString + '-' + slugify(this.appname) + '-v0.1'      // Default to current folder name
-  //     },{
-  //       type    : 'confirm',
-  //       name    : 'gitInit',
-  //       message : 'Initialize empty git repository:',
-  //       default : true,
-  //     }]).then(function(answers, err) {
-  //       this.meta = {};
-  //       this.meta.slug = answers.slug;
-  //     }.bind(this));
-  //   }
-  // },
+  prompting: {
+    meta: function() {
+      var done = this.async();
+      var prompts = [{
+        type    : 'list',
+        name    : 'headline',
+        message : 'Pick your headline:',
+        choices : [
+          'Headline A (Accent Border)',
+          'Headline B (Accent Header)',
+          'Headline C (All Text)',
+          'Headline D (Header Image)'
+        ],
+        default : 'Headline C (All Text)'
+      },{
+        type    : 'checkbox',
+        name    : 'components',
+        message : 'Which components do you need?',
+        choices : [
+          { name: 'One column text data point' },
+          { name: 'Two column text data points' },
+          { name: 'One column graphic data point' },
+          { name: 'Two column graphic data points' },
+          { name: 'Text block' },
+          { name: 'Highlighted text'}
+        ]
+      }];
+      this.prompt(prompts).then(function(answers, err) {
+        done(err);
+        this.meta = {};
+        this.meta.headline = answers.headline;
+        this.meta.components = answers.components;
+        this.meta.slug = slugify(this.appname);
+      }.bind(this));
+    }
+  },
 
   configuring: function() {
     // Copy all the normal files.
