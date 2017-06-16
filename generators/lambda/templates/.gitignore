@@ -25,6 +25,7 @@ jspm_packages
 env.json
 *.zip
 tmp/*.zip
+dist/*.zip
 
 functions/*/**
 !functions/*/*.py
@@ -32,4 +33,11 @@ functions/*/**
 !functions/*/*.json
 !functions/*/*.txt
 
+functions/**/six.py
+functions/**/secrets.*
+functions/**/encrypted_secrets.txt
+functions/**/event.json
+infrastructure/terraform.tfvars
+
+.DS_Store
 **/.DS_Store
