@@ -7,31 +7,10 @@ $card-width: 350px; // update in js if changes (it's cardWidth over there)
 $peek-amount: 10px;
 $diagonal-height: 20px;
 
-// COLORS
-$grey-darkest:       #222222 !default;
-$grey-darker:        #4A4A4A !default;
-$grey-dark:          #848484 !default;
-$grey:               #c2c2c2 !default;
-$grey-light:         #dcdcdc !default;
-$grey-lighter:       #F0F0F0 !default;
-$grey-lightest:      #F9F9F9 !default;
-$blue:               #008dc8 !default;
-$blue-secondary:     #175B87 !default;
-$navy:               #01356E !default;
-$navy-secondary:     #175B87 !default;
-$red:                #E74E2A !default;
-$red-secondary:      #AB361A !default;
-$orange:             #FF6602 !default;
-$orange-secondary:   #CA5508 !default;
-$khaki:              #B09D86 !default;
-$khaki-secondary:    #7F684E !default;
-$purple:             #5827AE !default;
-$purple-secondary:   #310F6B !default;
-
 body {
   font-family: $sans;
   background-color: $background-color;
-  color: $grey-darker;
+  color: $color-body-text;
   height: 200%;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: subpixel-antialiased;
@@ -84,8 +63,8 @@ body {
 }
 
 .card__header {
-  background-color: $blue;
-  color: $grey-lightest;
+  background-color: $color-axios-blue;
+  color: $color-gray-lightest;
   height: 5rem;
   display: flex;
   flex-direction: column-reverse;
@@ -104,7 +83,7 @@ body {
   bottom: 0;
   width: 100%;
   padding: 0 $card-padding;
-  color: $grey;
+  color: $color-gray;
   text-align: center;
   .card-module-row {
     padding-bottom: $card-padding !important;
@@ -155,7 +134,7 @@ body {
 }
 
 .card-module__header {
-  color: $grey-darker;
+  color: $color-gray-800;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 0.5rem;
@@ -224,7 +203,7 @@ body {
     margin-bottom: 1rem;
 
     font-family: $mono;
-    color: $grey-darker;
+    color: $color-gray-800;
     text-align: center;
 
     display: flex;
@@ -254,13 +233,13 @@ body {
     top: -4px;
     position: relative;
     g {
-      fill: $grey-dark;
+      fill: $color-gray-600;
       transition: .25s fill linear;
     }
   }
 
   &:hover svg {
-    g { fill: $grey-darker; }
+    g { fill: $color-gray-800; }
   }
 
   &.arrow--disabled {
@@ -309,7 +288,7 @@ body {
   animation-direction: reverse;
 }
 
-@mixin card-last-row-color($color: $purple) {
+@mixin card-last-row-color($color: $color-purple) {
     .card-module-row:last-of-type {
       background-color: $color;
       &:before {
