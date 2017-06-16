@@ -36,6 +36,7 @@ Generate and interactive Axios card deck based on a Google Spreadsheet or Google
 
 ```bash
 mkdir [project-name] && cd $_
+yo axios
 yo axios:card-deck
 ```
 
@@ -50,6 +51,7 @@ OR To setup using one line in your terminal, add this shell script to your `.bas
 function av-card-deck() {
 	mkdir "$@"
 	cd "$@"
+  yo axios
 	yo axios:card-deck
 }
 ```
