@@ -93,29 +93,30 @@ module.exports = Generator.extend({
     });
   },
   end: function() {
+    var endMessage = `
+  Nice! You're ready to start making an Axios interactive!
+  Start by writing code into files in the src/ director
+
+  1. Add data from Google Drive, docs or spreadsheets:
+
+    > gulp gdrive:add
+    > gulp gdrive:fetch
+
+  2. Preview it locally on browsers and devices to make sure it looks ok:
+
+    > gulp serve
+
+  3. Troubleshooting? Check the logs when you compile everything:
+
+    > gulp build
+
+  4. Publish!
+
+    > gulp publish
+    `
     if (this.gitInit) {
       this.spawnCommand('git', ['init'])
     }
-    this.log(`
-        Nice! You're ready to start making an Axios interactive!
-        Start by writing code into files in the src/ director
-
-        1. Add data from Google Drive, docs or spreadsheets:
-
-          > gulp gdrive:add
-          > gulp gdrive:fetch
-
-        2. Preview it locally on browsers and devices to make sure it looks ok:
-
-          > gulp serve
-
-        3. Troubleshooting? Check the logs when you compile everything:
-
-          > gulp build
-
-        4. Publish!
-
-          > gulp publish
-    `)
+    this.log(endMessage)
   }
 });
