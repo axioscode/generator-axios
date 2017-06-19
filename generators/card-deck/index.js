@@ -65,7 +65,7 @@ module.exports = Generator.extend({
     this.fs.copyTpl(
       this.templatePath("**/*"),
       this.destinationRoot(),
-      { meta: { slug: slugify(this.appname) } }
+      { meta: this.meta }
     );
   },
   install: function () {
