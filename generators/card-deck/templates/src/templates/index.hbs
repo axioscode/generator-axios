@@ -65,12 +65,39 @@
 
             <% if (component.name === "One column graphic data point") { %>
               <div class="card-module-row card-module-row--two-col">
+                <div class="card-module card-module--paragraph">
+                  <h3 class="card-module__header has--rule">GRAPHIC DATA POINT</h3>
+                  <div class="card-module__body">
+                    <div class="card-module__component-image">
+                      <img src="http://placekitten.com/200/200">
+                    </div>
+                    <p>Lorem ipsum</p>
+                  </div>
+                </div>
               </div>
             <% } %>
 
             <% if (component.name === "Two column graphic data points") { %>
-              <div class="card-module-row card-module-row--two-col">
+            <div class="card-module-row card-module-row--two-col">
+              <div class="card-module card-module--paragraph">
+                <h3 class="card-module__header has--rule">GRAPHIC DATA POINT</h3>
+                <div class="card-module__body">
+                  <div class="card-module__component-image">
+                    <img src="http://placekitten.com/200/200">
+                  </div>
+                  <p>Lorem ipsum</p>
+                </div>
               </div>
+
+              <div class="card-module card-module--paragraph">
+                <h3 class="card-module__header has--rule">GRAPHIC DATA POINT</h3>
+                <div class="card-module__body">
+                  <div class="card-module__component-number">
+                    <p>99%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
             <% } %>
 
             <% if (component.name === "Text block") { %>
