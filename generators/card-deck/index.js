@@ -54,6 +54,7 @@ module.exports = Generator.extend({
         done(err);
         this.meta = {};
         this.meta.headline = answers.headline;
+        console.log("components", answers.components);
         this.meta.components = answers.components;
         this.meta.slug = slugify(this.appname);
       }.bind(this));

@@ -7,7 +7,6 @@
 
       {{#each copy.cards}}
         <div class="card-deck__item card">
-
           <% if (meta.headline === "Headline A (Accent Border)") { %>
             <div class="card__header accent-border">
               <h2>Headline A</h2>
@@ -31,10 +30,8 @@
               </div>
             </div>
           <% } %>
-
           <% meta.components.forEach(function(component) { %>
-
-            <% if (component.name === "One column text data point") { %>
+            <% if (component === "One column text data point") { %>
               <div class="card-module-row card-module-row--two-col">
                 <div class="card-module card-module--paragraph">
                   <h3 class="card-module__header has--rule">TEXT DATA POINT</h3>
@@ -44,8 +41,7 @@
                 </div>
               </div>
             <% } %>
-
-            <% if (component.name === "Two column text data points") { %>
+            <% if (component === "Two column text data points") { %>
               <div class="card-module-row card-module-row--two-col">
                 <div class="card-module card-module--paragraph">
                   <h3 class="card-module__header has--rule">TEXT DATA POINT</h3>
@@ -53,7 +49,6 @@
                     <p>Lorem ipsum</p>
                   </div>
                 </div>
-
                 <div class="card-module card-module--paragraph">
                   <h3 class="card-module__header has--rule">TEXT DATA POINT</h3>
                   <div class="card-module__body">
@@ -62,8 +57,7 @@
                 </div>
               </div>
             <% } %>
-
-            <% if (component.name === "One column graphic data point") { %>
+            <% if (component === "One column graphic data point") { %>
               <div class="card-module-row card-module-row--two-col">
                 <div class="card-module card-module--paragraph">
                   <h3 class="card-module__header has--rule">GRAPHIC DATA POINT</h3>
@@ -76,8 +70,7 @@
                 </div>
               </div>
             <% } %>
-
-            <% if (component.name === "Two column graphic data points") { %>
+            <% if (component === "Two column graphic data points") { %>
             <div class="card-module-row card-module-row--two-col">
               <div class="card-module card-module--paragraph">
                 <h3 class="card-module__header has--rule">GRAPHIC DATA POINT</h3>
@@ -88,7 +81,6 @@
                   <p>Lorem ipsum</p>
                 </div>
               </div>
-
               <div class="card-module card-module--paragraph">
                 <h3 class="card-module__header has--rule">GRAPHIC DATA POINT</h3>
                 <div class="card-module__body">
@@ -99,8 +91,7 @@
               </div>
             </div>
             <% } %>
-
-            <% if (component.name === "Text block") { %>
+            <% if (component === "Text block") { %>
               <div class="card-module-row">
                 <div class="card-module card-module--paragraph">
                   <h4 class="card-module__header has--rule">TEXT BLOCK SUBHEAD</h4>
@@ -110,8 +101,7 @@
                 </div>
               </div>
             <% } %>
-
-            <% if (component.name === "Highlighted text") { %>
+            <% if (component === "Highlighted text") { %>
               <div class="card-module-row card-module-row--no-margin card-module-row--highlighted-text">
                 <div class="card-module card-module--paragraph card-module--medium">
                   <h4 class="card-module__header">Highlighted Text</h4>
@@ -121,7 +111,6 @@
                 </div>
               </div>
             <% } %>
-
           <% }) %>
           <div class="card__footer">
             <p>AXIOS STUDIOS</p>
