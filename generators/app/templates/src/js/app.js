@@ -5,6 +5,10 @@ var pym = require('pym.js');
 
 var pymChild = null;
 
+if (NodeList.prototype.forEach === undefined) {
+    NodeList.prototype.forEach = Array.prototype.forEach
+}
+
 document.addEventListener("DOMContentLoaded", main());
 
 function main() {
