@@ -9,6 +9,10 @@ const NAVIGATION_ARROW_BUTTON = 'nav-arrowbutton';
 const NAVIGATION_KEYBOARD = 'nav-keyboard';
 const NAVIGATION_CLICK_CARD = 'nav-clickcard';
 
+if (NodeList.prototype.forEach === undefined) {
+    NodeList.prototype.forEach = Array.prototype.forEach
+}
+
 export default class CardDeck {
   constructor(selector) {
     // Set up DOM Elements
