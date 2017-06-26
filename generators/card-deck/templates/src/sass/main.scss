@@ -120,7 +120,7 @@ body {
     flex-basis: 100%;
   }
 
-  &.card-module-row--two {
+  &.card-module-row--two-col {
     .card-module {
       &:first-of-type { margin-left: 0em; }
       &:last-of-type { margin-right: 0em; }
@@ -151,18 +151,12 @@ body {
 
   &.has--rule:before {
     width: 100%;
-    background-color: $color-gray-100;
+    background-color: $color-gray-200;
     height: 1px;
     display: block;
     position: relative;
     content: "";
     margin-bottom: .75em;
-  }
-
-  .card-module-row--two & {
-    &:before {
-      width: calc(100%);
-    }
   }
 }
 
