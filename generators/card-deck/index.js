@@ -69,11 +69,7 @@ module.exports = Generator.extend({
     );
   },
   install: function () {
-    this.installDependencies({
-      bower: false,
-      skipMessage: this.options['skip-install-message'],
-      skipInstall: this.options['skip-install']
-    });
+    this.npmInstall(['hammerjs'], { 'save': true });
   },
   end: function() {
     var endMessage = `
