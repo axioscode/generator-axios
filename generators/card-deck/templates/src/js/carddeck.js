@@ -30,7 +30,7 @@ export default class CardDeck {
 
     // Define Card Sizes
     this.itemMargin = 20;
-    this.cardWidth = 350;
+    this.cardWidth = 340;
     this.maxItemWidth = this.cardWidth + (2 * this.itemMargin);
     this.itemWidth = null;
     this.setCardDeckDimensions();
