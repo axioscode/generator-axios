@@ -8,24 +8,13 @@
       {{#each copy.cards}}
         <div class="card-deck__item card">
           <% if (meta.headline === "Headline A (Accent Border)") { %>
-          <div class="card__header accent-border">
-            <h2>Headline A</h2>
-          </div>
+          {{> headline-a headline="Headline A" }}
           <% } if (meta.headline === "Headline B (Accent Header)") { %>
-          <div class="card__header accent-header">
-            <h2>Headline B</h2>
-          </div>
+          {{> headline-b headline="Headline B" }}
           <% } if (meta.headline === "Headline C (All Text)") { %>
-          <div class="card__header">
-            <h2>Headline C</h2>
-          </div>
+          {{> headline-c headline="Headline C" }}
           <% } if (meta.headline === "Headline D (Header Image)") { %>
-          <div class="card__header">
-            <div class="card-module card-module--image">
-              <img src="http://placekitten.com/700/394" />
-              <h2>Headline D</h2>
-            </div>
-          </div>
+          {{> headline-d headline="Headline D" }}
           <% } %>
           <div class="card__body"><% meta.components.forEach(function(component) { if (component === "One column text data point") { %>
             <div class="card-module-row card-module-row--two-col">
