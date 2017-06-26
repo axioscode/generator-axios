@@ -46,7 +46,7 @@ module.exports = () => {
       gutil.log(`https://${projectConfig.s3.bucket}/${projectConfig.s3.folder}/index.html`)
       gutil.log("")
       gutil.log("👇 ", gutil.colors.blue("To embed into the Axios CMS, copy the following shortcode:"))
-      gutil.log(`[shortcode-pym-iframe id="${projectConfig.project.slug}" url="https://${projectConfig.s3.bucket}/${projectConfig.s3.folder}/index.html"]`)
+      gutil.log(`[shortcode-pym-iframe-fullbleed id="${projectConfig.project.slug}" url="https://${projectConfig.s3.bucket}/${projectConfig.s3.folder}/index.html"]`)
       gutil.log("")
       gutil.log("👉 ", gutil.colors.blue.bold("Then login to the Axios CMS"))
       gutil.log("https://www.axios.com/core/dashboard/drafts")
