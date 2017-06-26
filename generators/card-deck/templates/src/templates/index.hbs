@@ -8,60 +8,61 @@
       {{#each copy.cards}}
         <div class="card-deck__item card">
           <% if (meta.headline === "Headline A (Accent Border)") { %>
-            <div class="card__header accent-border">
-              <h2>Headline A</h2>
-            </div>
+          <div class="card__header accent-border">
+            <h2>Headline A</h2>
+          </div>
           <% } if (meta.headline === "Headline B (Accent Header)") { %>
-            <div class="card__header accent-header">
-              <h2>Headline B</h2>
-            </div>
+          <div class="card__header accent-header">
+            <h2>Headline B</h2>
+          </div>
           <% } if (meta.headline === "Headline C (All Text)") { %>
-            <div class="card__header">
-              <h2>Headline C</h2>
-            </div>
+          <div class="card__header">
+            <h2>Headline C</h2>
+          </div>
           <% } if (meta.headline === "Headline D (Header Image)") { %>
-            <div class="card__header">
-              <div class="card-module card-module--image">
-                <img src="http://placekitten.com/700/394" />
-                <h2>Headline D</h2>
+          <div class="card__header">
+            <div class="card-module card-module--image">
+              <img src="http://placekitten.com/700/394" />
+              <h2>Headline D</h2>
+            </div>
+          </div>
+          <% } %>
+          <div class="card__body"><% meta.components.forEach(function(component) { if (component === "One column text data point") { %>
+            <div class="card-module-row card-module-row--two-col">
+              <div class="card-module card-module--paragraph">
+                <h3 class="card-module__header has--rule">TEXT DATA POINT</h3>
+                <div class="card-module__body">
+                  <p>Lorem ipsum</p>
+                </div>
               </div>
             </div>
-          <% } meta.components.forEach(function(component) { if (component === "One column text data point") { %>
-              <div class="card-module-row card-module-row--two-col">
-                <div class="card-module card-module--paragraph">
-                  <h3 class="card-module__header has--rule">TEXT DATA POINT</h3>
-                  <div class="card-module__body">
-                    <p>Lorem ipsum</p>
-                  </div>
-                </div>
-              </div>
             <% } if (component === "Two column text data points") { %>
-              <div class="card-module-row card-module-row--two-col">
-                <div class="card-module card-module--paragraph">
-                  <h3 class="card-module__header has--rule">TEXT DATA POINT</h3>
-                  <div class="card-module__body">
-                    <p>Lorem ipsum</p>
-                  </div>
-                </div>
-                <div class="card-module card-module--paragraph">
-                  <h3 class="card-module__header has--rule">TEXT DATA POINT</h3>
-                  <div class="card-module__body">
-                    <p>Lorem ipsum</p>
-                  </div>
+            <div class="card-module-row card-module-row--two-col">
+              <div class="card-module card-module--paragraph">
+                <h3 class="card-module__header has--rule">TEXT DATA POINT</h3>
+                <div class="card-module__body">
+                  <p>Lorem ipsum</p>
                 </div>
               </div>
+              <div class="card-module card-module--paragraph">
+                <h3 class="card-module__header has--rule">TEXT DATA POINT</h3>
+                <div class="card-module__body">
+                  <p>Lorem ipsum</p>
+                </div>
+              </div>
+            </div>
             <% } if (component === "One column graphic data point") { %>
-              <div class="card-module-row card-module-row--two-col">
-                <div class="card-module card-module--paragraph">
-                  <h3 class="card-module__header has--rule">GRAPHIC DATA POINT</h3>
-                  <div class="card-module__body">
-                    <div class="card-module__component-image">
-                      <img src="http://placekitten.com/200/200">
-                    </div>
-                    <p>Lorem ipsum</p>
+            <div class="card-module-row card-module-row--two-col">
+              <div class="card-module card-module--paragraph">
+                <h3 class="card-module__header has--rule">GRAPHIC DATA POINT</h3>
+                <div class="card-module__body">
+                  <div class="card-module__component-image">
+                    <img src="http://placekitten.com/200/200">
                   </div>
+                  <p>Lorem ipsum</p>
                 </div>
               </div>
+            </div>
             <% } if (component === "Two column graphic data points") { %>
             <div class="card-module-row card-module-row--two-col">
               <div class="card-module card-module--paragraph">
@@ -83,24 +84,25 @@
               </div>
             </div>
             <% } if (component === "Text block") { %>
-              <div class="card-module-row">
-                <div class="card-module card-module--paragraph">
-                  <h4 class="card-module__header has--rule">TEXT BLOCK SUBHEAD</h4>
-                  <div class="card-module__body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at libero eleifend, pulvinar leo ac, maximus mi. Nam lobortis massa et odio faucibus consequat adipiscing elit dolor sit amet.</p>
-                  </div>
+            <div class="card-module-row">
+              <div class="card-module card-module--paragraph">
+                <h4 class="card-module__header has--rule">TEXT BLOCK SUBHEAD</h4>
+                <div class="card-module__body">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at libero eleifend, pulvinar leo ac, maximus mi. Nam lobortis massa et odio faucibus consequat adipiscing elit dolor sit amet.</p>
                 </div>
               </div>
+            </div>
             <% } if (component === "Highlighted text") { %>
-              <div class="card-module-row card-module-row--no-margin card-module-row--highlighted-text">
-                <div class="card-module card-module--paragraph card-module--medium">
-                  <h4 class="card-module__header">Highlighted Text</h4>
-                  <div class="card-module__body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at libero eleifend, pulvinar leo ac, maximus mi. Nam lobortis massa et odio faucibus consequat adipiscing elit dolor sit amet.</p>
-                  </div>
+            <div class="card-module-row card-module-row--no-margin card-module-row--highlighted-text">
+              <div class="card-module card-module--paragraph card-module--medium">
+                <h4 class="card-module__header">Highlighted Text</h4>
+                <div class="card-module__body">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at libero eleifend, pulvinar leo ac, maximus mi. Nam lobortis massa et odio faucibus consequat adipiscing elit dolor sit amet.</p>
                 </div>
               </div>
-            <% }}) %>
+            </div>
+          <% }}) %>
+          </div>
           <div class="card__footer">
             <p>AXIOS STUDIOS</p>
           </div>
