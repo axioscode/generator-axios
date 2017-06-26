@@ -141,6 +141,16 @@ body {
   font-weight: 400;
   margin-bottom: .75rem;
 
+  &.has--rule:before {
+    width: 100%;
+    background-color: $color-gray-100;
+    height: 1px;
+    display: block;
+    position: relative;
+    content: "";
+    margin-bottom: .75em;
+  }
+
   .card-module-row--two & {
     &:before {
       width: calc(100%);
