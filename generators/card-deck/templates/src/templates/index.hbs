@@ -8,88 +8,26 @@
       {{#each copy.cards}}
         <div class="card-deck__item card">
           <% if (meta.headline === "Headline A (Accent Border)") { %>
-          {{> headline-a headline="Headline A" }}
+          {{> headlineA headline="Headline A" }}
           <% } if (meta.headline === "Headline B (Accent Header)") { %>
-          {{> headline-b headline="Headline B" }}
+          {{> headlineB headline="Headline B" }}
           <% } if (meta.headline === "Headline C (All Text)") { %>
-          {{> headline-c headline="Headline C" }}
+          {{> headlineC headline="Headline C" }}
           <% } if (meta.headline === "Headline D (Header Image)") { %>
-          {{> headline-d headline="Headline D" }}
+          {{> headlineD headline="Headline D" imageUrl="http://placekitten.com/700/394" }}
           <% } %>
           <div class="card__body"><% meta.components.forEach(function(component) { if (component === "One column text data point") { %>
-            <div class="card-module-row card-module-row--two-col">
-              <div class="card-module card-module--paragraph">
-                <h3 class="card-module__header has--rule">TEXT DATA POINT</h3>
-                <div class="card-module__body">
-                  <p>Lorem ipsum</p>
-                </div>
-              </div>
-            </div>
+            {{> txtPointOneCol subhead="TEXT DATA POINT" text="Lorem ipsum"}}
             <% } if (component === "Two column text data points") { %>
-            <div class="card-module-row card-module-row--two-col">
-              <div class="card-module card-module--paragraph">
-                <h3 class="card-module__header has--rule">TEXT DATA POINT</h3>
-                <div class="card-module__body">
-                  <p>Lorem ipsum</p>
-                </div>
-              </div>
-              <div class="card-module card-module--paragraph">
-                <h3 class="card-module__header has--rule">TEXT DATA POINT</h3>
-                <div class="card-module__body">
-                  <p>Lorem ipsum</p>
-                </div>
-              </div>
-            </div>
+            {{> txtPointTwoCol subhead1="TEXT DATA POINT 1" text1="Lorem ipsum" subhead2="TEXT DATA POINT 2" text2="Dolor sit amet"}}
             <% } if (component === "One column graphic data point") { %>
-            <div class="card-module-row card-module-row--two-col">
-              <div class="card-module card-module--paragraph">
-                <h3 class="card-module__header has--rule">GRAPHIC DATA POINT</h3>
-                <div class="card-module__body">
-                  <div class="card-module__component-image">
-                    <img src="http://placekitten.com/200/200">
-                  </div>
-                  <p>Lorem ipsum</p>
-                </div>
-              </div>
-            </div>
+            {{> graphicPointOneCol subhead="GRAPHIC DATA POINT" graphicUrl="http://placekitten.com/200/200" text="Lorem ipsum"}}
             <% } if (component === "Two column graphic data points") { %>
-            <div class="card-module-row card-module-row--two-col">
-              <div class="card-module card-module--paragraph">
-                <h3 class="card-module__header has--rule">GRAPHIC DATA POINT</h3>
-                <div class="card-module__body">
-                  <div class="card-module__component-image">
-                    <img src="http://placekitten.com/200/200">
-                  </div>
-                  <p>Lorem ipsum</p>
-                </div>
-              </div>
-              <div class="card-module card-module--paragraph">
-                <h3 class="card-module__header has--rule">GRAPHIC DATA POINT</h3>
-                <div class="card-module__body">
-                  <div class="card-module__component-number">
-                    <p>99%</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {{> graphicPointTwoCol subhead="GRAPHIC DATA POINT 1" graphicUrl="http://placekitten.com/200/200" text1="Lorem ipsum" subhead2="GRAPHIC DATA POINT 2" graphicNumber="99%"}}
             <% } if (component === "Text block") { %>
-            <div class="card-module-row">
-              <div class="card-module card-module--paragraph">
-                <h4 class="card-module__header has--rule">TEXT BLOCK SUBHEAD</h4>
-                <div class="card-module__body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at libero eleifend, pulvinar leo ac, maximus mi. Nam lobortis massa et odio faucibus consequat adipiscing elit dolor sit amet.</p>
-                </div>
-              </div>
-            </div>
+            {{> txtBlock subhead="TEXT BLOCK" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}}
             <% } if (component === "Highlighted text") { %>
-            <div class="card-module-row card-module-row--no-margin card-module-row--highlighted-text">
-              <div class="card-module card-module--paragraph card-module--medium">
-                <h4 class="card-module__header">Highlighted Text</h4>
-                <div class="card-module__body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at libero eleifend, pulvinar leo ac, maximus mi. Nam lobortis massa et odio faucibus consequat adipiscing elit dolor sit amet.</p>
-                </div>
-              </div>
-            </div>
+            {{> highlightedTxt subhead="HIGHLIGHTED TEXT" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}}
           <% }}) %>
           </div>
           <div class="card__footer">

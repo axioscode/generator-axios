@@ -88,19 +88,16 @@ body {
 }
 
 .card__footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   padding: 0 $card-padding;
   color: $color-gray-500;
-  text-align: center;
+  text-align: right;
   .card-module-row {
     padding-bottom: $card-padding !important;
   }
   p {
     width: 100%;
     margin: 0;
-    font-weight: 500;
     line-height: 1.6;
     font-size: 10px;
   }
