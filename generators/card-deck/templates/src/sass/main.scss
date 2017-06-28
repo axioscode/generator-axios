@@ -5,20 +5,29 @@ $background-color: #D8D4CE;
 $card-padding: 20px; // update in js if changes (it's itemMargin over there)
 $card-width: 340px; // update in js if changes (it's cardWidth over there)
 $peek-amount: 10px;
-$diagonal-height: 20px;
+$diagonal-height: 30px;
+
+//background 
 
 body {
+  //Headline text
   font-family: $sans;
+  //Background Color
   background-color: $background-color;
+  //Maybe text color - but  not set to anything 
   color: $color-body-text;
+  //IDK? 
   height: 200%;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: subpixel-antialiased;
   shape-rendering: crispEdges;
+  // MARGIN ON WHOLE CARD? 
   margin: 0;
 }
 
-// CARD DECK
+
+
+// CARD DECK FUNCTIONALITY
 .card-deck { width: 100vw; }
 
 .card-deck__container {
@@ -53,8 +62,13 @@ body {
   &--dragging { cursor: grabbing; }
 }
 
+// TEXT DATA POINT 
+
 
 // THE CARD
+
+
+//GENERAL CARD STYLES
 .card {
   background-color: #fff;
   box-shadow: -4px 4px 18px -2px rgba(0, 0, 0, .4);
@@ -63,53 +77,12 @@ body {
   flex-direction: column;
 }
 
-.card__header {
-  background-color: $color-axios-blue;
-  height: 5rem;
-  display: flex;
-  flex-direction: column-reverse;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: contain;
-  font-weight: 500;
-  letter-spacing: -.2px;
-  padding-top: 60px;
-  padding-bottom: 30px;
-  font-size: 20px;
-
-  h2 {
-    padding: 0 $card-padding;
-  }
-}
-
 .card__body {
   padding: 0 $card-padding 2rem;
-  font-size: 1em;
 }
 
-.card__footer {
-  width: 100%;
-  padding: 0 $card-padding;
-  color: $color-gray-500;
-  text-align: right;
-  .card-module-row {
-    padding-bottom: $card-padding !important;
-  }
-  p {
-    width: 100%;
-    margin: 0;
-    line-height: 1.6;
-    font-size: 10px;
-  }
-
-  img {
-    vertical-align: middle;
-    padding: 4px;
-  }
-}
-
-// CARD MODULES
 .card-module-row {
+  padding: 30px 0 0 0;
   display: flex;
   min-height: 50px;
 
@@ -126,25 +99,116 @@ body {
     }
   }
 
-  &.card-module-row--no-margin {
-    margin-left: -$card-padding;
-    margin-right: -$card-padding;
+}
+
+//HEADLINE TEXT 
+
+.card__header {
+  display: flex;
+  flex-direction: column-reverse;
+  font-weight: 500;
+  letter-spacing: -.2px;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  position: relative;
+ 
+//HEADLINE A 
+ 
+ &.accent-border:before{
+  content: '';
+  display: block;
+  background: gray;
+  width: 100%;
+  height: 5px;
+  position: absolute;
+  top: -60px;
+  left: 0px;
+ }
+
+//HEADLINE B
+
+ // &:before{
+ //  content: '';
+ //  display: block;
+ //  background: gray;
+ //  width: 100%;
+ //  height: 100px;
+ //  position: absolute;
+ //  z-index: -100;
+ //  top: -60px;
+ //  left: 0px;
+ // }
+
+
+//for HEADLINE C don't include anything 
+
+//for Headline D see .card-module-image
+  
+  .card-module {
+
+  //HEADLINE D IMAGE
+    &.card-module--image {
+      margin: 0 !important;
+      img {
+        max-width: 100%;
+        width: 100%;
+      }
+  }
+
+    //GRAPHIC DATA POINT IMAGE
+    &.card-module--component-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      background-color: $color-gray-500;
+      border: solid 1px;
+      margin-bottom: .25rem;
+      margin-top: 2px;
+      img {
+        filter: grayscale(100%);
+        border-radius: 100%;
+        width: 100%;
+      }
+    }
+
+    // GRAPHIC DATA POINT TEXT
+  &.card-module--component-number{
+  color: inherit;
+  font-size: 36px;
+  // is this liberation mono? 
+  font-family: monospace;
+  }
+
+  //BODY TEXT
+
+    &.card-module--paragraph {
+      p {
+        font-family: $serif;
+        margin-bottom: .375rem;
+        line-height: 1.6;
+        font-size: 15px;
+      }
+    }
+
+  }
+
+
+  h2 { 
+    padding: 0 $card-padding;
   }
 }
 
-.card-module-row:not(:last-child) .card-module {
-  margin-bottom: 1.25rem;
-}
-.card-module-row:last-child .card-module {
-  margin-bottom: $card-padding * 2.5;
-}
+//SMALL HEADLINE TEXT
 
 .card-module__header {
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 0.5rem;
+  font-size: 9px;
   font-weight: 400;
   margin-bottom: .75rem;
+
+//RULES
 
   &.has--rule:before {
     width: 100%;
@@ -157,69 +221,53 @@ body {
   }
 }
 
-.card-module {
-  &.card-module--image {
-    margin: 0 !important;
-    img {
-      max-width: 100%;
-      width: 100%;
+
+//NO BOTTOM PADDING 
+.card__body {
+  padding-bottom: 0;
+}
+
+//FIX TYPE WIDOWS
+.card-module--big p {
+  width: 85%; // widows
+}
+
+// HIGHLIGHTED TEXT 
+.card {
+  overflow: hidden; // keep triangle okay if smaller than max card width
+
+  .card-module-row--highlighted-text {
+    //Might need to change this number depending on other card elements 
+    margin-top: 60px;
+    color: white;
+    padding: 20px 20px 30px 20px;
+    text-align: right;
+    position: relative;
+    font-weight: 400;
+    //change color for each card
+    background-color: gray;
+    margin-left: -20px;
+    margin-right: -20px;
+
+    &:before {
+      content: ' ';
+      display: block;
+      height: $diagonal-height;
+      width: 0px;
+      left: 0px;
+      bottom: 100%;
+      border-style: solid;
+      border-width: 0 0 $diagonal-height $card-width;
+      position: absolute;
+      background-color: #fff;
     }
+//change color for each card
+  &.color-block:before{
+      border-color:transparent transparent gray transparent;
+    }
+
   }
 
-  &.card-module--component-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    background-color: $color-gray-500;
-    border: solid 1px;
-    margin-bottom: .25rem;
-    margin-top: 2px;
-    img {
-      filter: grayscale(100%);
-      border-radius: 100%;
-      width: 100%;
-    }
-  }
-
-  &.card-module--paragraph {
-    h2 {
-      text-align: left;
-      font-weight: 500;
-      line-height: 1.55;
-      font-size: 18px;
-      letter-spacing: -0.5px;
-      margin: 0.5rem 0 !important;
-    }
-    p {
-      font-family: $serif;
-      font-size: 15px;
-      margin-bottom: .375rem;
-      line-height: 1.6;
-      font-size: .8rem;
-      text-align: left;
-    }
-  }
-
-  p { font-size: .875rem; }
-  &.card-module--small {
-    p { font-size: .75rem;; }
-  }
-  &.card-module--medium {
-    p { font-size: 0.875rem; }
-  }
-  &.card-module--big {
-    p { font-size: 1em; }
-  }
-  &.card-module--bigger {
-    p { font-size: 1.125em; }
-  }
-  &.card-module--giant {
-    margin-bottom: .675rem;
-    p {
-      font-weight: 500;
-      font-size: 3.125rem;
-    }
-  }
 }
 
 // NAVIGATION AND PAGINATION
@@ -321,58 +369,4 @@ body {
     }
 }
 
-// Additional styling
-.card__header {
-  height: auto;
-  background-color: #fff;
-}
 
-.card__body {
-  padding-bottom: 0;
-}
-
-.card-module--big p {
-  width: 85%; // widows
-}
-
-// Diagonal Line
-.card {
-  overflow: hidden; // keep triangle okay if smaller than max card width
-  .card-module-row--highlighted-text {
-    margin-top: 1.125rem;
-    color: #fff;
-    margin-bottom: 0;
-    padding: $diagonal-height $card-padding;
-    text-align: right;
-    position: relative;
-    .card-module__header {
-      color: #fff;
-      &:before {
-        display: none;
-      }
-    }
-
-    &:before {
-      content: '';
-      display: block;
-      height: 0;
-      width: 0;
-      left: 0px;
-      top: -$diagonal-height;
-      border-style: solid;
-      border-width: 0 0 $diagonal-height $card-width;
-      position: absolute;
-    }
-  }
-  // #card {
-  //   &--freedom-of-speech { @include card-last-row-color(#76B2D3); }
-  //   &--education { @include card-last-row-color(#5C8463); }
-  //   &--native-rights { @include card-last-row-color(#D5A552); }
-  //   &--police-brutality { @include card-last-row-color(#4D5486); }
-  //   &--church-and-state { @include card-last-row-color(#AB6459); }
-  //   &--due-process { @include card-last-row-color(#62A9A8); }
-  //   &--intellectual-property { @include card-last-row-color(#695D8B); }
-  //   &--withholding-evidence { @include card-last-row-color(#A46E8A); }
-  //   &--class-action { @include card-last-row-color(#BC9D7E); }
-  // }
-}
