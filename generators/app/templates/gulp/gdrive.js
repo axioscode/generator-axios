@@ -37,6 +37,7 @@ var addFile = function() {
       },{
         type: 'input',
         name: 'name',
+        default: 'copy',
         message: 'What name do you want to save this file with?'
       }], function(res) {
         if ('files' in projectConfig) {

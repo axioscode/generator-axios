@@ -1,4 +1,7 @@
-# The Axios Graphics Kit
+<%= meta.name %>
+---
+<%= meta.description %>
+
 This project was created with `generator-axios`, Axios' yeoman generator for making static interactive graphics that can be embedded in our news stream. This documentation will help you work with the graphics rig to make awesome internet things.
 
 **Note** — You may also want to look at the documentation for the generator for some additional understanding of what each of the files in this project does and how they all work together.

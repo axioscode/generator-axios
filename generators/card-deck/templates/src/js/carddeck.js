@@ -9,6 +9,10 @@ const NAVIGATION_ARROW_BUTTON = 'nav-arrowbutton';
 const NAVIGATION_KEYBOARD = 'nav-keyboard';
 const NAVIGATION_CLICK_CARD = 'nav-clickcard';
 
+if (NodeList.prototype.forEach === undefined) {
+    NodeList.prototype.forEach = Array.prototype.forEach
+}
+
 export default class CardDeck {
   constructor(selector) {
     // Set up DOM Elements
@@ -26,7 +30,7 @@ export default class CardDeck {
 
     // Define Card Sizes
     this.itemMargin = 20;
-    this.cardWidth = 350;
+    this.cardWidth = 340;
     this.maxItemWidth = this.cardWidth + (2 * this.itemMargin);
     this.itemWidth = null;
     this.setCardDeckDimensions();

@@ -5,7 +5,6 @@ var dateFormat = require('dateformat');
 
 var Generator = require('yeoman-generator');
 
-
 module.exports = Generator.extend({
   constructor: function () {
     Generator.apply(this, arguments);
@@ -27,63 +26,36 @@ module.exports = Generator.extend({
   prompting: {
     meta: function() {
       var done = this.async();
-      var dateString = dateFormat(new Date(), 'yyyy-mm-dd')
-      this.prompt([{
-        type    : 'input',
-        name    : 'name',
-        message : 'Project Name:',
-        default : this.appname      // Default to current folder name
-      },{
-        type    : 'input',
-        name    : 'slug',
-        message : 'Project Slug:',
-        default : slugify(this.appname)      // Default to current folder name
-      },{
-        type    : 'input',
-        name    : 'description',
-        message : 'Project Slug:',
-        default : 'An interactive card deck for axios.com'      // Default to current folder name
-      },{
+      var prompts = [{
         type    : 'list',
-        name    : 'docType',
-        message : 'Using a Google Doc or Spreadsheet?',
-        choices : ["sheet", "doc"],
-        default : 'sheet'      // Default to spreadsheet
+        name    : 'headline',
+        message : 'Pick your headline:',
+        choices : [
+          'Headline A (Accent Border)',
+          'Headline B (Accent Header)',
+          'Headline C (All Text)',
+          'Headline D (Header Image)'
+        ],
+        default : 'Headline C (All Text)'
       },{
-        type    : 'input',
-        name    : 'fieldId',
-        message : 'Google Drive ID',
-        default : '1k91vZX2Gg8sLPNPX1Q6rzaomIQM_s3Ol8zUVsAEpQFI'  // Default to blank spreadsheet with the proper headers
-      },{
-        type    : 'input',
-        name    : 's3bucket',
-        message : 'Project S3 Bucket:',
-        default : 'graphics.axios.com'      // Default to current folder name
-      },{
-        type    : 'input',
-        name    : 's3folder',
-        message : 'Project S3 Folder:',
-        default : dateString + '-' + slugify(this.appname)      // Default to current folder name
-      },{
-        type    : 'input',
-        name    : 'googleAnalyticsCategory',
-        message : 'A unique Google Analytics event category name:',
-        default : dateString + '-' + slugify(this.appname) + '-v0.1'      // Default to current folder name
-      },{
-        type    : 'confirm',
-        name    : 'gitInit',
-        message : 'Initialize empty git repository:',
-        default : true,
-      }]).then(function(answers, err) {
-        this.meta = {};
-        this.meta.name = answers.name;
-        this.meta.slug = answers.slug;
-        this.meta.description = answers.description;
-        this.meta.s3bucket = answers.s3bucket;
-        this.meta.s3folder = answers.s3folder;
-        this.meta.googleAnalyticsCategory = answers.googleAnalyticsCategory;
-        this.gitInit = answers.gitInit;
+        type    : 'checkbox',
+        name    : 'components',
+        message : 'Which components do you need?',
+        choices : [
+          { name: 'One column text data point' },
+          { name: 'Two column text data points' },
+          { name: 'One column graphic data point' },
+          { name: 'Two column graphic data points' },
+          { name: 'Text block' },
+          { name: 'Highlighted text'}
+        ]
+      }];
+      this.prompt(prompts).then(function(answers, err) {
         done(err);
+        this.meta = {};
+        this.meta.headline = answers.headline;
+        this.meta.components = answers.components;
+        this.meta.slug = slugify(this.appname);
       }.bind(this));
     }
   },
@@ -95,24 +67,32 @@ module.exports = Generator.extend({
       this.destinationRoot(),
       { meta: this.meta }
     );
-
-    // Copy all the dotfiles.
-    this.fs.copyTpl(
-      this.templatePath("**/.*"),
-      this.destinationRoot(),
-      { meta: this.meta }
-    );
   },
   install: function () {
-    this.installDependencies({
-      bower: false,
-      skipMessage: this.options['skip-install-message'],
-      skipInstall: this.options['skip-install']
-    });
+    this.npmInstall(['hammerjs'], { 'save': true });
   },
   end: function() {
-    if (this.gitInit) {
-      this.spawnCommand('git', ['init'])
-    }
+    var endMessage = `
+  Nice! You're ready to start making an Axios interactive!
+  Start by writing code into files in the src/ director
+
+  1. Add data from Google Drive, docs or spreadsheets:
+
+    > gulp gdrive:add
+    > gulp gdrive:fetch
+
+  2. Preview it locally on browsers and devices to make sure it looks ok:
+
+    > gulp serve
+
+  3. Troubleshooting? Check the logs when you compile everything:
+
+    > gulp build
+
+  4. Publish!
+
+    > gulp publish
+    `
+    this.log(endMessage)
   }
 });

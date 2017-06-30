@@ -58,6 +58,7 @@ module.exports = Generator.extend({
         message : 'Initialize empty git repository:',
         default : true,
       }]).then(function(answers, err) {
+        done(err);
         this.meta = {};
         this.meta.name = answers.name;
         this.meta.slug = answers.slug;
@@ -65,7 +66,6 @@ module.exports = Generator.extend({
         this.meta.s3folder = answers.s3folder;
         this.meta.googleAnalyticsCategory = answers.googleAnalyticsCategory;
         this.gitInit = answers.gitInit;
-        done(err);
       }.bind(this));
     }
   },
@@ -93,29 +93,30 @@ module.exports = Generator.extend({
     });
   },
   end: function() {
+    var endMessage = `
+  Nice! You're ready to start making an Axios interactive!
+  Start by writing code into files in the src/ director
+
+  1. Add data from Google Drive, docs or spreadsheets:
+
+    > gulp gdrive:add
+    > gulp gdrive:fetch
+
+  2. Preview it locally on browsers and devices to make sure it looks ok:
+
+    > gulp serve
+
+  3. Troubleshooting? Check the logs when you compile everything:
+
+    > gulp build
+
+  4. Publish!
+
+    > gulp publish
+    `
     if (this.gitInit) {
       this.spawnCommand('git', ['init'])
     }
-    this.log(`
-        Nice! You're ready to start making an Axios interactive!
-        Start by writing code into files in the src/ director
-
-        1. Add data from Google Drive, docs or spreadsheets:
-
-          > gulp gdrive:add
-          > gulp gdrive:fetch
-
-        2. Preview it locally on browsers and devices to make sure it looks ok:
-
-          > gulp serve
-
-        3. Troubleshooting? Check the logs when you compile everything:
-
-          > gulp build
-
-        4. Publish!
-
-          > gulp publish
-    `)
+    this.log(endMessage)
   }
 });

@@ -6,32 +6,34 @@
     <div class="card-deck__carousel">
 
       {{#each copy.cards}}
-      <div class="card-deck__item card" id="card--{{id}}">
-        <div class="card__header">
-          <div class="card-module-row">
-            <div class="card-module card-module--image">
-              <img src="img/{{id}}.png" />
-            </div>
+        <div class="card-deck__item card">
+          <% if (meta.headline === "Headline A (Accent Border)") { %>
+          {{> headlineA headline="Headline A" }}
+          <% } if (meta.headline === "Headline B (Accent Header)") { %>
+          {{> headlineB headline="Headline B" }}
+          <% } if (meta.headline === "Headline C (All Text)") { %>
+          {{> headlineC headline="Headline C" }}
+          <% } if (meta.headline === "Headline D (Header Image)") { %>
+          {{> headlineD headline="Headline D" imageUrl="http://placekitten.com/700/394" }}
+          <% } %>
+          <div class="card__body"><% meta.components.forEach(function(component) { if (component === "One column text data point") { %>
+            {{> txtPointOneCol subhead="TEXT DATA POINT" text="Lorem ipsum"}}
+            <% } if (component === "Two column text data points") { %>
+            {{> txtPointTwoCol subhead1="TEXT DATA POINT 1" text1="Lorem ipsum" subhead2="TEXT DATA POINT 2" text2="Dolor sit amet"}}
+            <% } if (component === "One column graphic data point") { %>
+            {{> graphicPointOneCol subhead="GRAPHIC DATA POINT" graphicUrl="http://placekitten.com/200/200" text="Lorem ipsum"}}
+            <% } if (component === "Two column graphic data points") { %>
+            {{> graphicPointTwoCol subhead="GRAPHIC DATA POINT 1" graphicUrl="http://placekitten.com/200/200" text1="Lorem ipsum" subhead2="GRAPHIC DATA POINT 2" graphicNumber="99%"}}
+            <% } if (component === "Text block") { %>
+            {{> txtBlock subhead="TEXT BLOCK" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}}
+            <% } if (component === "Highlighted text") { %>
+            {{> highlightedTxt subhead="HIGHLIGHTED TEXT" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}}
+          <% }}) %>
+          </div>
+          <div class="card__footer">
+            <p>AXIOS STUDIOS</p>
           </div>
         </div>
-        <div class="card__body">
-          <div class="card-module-row">
-            <div class="card-module card-module--paragraph">
-              <div class="card-module__body">
-                <h2>{{hed}}</h2>
-                <p>{{body}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card__footer">
-          <div class="card-module-row">
-            <p>
-              AXIOS STUDIOS
-            </p>
-          </div>
-        </div>
-      </div>
       {{/each}}
     </div>
   </div>

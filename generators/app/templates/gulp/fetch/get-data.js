@@ -18,7 +18,7 @@ module.exports = () => {
   fetch(config.files, (err, data, file) => {
     if (err) throw err
 
-    const filePath = path.join(gulpConfig.dirs.src.data, `${file.name}.json`)
+    const filePath = path.join(gulpConfig.paths.src.data, `${file.name}.json`)
 
     if (file.type === 'doc') {
       htmlToArchieML(data, (err, d) => {
