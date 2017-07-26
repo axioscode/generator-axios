@@ -10,6 +10,12 @@ module.exports = Generator.extend({
   constructor: function () {
     Generator.apply(this, arguments);
 
+    this.option('analytics', {
+      desc: 'Specifying AnalyticsDB will configure VPC settings for the analytics database',
+      type: String,
+      required: false
+    });
+
     this.option('skip-install-message', {
       desc: 'Skips the message after the installation of dependencies',
       type: Boolean
@@ -55,6 +61,7 @@ module.exports = Generator.extend({
         this.meta.description = answers.description;
         this.meta.timeout = answers.timeout;
         this.gitInit = answers.gitInit;
+        this.meta.analytics = this.options.analytics? true : false;
         done(err);
       }.bind(this));
     }

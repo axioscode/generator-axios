@@ -3,5 +3,10 @@
   "description": "<%= meta.description %>",
   "role": "arn:aws:iam::148400639408:role/axios_apex_default_lambda_function",
   "memory": 128,
-  "timeout": <%= meta.timeout %>
+  "timeout": <%= meta.timeout %> <% if (meta.analytics === true)  { %>,
+  "vpc": {
+    "securityGroups" : ["sg-f6827f8c"],
+    "subnets" : ["subnet-dd575cba"]
+  }
+  <% } %>
 }
