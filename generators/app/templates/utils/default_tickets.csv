@@ -1,0 +1,17 @@
+title,body,labels
+Browser testing: IE11,,
+Browser testing: Latest Firefox,,
+Browser testing: Latest Chrome,,
+Browser testing: Desktop Safari,,
+Device testing: iPhone Safari,,
+Device testing: iPhone Chrome/Webkit,,
+Device testing: iPhone in-app browser,"Have someone DM you the link, use Twitter in-app browser",
+Device testing: iPad,,
+Device testing: Android phone,,
+Device testing: Android tablet,,
+Data download,,
+Link to repo,,
+Run the app through Google Page Speed,http://developers.google.com/speed/pagespeed/insights/,
+Change LICENSE to MIT if open sourcing,,Launch TODO
+Update project meta description,It's in the copytext document. This gets indexed by Google.,Launch TODO
+Verify page title tags are good,,Launch TODO
