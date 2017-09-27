@@ -1,12 +1,24 @@
 {
   "project": {
     "name": "<%= meta.name %>",
-    "slug": "<%= meta.slug %>",
-    "description": ""
+    "slug": "<%= meta.slug %>"
   },
   "s3": {
     "bucket": "<%= meta.s3bucket %>",
     "folder": "<%= meta.s3folder %>"
   },
-  "files": []
+  "files": [],
+  "title": "<%= meta.title %>",
+  "byline": "<%= meta.byline %>",
+  "htmlId": "<%= meta.slug %>",
+  "fallbacks:": {
+    "appleNews": "<%= meta.slug %>-apple.png",
+    "newsletter": "<%= meta.slug %>-fallback.png"
+  },
+  "isFullbleed": "<%= meta.isFullbleed %>", // todo: should this be an option?
+  "sources": [{
+    "name": "<%= meta.sourceName %>",
+    "url": "<%= meta.sourceUrl %>"
+  }],
+  "embedVersion": "1.0"  
 }

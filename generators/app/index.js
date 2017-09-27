@@ -29,43 +29,46 @@ module.exports = Generator.extend({
       var dateString = dateFormat(new Date(), 'yyyy-mm-dd')
       this.prompt([{
         type    : 'input',
-        name    : 'name',
-        message : 'Project Name:',
-        default : this.appname      // Default to current folder name
+        name    : 'byline',
+        message : "Whose name(s) should appear on the byline? You can list names separated with a comma, and edit this in project.config.json",
+        default : "Axios"
       },{
         type    : 'input',
-        name    : 'slug',
-        message : 'Project Slug:',
-        default : slugify(this.appname)      // Default to current folder name
+        name    : 'title',
+        message : "What's the title? You can edit this in project.config.json",
+        default : this.appname
       },{
         type    : 'input',
-        name    : 's3bucket',
-        message : 'Project S3 Bucket:',
-        default : 'graphics.axios.com'      // Default to current folder name
+        name    : "sourceName",
+        message : "What's the data source(s)? You can list sources separated with a comma, and edit this in project.config.json",
+        default : 'Axios'
       },{
         type    : 'input',
-        name    : 's3folder',
-        message : 'Project S3 Folder:',
-        default : dateString + '-' + slugify(this.appname)      // Default to current folder name
-      },{
-        type    : 'input',
-        name    : 'googleAnalyticsCategory',
-        message : 'A unique Google Analytics event category name:',
-        default : dateString + '-' + slugify(this.appname) + '-v0.1'      // Default to current folder name
-      },{
+        name    : "sourceUrl",
+        message : "What's the data source url(s)? You can list source urls separated with a comma, and edit this in project.config.json",
+        default : 'https://axios.com'
+      }, {
         type    : 'confirm',
-        name    : 'gitInit',
-        message : 'Initialize empty git repository:',
-        default : true,
+        name    : "isFullbleed",
+        message : "Do you want this graphic to be a fullbleed embed (no margins or padding)?",
+        default : false
       }]).then(function(answers, err) {
         done(err);
         this.meta = {};
-        this.meta.name = answers.name;
-        this.meta.slug = answers.slug;
-        this.meta.s3bucket = answers.s3bucket;
-        this.meta.s3folder = answers.s3folder;
-        this.meta.googleAnalyticsCategory = answers.googleAnalyticsCategory;
-        this.gitInit = answers.gitInit;
+        // default info
+        this.meta.name = this.appname;
+        this.meta.slug = slugify(this.appname);
+        this.meta.s3bucket = "graphics.axios.com";
+        this.meta.s3folder = dateString + '-' + slugify(this.appname);
+        this.meta.googleAnalyticsCategory = dateString + '-' + slugify(this.appname) + '-v1.0';
+        this.gitInit = true;
+
+        // variable info
+        this.meta.byline = answers.byline;
+        this.meta.title = answers.title;
+        this.meta.sourceName = answers.sourceName;
+        this.meta.sourceUrl = answers.sourceUrl;
+        this.meta.isFullbleed = answers.isFullbleed;
       }.bind(this));
     }
   },
@@ -114,9 +117,7 @@ module.exports = Generator.extend({
 
     > gulp publish
     `
-    if (this.gitInit) {
-      this.spawnCommand('git', ['init'])
-    }
+    this.spawnCommand('git', ['init'])
     this.log(endMessage)
   }
 });
