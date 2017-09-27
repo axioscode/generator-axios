@@ -15,7 +15,7 @@
     "appleNews": "<%= meta.slug %>-apple.png",
     "newsletter": "<%= meta.slug %>-fallback.png"
   },
-  "isFullbleed": "<%= meta.isFullbleed %>", // todo: should this be an option?
+  "isFullbleed": "<%= meta.isFullbleed %>",
   "sources": [{
     "name": "<%= meta.sourceName %>",
     "url": "<%= meta.sourceUrl %>"
