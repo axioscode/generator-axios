@@ -28,47 +28,22 @@ module.exports = Generator.extend({
       var done = this.async();
       var dateString = dateFormat(new Date(), 'yyyy-mm-dd')
       this.prompt([{
-        type    : 'input',
-        name    : 'byline',
-        message : "Whose name(s) should appear on the byline? You can list names separated with a comma, and edit this in project.config.json",
-        default : "Axios"
-      },{
-        type    : 'input',
-        name    : 'title',
-        message : "What's the title? You can edit this in project.config.json",
-        default : this.appname
-      },{
-        type    : 'input',
-        name    : "sourceName",
-        message : "What's the data source(s)? You can list sources separated with a comma, and edit this in project.config.json",
-        default : 'Axios'
-      },{
-        type    : 'input',
-        name    : "sourceUrl",
-        message : "What's the data source url(s)? You can list source urls separated with a comma, and edit this in project.config.json",
-        default : 'https://axios.com'
-      }, {
         type    : 'confirm',
-        name    : "isFullbleed",
-        message : "Do you want this graphic to be a fullbleed embed (no margins or padding)?",
-        default : false
+        name    : "gitInit",
+        message : "Initialize empty git repository?",
+        default : true
       }]).then(function(answers, err) {
         done(err);
-        this.meta = {};
-        // default info
-        this.meta.name = this.appname;
-        this.meta.slug = slugify(this.appname);
-        this.meta.s3bucket = "graphics.axios.com";
-        this.meta.s3folder = dateString + '-' + slugify(this.appname);
-        this.meta.googleAnalyticsCategory = dateString + '-' + slugify(this.appname) + '-v1.0';
-        this.gitInit = true;
-
-        // variable info
-        this.meta.byline = answers.byline;
-        this.meta.title = answers.title;
-        this.meta.sourceName = answers.sourceName;
-        this.meta.sourceUrl = answers.sourceUrl;
-        this.meta.isFullbleed = answers.isFullbleed;
+        this.meta = {
+          ['name']: this.appname,
+          ['slug']: slugify(this.appname),
+          ['s3bucket']: 'graphics.axios.com',
+          ['s3folder']: dateString + '-' + slugify(this.appname),
+          ['googleAnalyticsCategory']: dateString + '-' + slugify(this.appname) + '-v1.0',
+          ['fallbackAppleNews']: slugify(this.appname) + '-apple.png',
+          ['fallbackNewsletter']: slugify(this.appname) + '-fallback.png',
+          ['gitInit']: answers.gitInit
+        };
       }.bind(this));
     }
   },
@@ -117,7 +92,9 @@ module.exports = Generator.extend({
 
     > gulp publish
     `
-    this.spawnCommand('git', ['init'])
+    if (this.gitInit) {
+      this.spawnCommand('git', ['init'])
+    }
     this.log(endMessage)
   }
 });

@@ -7,13 +7,13 @@ const runSequence = require('run-sequence');
 const gulpConfig = require('./gulp/config');
 
 // Core Sub-Tasks For Processing Static Files
+gulp.task('cachebust', require('./gulp/cachebust'))
+gulp.task('data', require('./gulp/data'))
+gulp.task('images', require('./gulp/images'))
+gulp.task('scripts:watch', require('./gulp/scripts').watch);
+gulp.task('scripts', require('./gulp/scripts').build);
 gulp.task('styles', require('./gulp/styles'));
 gulp.task('templates', require('./gulp/templates'));
-gulp.task('scripts', require('./gulp/scripts').build);
-gulp.task('scripts:watch', require('./gulp/scripts').watch);
-gulp.task('images', require('./gulp/images'))
-gulp.task('data', require('./gulp/data'))
-gulp.task('cachebust', require('./gulp/cachebust'))
 
 // Google Drive Tasks
 gulp.task('gdrive:add', require('./gulp/gdrive').addFile)
