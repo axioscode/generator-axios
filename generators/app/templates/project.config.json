@@ -8,10 +8,7 @@
     "folder": "<%= meta.s3folder %>"
   },
   "files": [],
-  "fallbacks:": {
-    "appleNews": "",
-    "newsletter": ""
-  },
+  "authorName": "<%= meta.authorName %>",
   "isFullbleed": false,
   "embedVersion": "1.0"  
 }
