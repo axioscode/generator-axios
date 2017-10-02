@@ -1,9 +1,9 @@
 {
   "name": "generator-axios",
-  "version": "0.0.1",
+  "version": "1.1.0",
   "description": "",
   "scripts": {
-    "setup": "pip install awscli && npm install -g yo gulp-cli && npm install && npm link"
+    "setup": "pip3 install awscli && npm install -g yo gulp-cli && npm install && npm link"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
     "axios"
   ],
   "author": "Alex Duner <duner@axios.com>, Gerald Rich <gerald@axios.com>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "yeoman-generator": "^1.1.0"
   },
