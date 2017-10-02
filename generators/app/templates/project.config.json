@@ -9,8 +9,8 @@
   },
   "files": [],
   "fallbacks:": {
-    "appleNews": "<%= meta.slug %>-apple.png",
-    "newsletter": "<%= meta.slug %>-fallback.png"
+    "appleNews": "",
+    "newsletter": ""
   },
   "isFullbleed": false,
   "embedVersion": "1.0"  

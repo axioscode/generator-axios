@@ -40,8 +40,6 @@ module.exports = Generator.extend({
           ['s3bucket']: 'graphics.axios.com',
           ['s3folder']: dateString + '-' + slugify(this.appname),
           ['googleAnalyticsCategory']: dateString + '-' + slugify(this.appname) + '-v1.0',
-          ['fallbackAppleNews']: slugify(this.appname) + '-apple.png',
-          ['fallbackNewsletter']: slugify(this.appname) + '-fallback.png',
           ['gitInit']: answers.gitInit
         };
       }.bind(this));
