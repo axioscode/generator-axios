@@ -34,7 +34,7 @@ module.exports = Generator.extend({
         name    : "authorName",
         message : "What's your name?",
         default : 'Axios',
-        when: () => this.hasAuthor === false
+        when    : () => this.hasAuthor === false
       }, {
         type    : 'confirm',
         name    : "gitInit",
