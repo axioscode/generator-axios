@@ -17,12 +17,11 @@ module.exports = Generator.extend({
       desc: 'Skips installing dependencies',
       type: Boolean
     });
-
-    this.hasAuthor = this.config.get('authorName') ? true : false;
   },
 
   initializing: function () {
     this.pkg = require('../../package.json');
+    this.projectConfig = require('./templates/project.config.json');
   },
 
   prompting: {
@@ -30,30 +29,20 @@ module.exports = Generator.extend({
       var done = this.async();
       var dateString = dateFormat(new Date(), 'yyyy-mm-dd')
       this.prompt([{
-        type    : 'input',
-        name    : "authorName",
-        message : "What's your name?",
-        default : 'Axios',
-        when    : () => this.hasAuthor === false
-      }, {
         type    : 'confirm',
         name    : "gitInit",
         message : "Initialize empty git repository?",
         default : true
       }]).then(function(answers, err) {
         done(err);
-        if (this.hasAuthor === false) {
-          // todo: set config globally, not locally, for all generated projects
-          this.config.set('authorName', answers.authorName);
-        }
         this.meta = {
+          ['gitInit']: answers.gitInit,
+          ['googleAnalyticsCategory']: dateString + '-' + slugify(this.appname) + '-v1.0',
+          ['isFullbleed']: this.projectConfig.isFullbleed,
           ['name']: this.appname,
-          ['slug']: slugify(this.appname),
-          ['authorName']: this.config.get('authorName'),
           ['s3bucket']: 'graphics.axios.com',
           ['s3folder']: dateString + '-' + slugify(this.appname),
-          ['googleAnalyticsCategory']: dateString + '-' + slugify(this.appname) + '-v1.0',
-          ['gitInit']: answers.gitInit
+          ['slug']: slugify(this.appname),
         };
       }.bind(this));
     }
