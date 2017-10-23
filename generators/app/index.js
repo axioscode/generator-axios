@@ -21,6 +21,7 @@ module.exports = Generator.extend({
 
   initializing: function () {
     this.pkg = require('../../package.json');
+    this.projectConfig = require('./templates/project.config.json');
   },
 
   prompting: {
@@ -28,44 +29,21 @@ module.exports = Generator.extend({
       var done = this.async();
       var dateString = dateFormat(new Date(), 'yyyy-mm-dd')
       this.prompt([{
-        type    : 'input',
-        name    : 'name',
-        message : 'Project Name:',
-        default : this.appname      // Default to current folder name
-      },{
-        type    : 'input',
-        name    : 'slug',
-        message : 'Project Slug:',
-        default : slugify(this.appname)      // Default to current folder name
-      },{
-        type    : 'input',
-        name    : 's3bucket',
-        message : 'Project S3 Bucket:',
-        default : 'graphics.axios.com'      // Default to current folder name
-      },{
-        type    : 'input',
-        name    : 's3folder',
-        message : 'Project S3 Folder:',
-        default : dateString + '-' + slugify(this.appname)      // Default to current folder name
-      },{
-        type    : 'input',
-        name    : 'googleAnalyticsCategory',
-        message : 'A unique Google Analytics event category name:',
-        default : dateString + '-' + slugify(this.appname) + '-v0.1'      // Default to current folder name
-      },{
         type    : 'confirm',
-        name    : 'gitInit',
-        message : 'Initialize empty git repository:',
-        default : true,
+        name    : "gitInit",
+        message : "Initialize empty git repository?",
+        default : true
       }]).then(function(answers, err) {
         done(err);
-        this.meta = {};
-        this.meta.name = answers.name;
-        this.meta.slug = answers.slug;
-        this.meta.s3bucket = answers.s3bucket;
-        this.meta.s3folder = answers.s3folder;
-        this.meta.googleAnalyticsCategory = answers.googleAnalyticsCategory;
-        this.gitInit = answers.gitInit;
+        this.meta = {
+          ['gitInit']: answers.gitInit,
+          ['googleAnalyticsCategory']: dateString + '-' + slugify(this.appname) + '-v1.0',
+          ['isFullbleed']: this.projectConfig.isFullbleed,
+          ['name']: this.appname,
+          ['s3bucket']: 'graphics.axios.com',
+          ['s3folder']: dateString + '-' + slugify(this.appname),
+          ['slug']: slugify(this.appname),
+        };
       }.bind(this));
     }
   },

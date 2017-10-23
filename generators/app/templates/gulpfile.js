@@ -7,13 +7,14 @@ const runSequence = require('run-sequence');
 const gulpConfig = require('./gulp/config');
 
 // Core Sub-Tasks For Processing Static Files
+gulp.task('cachebust', require('./gulp/cachebust'))
+gulp.task('data', require('./gulp/data'))
+gulp.task('images', require('./gulp/images'))
+gulp.task('fallbacks', require('./gulp/fallbacks'))
+gulp.task('scripts:watch', require('./gulp/scripts').watch);
+gulp.task('scripts', require('./gulp/scripts').build);
 gulp.task('styles', require('./gulp/styles'));
 gulp.task('templates', require('./gulp/templates'));
-gulp.task('scripts', require('./gulp/scripts').build);
-gulp.task('scripts:watch', require('./gulp/scripts').watch);
-gulp.task('images', require('./gulp/images'))
-gulp.task('data', require('./gulp/data'))
-gulp.task('cachebust', require('./gulp/cachebust'))
 
 // Google Drive Tasks
 gulp.task('gdrive:add', require('./gulp/gdrive').addFile)
@@ -31,11 +32,11 @@ gulp.task('set-prd-node-env', function() {
 gulp.task('clean', require('./gulp/clean'))
 
 gulp.task('build', ['set-prd-node-env', 'clean'], (done) => {
-  runSequence(['images', 'data'], ['styles', 'templates', 'scripts'], ['cachebust'], done)
+  runSequence(['images', 'fallbacks', 'data'], ['styles', 'templates', 'scripts'], ['cachebust'], done)
 })
 gulp.task('build:prd', ['build'])
 gulp.task('build:dev', ['set-dev-node-env', 'clean'], (done) => {
-  runSequence(['images', 'data'], ['styles', 'templates', 'scripts'], done)
+  runSequence(['images', 'fallbacks', 'data'], ['styles', 'templates', 'scripts'], done)
 })
 
 
