@@ -1,3 +1,40 @@
 @import 'feta';
 @import 'reset';
 
+
+.chart-container {
+	width: 100%;
+	text-align: center;
+
+	.chart {
+		display: inline-block;
+		width: 100%;
+		max-width: 600px;
+
+
+		.axis {
+			text {
+				font-family: $mono;
+				fill: $color-gray-700 !important;
+				pointer-events: none;
+			}
+
+			.tick text {
+				font-size: 12px;
+			}
+
+			line, path {
+				stroke: #c2c2c2 !important;
+				stroke-width: .5;
+				pointer-events: none;
+			}
+
+			.domain {
+				display: none;
+			}
+		}
+
+		
+	}
+
+}
