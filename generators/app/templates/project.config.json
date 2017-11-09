@@ -9,5 +9,7 @@
   },
   "files": [],
   "isFullbleed": false,
+  "appleFallback": "<%= meta.appleFallback %>",
+  "newsletterFallback": "<%= meta.newsletterFallback %>",
   "embedVersion": "1.0"  
 }
