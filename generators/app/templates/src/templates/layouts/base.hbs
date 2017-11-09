@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
     <meta property="fullbleed" content="<%= meta.isFullbleed %>" />
     <meta property="slug" content="<%= meta.slug %>" />
-    <meta property="apple-fallback" content="<%= meta.appleFallback %>" />
-    <meta property="newsletter-fallback" content="<%= meta.newsletterFallback %>" />
+    <meta property="apple-fallback" content="{{ projectConfig.appleFallback }}" />
+    <meta property="newsletter-fallback" content="{{ projectConfig.newsletterFallback }}" />
     <link rel="icon" type="image/png" href="https://static.axios.com/img/axiosvisuals-favicon-128x128.png" sizes="128x128" />
     <link rel="stylesheet" type="text/css" href="{{static 'css/main.css'}}">
     <title><%= meta.name %> | Axios</title>
