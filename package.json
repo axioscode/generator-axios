@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "description": "",
   "scripts": {
-    "setup": "pip3 install awscli && npm install -g yo gulp-cli && npm install && npm link"
+    "setup": "pip install awscli && npm install -g yo gulp-cli && npm install && npm link"
   },
   "repository": {
     "type": "git",

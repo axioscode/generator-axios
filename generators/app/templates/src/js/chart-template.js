@@ -3,7 +3,7 @@ let d3 = require("d3");
 class makeChart {
 
     constructor(opts) {
-        this.element = opts.element;
+        Object.assign(this,opts)
         this.aspectHeight = opts.aspectHeight ? opts.aspectHeight : .68;
 
         this.update();
@@ -61,18 +61,19 @@ class makeChart {
             .attr("class", "chart-g");
 
         this.xAxis = d3.axisBottom(this.xScale)
-            .tickSize(-this.height);
+            .tickSize(-this.height-20);
 
         this.yAxis = d3.axisLeft(this.yScale)
-            .tickSize(-this.width);
+            .tickSize(-this.width-20);
 
         this.plot.append("g")
             .classed("axis x-axis", true)
-            .attr("transform", "translate(0," + this.height + ")")
+            .attr("transform", "translate(0," + (this.height+20) + ")")
             .call(this.xAxis);
 
         this.plot.append("g")
             .classed("axis y-axis", true)
+            .attr("transform", "translate(" + (-20) + ",0)")
             .call(this.yAxis);
 
 
