@@ -42,7 +42,7 @@ module.exports = Generator.extend({
           ['name']: this.appname,
           ['s3bucket']: 'graphics.axios.com',
           ['s3folder']: dateString + '-' + slugify(this.appname),
-          ['slug']: slugify(this.appname),
+          ['slug']: dateString + '-' + slugify(this.appname),
           ['appleFallback']: `fallbacks/${slugify(this.appname)}-apple.png`,
           ['newsletterFallback']: `fallbacks/${slugify(this.appname)}-fallback.png`,
         };
