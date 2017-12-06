@@ -37,12 +37,12 @@ module.exports = Generator.extend({
         done(err);
         this.meta = {
           ['gitInit']: answers.gitInit,
-          ['googleAnalyticsCategory']: dateString + '-' + slugify(this.appname) + '-v1.0',
+          ['googleAnalyticsCategory']: slugify(this.appname) + '-v1.0',
           ['isFullbleed']: this.projectConfig.isFullbleed,
           ['name']: this.appname,
           ['s3bucket']: 'graphics.axios.com',
-          ['s3folder']: dateString + '-' + slugify(this.appname),
-          ['slug']: dateString + '-' + slugify(this.appname),
+          ['s3folder']: slugify(this.appname),
+          ['slug']: slugify(this.appname),
           ['appleFallback']: `fallbacks/${slugify(this.appname)}-apple.png`,
           ['newsletterFallback']: `fallbacks/${slugify(this.appname)}-fallback.png`,
         };
