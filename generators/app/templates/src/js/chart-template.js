@@ -5,6 +5,7 @@ class makeChart {
     constructor(opts) {
         Object.assign(this,opts)
         this.aspectHeight = opts.aspectHeight ? opts.aspectHeight : .68;
+        this.appendElements();
         this.update();
     }
 
