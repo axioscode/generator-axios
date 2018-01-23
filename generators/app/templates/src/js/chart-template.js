@@ -22,8 +22,8 @@ class makeChart {
         this.margin = {
             top: 30,
             right: 30,
-            bottom: 30,
-            left: 30
+            bottom: 50,
+            left: 50
         };
 
         this.width = this.element.offsetWidth - this.margin.left - this.margin.right;
