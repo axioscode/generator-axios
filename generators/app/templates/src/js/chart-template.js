@@ -5,7 +5,6 @@ class makeChart {
     constructor(opts) {
         Object.assign(this,opts)
         this.aspectHeight = opts.aspectHeight ? opts.aspectHeight : .68;
-
         this.update();
     }
 
@@ -13,7 +12,7 @@ class makeChart {
     update() {
         this._setDimensions();
         this._setScales();
-        this.draw();
+        this.render();
     }
 
     _setDimensions() {
@@ -44,37 +43,38 @@ class makeChart {
 
     }
 
-    draw() {
-
-        // set up parent element and SVG
-        this.element.innerHTML = "";
-
+    appendElements() {
+        
         this.svg = d3.select(this.element).append('svg');
 
-        //Set svg dimensions
-        this.svg.attr('width', this.width + this.margin.left + this.margin.right);
-        this.svg.attr('height', this.height + this.margin.top + this.margin.bottom);
-
-        // create the chart group.
         this.plot = this.svg.append('g')
-            .attr('transform', `translate(${this.margin.left},${this.margin.top})`)
-            .attr("class", "chart-g");
+            .attr("class", "chart-g")
 
-        this.xAxis = d3.axisBottom(this.xScale)
-            .tickSize(-this.height-20);
-
-        this.yAxis = d3.axisLeft(this.yScale)
-            .tickSize(-this.width-20);
-
-        this.plot.append("g")
+        this.xAxis = this.plot.append("g")
             .classed("axis x-axis", true)
-            .attr("transform", "translate(0," + (this.height+20) + ")")
-            .call(this.xAxis);
 
-        this.plot.append("g")
+        this.yAxis = this.plot.append("g")
             .classed("axis y-axis", true)
-            .attr("transform", "translate(" + (-20) + ",0)")
-            .call(this.yAxis);
+    }
+
+    render() {
+
+        this.svg.attr('width', this.width + this.margin.left + this.margin.right)
+        this.svg.attr('height', this.height + this.margin.top + this.margin.bottom)
+
+        this.plot.attr('transform', `translate(${this.margin.left},${this.margin.top})`)
+
+        this.xAxis.attr("transform", "translate(0," + (this.height+20) + ")")
+            .call(
+                d3.axisBottom(this.xScale)
+                    .tickSize(-this.height-20)
+            )
+
+        this.yAxis.attr("transform", "translate(" + (-20) + ",0)")
+            .call(
+                d3.axisLeft(this.yScale)
+                    .tickSize(-this.width-20)
+            );
 
 
     }
