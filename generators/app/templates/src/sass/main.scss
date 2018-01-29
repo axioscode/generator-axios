@@ -1,9 +1,10 @@
 @import 'feta';
 @import 'reset';
 
-html,body {
+html, body {
 	margin: 0;
 	padding: 0;
+	overflow-x: hidden;
 }
 
 .chart-container {
@@ -19,7 +20,7 @@ html,body {
 		.axis {
 			text {
 				font-family: $mono;
-				fill: $color-gray-600 !important;
+				fill: $color-gray-600;
 				pointer-events: none;
 			}
 
@@ -28,7 +29,7 @@ html,body {
 			}
 
 			line, path {
-				stroke: $color-gray-300 !important;
+				stroke: $color-gray-300;
 				stroke-width: .5;
 				pointer-events: none;
 			}
@@ -37,10 +38,7 @@ html,body {
 				display: none;
 			}
 		}
-
-		
 	}
-
 }
 
 .headline {
@@ -57,7 +55,7 @@ html,body {
 	font-size: 14px;
 	line-height: 22px;
 	color: $color-gray-600;
-	margin-bottom: 10px; 
+	margin-bottom: 10px;
 }
 
 .subhead {
