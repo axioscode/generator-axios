@@ -134,7 +134,7 @@ The following shortcode can be posted into a new Axios post.
 * **id**: a string to be used as the graphic container’s unique HTML id attribute
 * **url**: URL to the interactive graphic you just published on s3
 
-## What’s next?
+## What’s next? (Not included in the public repo)
 An interactive card-deck?
 
 ```sh
