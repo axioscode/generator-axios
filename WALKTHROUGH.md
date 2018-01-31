@@ -121,18 +121,7 @@ Accepts three parameters and returns `undefined`. To be placed inside an event l
 * **value**: an option integer describing the event. useful for tracking time, e.g. 200
 
 ## Step 3. Publishing an Interactive Graphic
-Once you’ve got it all working you can publish it to s3. Afterward, the script will tell you the URL and give you the shortcode for you to copy and paste and see it in the CMS.
-
-![](https://cloud.githubusercontent.com/assets/1578563/26508043/f09357b0-4207-11e7-9108-2a40f7236ddc.png)
-
-### CMS Shortcode
-
-`[shortcode-pym-iframe id=“TKTK” url=“TKTK”]`
-
-The following shortcode can be posted into a new Axios post.
-
-* **id**: a string to be used as the graphic container’s unique HTML id attribute
-* **url**: URL to the interactive graphic you just published on s3
+Publishing is as simple as `gulp publish`. If you want to change the S3 location, simply edit the project.config.json file in the root of the directory.
 
 ## What’s next? (Not included in the public repo)
 An interactive card-deck?
