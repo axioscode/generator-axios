@@ -21,54 +21,48 @@ module.exports = class extends Generator {
   }
 
   initializing() {
+    const dateString = dateFormat(new Date(), 'yyyy-mm-dd')
+    
     this.projectConfig = require('./templates/project.config.json');
+    this.meta = {
+      googleAnalyticsCategory: slugify(this.appname) + '-v1.0',
+      isFullbleed: this.projectConfig.isFullbleed,
+      name: this.appname,
+      s3bucket: 'graphics.axios.com',
+      s3folder: `${dateString}-${slugify(this.appname)}`,
+      slug: `${slugify(this.appname)}`,
+      appleFallback: `fallbacks/${slugify(this.appname)}-apple.png`,
+      newsletterFallback: `fallbacks/${slugify(this.appname)}-fallback.png`,
+    }
   }
 
   prompting() {
-    var dateString = dateFormat(new Date(), 'yyyy-mm-dd')
-    const questions = [
-      {
-        type: 'input',
-        name: 'title',
-        message: 'Welcome to your new interactive. What will we call it?',
-        default: this.appname
-      },
-      {
-        type: 'confirm',
-        name: "gitInit",
-        message: "Initialize empty git repository?",
-        default: true
-      }
-    ];
+    const questions = [{
+      type    : 'confirm',
+      name    : "gitInit",
+      message : "Initialize empty git repository?",
+      default : true
+    }]
 
-    this.prompt(questions).then((answers) => {
-      this.meta = {
-        ['gitInit']: answers.gitInit,
-        ['googleAnalyticsCategory']: slugify(this.appname) + '-v1.0',
-        ['isFullbleed']: this.projectConfig.isFullbleed,
-        ['name']: this.appname,
-        ['s3bucket']: 'graphics.axios.com',
-        ['s3folder']: slugify(this.appname),
-        ['slug']: slugify(this.appname),
-        ['appleFallback']: `fallbacks/${slugify(this.appname)}-apple.png`,
-        ['newsletterFallback']: `fallbacks/${slugify(this.appname)}-fallback.png`,
-      };
+    return this.prompt(questions).then((answers) => {
+      this.gitInit = answers.gitInit;
     });
   }
 
   configuring() {
-    console.log(this.meta)
-
-    // Copy all the normal files.
-    this.fs.copyTpl(
-      this.templatePath("**/*"),
-      this.destinationRoot(),
-      { meta: this.meta }
-    );
-
     // Copy all the dotfiles.
     this.fs.copyTpl(
       this.templatePath("**/.*"),
+      this.destinationRoot(),
+      { meta: this.meta }
+    );
+  }
+
+
+  writing() {
+    // Copy all the normal files.
+    this.fs.copyTpl(
+      this.templatePath("**/*"),
       this.destinationRoot(),
       { meta: this.meta }
     );
