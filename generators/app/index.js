@@ -5,9 +5,10 @@ var dateFormat = require('dateformat');
 
 var Generator = require('yeoman-generator');
 
-module.exports = Generator.extend({
-  constructor: function () {
-    Generator.apply(this, arguments);
+module.exports = class extends Generator {
+  
+  constructor(args, opts) {
+    super(args, opts);
     this.option('skip-install-message', {
       desc: 'Skips the message after the installation of dependencies',
       type: Boolean
@@ -17,40 +18,47 @@ module.exports = Generator.extend({
       desc: 'Skips installing dependencies',
       type: Boolean
     });
-  },
+  }
 
-  initializing: function () {
-    this.pkg = require('../../package.json');
+  initializing() {
     this.projectConfig = require('./templates/project.config.json');
-  },
+  }
 
-  prompting: {
-    meta: function() {
-      var done = this.async();
-      var dateString = dateFormat(new Date(), 'yyyy-mm-dd')
-      this.prompt([{
-        type    : 'confirm',
-        name    : "gitInit",
-        message : "Initialize empty git repository?",
-        default : true
-      }]).then(function(answers, err) {
-        done(err);
-        this.meta = {
-          ['gitInit']: answers.gitInit,
-          ['googleAnalyticsCategory']: slugify(this.appname) + '-v1.0',
-          ['isFullbleed']: this.projectConfig.isFullbleed,
-          ['name']: this.appname,
-          ['s3bucket']: 'graphics.axios.com',
-          ['s3folder']: slugify(this.appname),
-          ['slug']: slugify(this.appname),
-          ['appleFallback']: `fallbacks/${slugify(this.appname)}-apple.png`,
-          ['newsletterFallback']: `fallbacks/${slugify(this.appname)}-fallback.png`,
-        };
-      }.bind(this));
-    }
-  },
+  prompting() {
+    var dateString = dateFormat(new Date(), 'yyyy-mm-dd')
+    const questions = [
+      {
+        type: 'input',
+        name: 'title',
+        message: 'Welcome to your new interactive. What will we call it?',
+        default: this.appname
+      },
+      {
+        type: 'confirm',
+        name: "gitInit",
+        message: "Initialize empty git repository?",
+        default: true
+      }
+    ];
 
-  configuring: function() {
+    this.prompt(questions).then((answers) => {
+      this.meta = {
+        ['gitInit']: answers.gitInit,
+        ['googleAnalyticsCategory']: slugify(this.appname) + '-v1.0',
+        ['isFullbleed']: this.projectConfig.isFullbleed,
+        ['name']: this.appname,
+        ['s3bucket']: 'graphics.axios.com',
+        ['s3folder']: slugify(this.appname),
+        ['slug']: slugify(this.appname),
+        ['appleFallback']: `fallbacks/${slugify(this.appname)}-apple.png`,
+        ['newsletterFallback']: `fallbacks/${slugify(this.appname)}-fallback.png`,
+      };
+    });
+  }
+
+  configuring() {
+    console.log(this.meta)
+
     // Copy all the normal files.
     this.fs.copyTpl(
       this.templatePath("**/*"),
@@ -64,15 +72,19 @@ module.exports = Generator.extend({
       this.destinationRoot(),
       { meta: this.meta }
     );
-  },
-  install: function () {
+  }
+
+  install() {
     this.installDependencies({
+      yarn: true,
+      npm: false,
       bower: false,
       skipMessage: this.options['skip-install-message'],
       skipInstall: this.options['skip-install']
     });
-  },
-  end: function() {
+  }
+
+  end() {
     var endMessage = `
   Nice! You're ready to start making an Axios interactive!
   Start by writing code into files in the src/ director
@@ -99,4 +111,5 @@ module.exports = Generator.extend({
     }
     this.log(endMessage)
   }
-});
+
+};
