@@ -19,7 +19,7 @@ const config = require('./config');
 
 var getBundle = function() {
   var props = {
-    transform: [["babelify", { "presets": ["@babel/preset-env"] }]],
+    transform: [["babelify", { "presets": ["env"] }]],
     entries: [config.paths.src.js + "/app.js"]
   };
 
