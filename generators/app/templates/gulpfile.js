@@ -1,8 +1,6 @@
 'use strict';
 
 const gulp = require("gulp");
-const env = require("gulp-env");
-const gutil = require("gulp-util");
 const runSequence = require('run-sequence');
 const gulpConfig = require('./gulp/config');
 
@@ -22,10 +20,10 @@ gulp.task('gdrive:fetch', require('./gulp/gdrive').fetch)
 
 // Env Tasks
 gulp.task('set-dev-node-env', function() {
-   return process.env.NODE_ENV = 'development';
+  return process.env.NODE_ENV = 'development';
 });
 gulp.task('set-prd-node-env', function() {
-   return process.env.NODE_ENV = 'production';
+  return process.env.NODE_ENV = 'production';
 });
 
 // Basic Tasks
