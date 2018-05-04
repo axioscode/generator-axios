@@ -1,13 +1,12 @@
-let AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = 'UA-87586659-3';
+const AXIOS_VISUALS_CATEGORY = '<%= meta.GoogleAnalyticsCategory %>'
 const PRODUCTION = window.location.hostname.indexOf('localhost.com') === -1;
+let AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = 'UA-87586659-3';
 
 if (PRODUCTION) {
   AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = 'UA-87586659-4';
 } else {
   AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = 'UA-87586659-3';
 }
-
-const AXIOS_VISUALS_CATEGORY = '<%= meta.GoogleAnalyticsCategory %>'
 
 // Heavily inspired by our friends at NPR
 // https://github.com/nprapps/anno-docs/blob/a3bae37a467217a4e446861a57df7dd49f7570f6/www/js/analytics.js

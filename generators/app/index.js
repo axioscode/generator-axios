@@ -90,7 +90,7 @@ module.exports = Generator.extend({
 
     > gulp publish
     `
-    if (this.gitInit) {
+    if (this.meta.gitInit) {
       this.spawnCommand('git', ['init'])
     }
     this.log(endMessage)
