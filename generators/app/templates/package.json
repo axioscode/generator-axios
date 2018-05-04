@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "archieml": "^0.4.2",
+    "aws-sdk": "^2.232.1",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.6.1",
@@ -25,7 +26,6 @@
     "chalk": "^2.4.1",
     "copytext": "^2.1.0",
     "del": "^3.0.0",
-    "envify": "^4.0.0",
     "googleapis": "^29.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
