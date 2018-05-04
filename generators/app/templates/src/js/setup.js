@@ -1,3 +1,8 @@
+require("core-js/es6/promise");
+require("core-js/fn/object/assign");
+require("core-js/fn/object/entries");
+require("core-js/fn/object/values");
+
 const setup = function() {
   if (NodeList.prototype.forEach === undefined) {
     NodeList.prototype.forEach = Array.prototype.forEach

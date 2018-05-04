@@ -25,6 +25,7 @@
     "browserify": "^16.2.0",
     "chalk": "^2.4.1",
     "copytext": "^2.1.0",
+    "core-js": "^2.5.5",
     "del": "^3.0.0",
     "googleapis": "^29.0.0",
     "gulp": "^3.9.1",
