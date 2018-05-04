@@ -1,9 +1,7 @@
 'use strict';
 
 const browserify = require('browserify');
-const babelify = require('babelify');
 const watchify = require('watchify');
-const envify = require('envify');
 const gulp = require('gulp');
 const gulpIf = require('gulp-if');
 const gutil = require('gulp-util');
@@ -19,7 +17,11 @@ const config = require('./config');
 
 var getBundle = function() {
   var props = {
-    transform: [["babelify", { "presets": ["env"] }]],
+    transform: [[
+      "babelify", {
+        "presets": ["env"],
+        "plugins": ["transform-object-assign"]
+      }]],
     entries: [config.paths.src.js + "/app.js"]
   };
 

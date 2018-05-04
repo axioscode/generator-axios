@@ -7,12 +7,9 @@ const prompt = require('gulp-prompt');
 const rename = require('gulp-rename');
 const gutil = require('gulp-util');
 const AWS = require('aws-sdk');
-const debug = require('gulp-debug');
 
 const config = require('./config');
 const projectConfig = require('./../project.config.json');
-
-const debugMode = false;
 
 module.exports = () => {
 
@@ -30,7 +27,7 @@ module.exports = () => {
 
   return gulp.src(config.dirs.dist + "/**/*.*")
     .pipe(gulpIf(hasFolder, rename(function (path) {
-        path.dirname = '/'+ projectConfig.s3.folder +'/'+ path.dirname;
+      path.dirname = '/'+ projectConfig.s3.folder +'/'+ path.dirname;
     })))
     .pipe(gulpIf(!hasFolder, prompt.confirm({
       message: `You haven't specified an S3 folder. Continuing to run this command will replace everything in {projectConfig.s3.bucket}. Are you sure you want to contine?`,

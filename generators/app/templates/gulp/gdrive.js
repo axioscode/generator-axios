@@ -1,7 +1,6 @@
 'use strict';
 
 const gulp = require('gulp');
-const debug = require('gulp-debug');
 const prompt = require('gulp-prompt');
 
 const config = require('./config');

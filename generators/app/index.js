@@ -1,7 +1,4 @@
-var path = require('path');
 var slugify = require('slugify');
-var mkdirp = require('mkdirp');
-var dateFormat = require('dateformat');
 
 var Generator = require('yeoman-generator');
 
@@ -27,7 +24,6 @@ module.exports = Generator.extend({
   prompting: {
     meta: function() {
       var done = this.async();
-      var dateString = dateFormat(new Date(), 'yyyy-mm-dd')
       this.prompt([{
         type    : 'confirm',
         name    : "gitInit",

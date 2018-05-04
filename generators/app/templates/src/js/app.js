@@ -1,48 +1,43 @@
-var setupVisualsGoogleAnalytics = require('./analytics.js').setupVisualsGoogleAnalytics;
-var trackEvent = require('./analytics.js').trackEvent;
+// const setupVisualsGoogleAnalytics = require('./analytics.js').setupVisualsGoogleAnalytics;
+// const trackEvent = require('./analytics.js').trackEvent;
 
 (function() {
-	var throttle = function(type, name, obj) {
-		obj = obj || window;
-		var running = false;
-		var func = function() {
-			if (running) { return; }
-			running = true;
-			 requestAnimationFrame(function() {
-					obj.dispatchEvent(new CustomEvent(name));
-					running = false;
-			});
-		};
-		obj.addEventListener(type, func);
-	};
+  var throttle = function(type, name, obj) {
+    obj = obj || window;
+    var running = false;
+    var func = function() {
+      if (running) { return; }
+      running = true;
+      requestAnimationFrame(function() {
+        obj.dispatchEvent(new CustomEvent(name));
+        running = false;
+      });
+    };
+    obj.addEventListener(type, func);
+  };
 
-	throttle('resize', 'optimizedResize');
+  throttle('resize', 'optimizedResize');
 })();
 
-var pym = require('pym.js');
-var pymChild = null;
-
-let d3 = require("d3");
-
-
-import makeChart from "./chart-template";
+const pym = require('pym.js');
+const makeChart = require("./chart-template");
+// const d3 = require("d3");
 
 if (NodeList.prototype.forEach === undefined) {
-    NodeList.prototype.forEach = Array.prototype.forEach
+  NodeList.prototype.forEach = Array.prototype.forEach
 }
 
 document.addEventListener("DOMContentLoaded", main());
 
 function main() {
 
-  let theChart = new makeChart({
-  	element: document.querySelector('.chart')
+  const theChart = new makeChart({
+    element: document.querySelector('.chart')
   })
 
   window.addEventListener('optimizedResize', function() {
-  	theChart.update();
+    theChart.update();
   });
 
-  var pymChild = new pym.Child();
-
+  new pym.Child();
 }

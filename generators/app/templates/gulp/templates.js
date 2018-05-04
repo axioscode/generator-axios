@@ -1,14 +1,12 @@
 'use strict';
 
 const gulp = require('gulp');
-const gutil = require('gulp-util');
 const plumber = require('gulp-plumber');
 const handlebars = require('gulp-hb');
 const gulpIf = require('gulp-if');
 const size = require('gulp-size');
 const rename = require('gulp-rename');
 const htmlmin = require('gulp-htmlmin');
-const debug = require('gulp-debug');
 const path = require('path');
 const url = require('url');
 const lazypipe = require('lazypipe');
@@ -34,17 +32,17 @@ var toFixed2 = function(p) {
 
 module.exports = () => {
   var handlebarsStream = handlebars({bustCahce: true})
-      .partials(config.paths.src.templates + '/partials/**/*.{hbs,js}')
-      .partials(config.paths.src.templates + '/layouts/**/*.{hbs,js}')
-      .helpers(config.paths.src.templates + '/helpers/**/*.{js}')
-      .helpers(require('handlebars-layouts'))
-      .helpers({
-        'static': staticUrl,
-        'img': imageUrl,
-        'toFixed2': toFixed2
-      })
-      .data(config.paths.src.data + '/**/*.{js,json}')
-      .data(config.paths.projectConfig);
+    .partials(config.paths.src.templates + '/partials/**/*.{hbs,js}')
+    .partials(config.paths.src.templates + '/layouts/**/*.{hbs,js}')
+    .helpers(config.paths.src.templates + '/helpers/**/*.{js}')
+    .helpers(require('handlebars-layouts'))
+    .helpers({
+      'static': staticUrl,
+      'img': imageUrl,
+      'toFixed2': toFixed2
+    })
+    .data(config.paths.src.data + '/**/*.{js,json}')
+    .data(config.paths.projectConfig);
 
   // Production tasks.
   var prdTasks = lazypipe()

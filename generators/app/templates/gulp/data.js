@@ -1,7 +1,6 @@
 'use strict';
 
 const gulp = require('gulp');
-const gutil = require('gulp-util');
 const gulpIf = require('gulp-if');
 const size = require('gulp-size');
 
