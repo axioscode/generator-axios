@@ -1,15 +1,15 @@
 'use strict';
 
 const gulp = require('gulp');
-const cleancss = require('gulp-clean-css')
+const cleancss = require('gulp-clean-css');
 const gulpIf = require('gulp-if');
-const sass = require('gulp-sass')
+const sass = require('gulp-sass');
 const size = require('gulp-size');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 const lazypipe = require('lazypipe');
 
-const bs = require('./browsersync')
+const bs = require('./browsersync');
 const config = require('./config');
 
 
@@ -32,6 +32,5 @@ module.exports = () => {
     .pipe(gulp.dest(config.paths.tmp.css))
     .pipe(gulpIf(process.env.NODE_ENV === "production", prdTasks()))
     .pipe(bs.stream({match: '**/*.css'}))
-    .pipe(size({title: 'templates', showFiles: true}))
-}
-
+    .pipe(size({title: 'templates', showFiles: true}));
+};

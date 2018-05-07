@@ -13,4 +13,4 @@ module.exports = () => {
     .pipe(gulpIf(process.env.NODE_ENV === "production", gulp.dest(config.paths.dist.data)))
     .pipe(size({title: 'data'}))
     .pipe(bs.stream());
-}
+};

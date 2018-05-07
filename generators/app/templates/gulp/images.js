@@ -21,4 +21,4 @@ module.exports = () => {
     .pipe(gulpIf(process.env.NODE_ENV === "production", prdTasks()))
     .pipe(size({title: 'images'}))
     .pipe(bs.stream());
-}
+};

@@ -89,10 +89,10 @@ module.exports = Generator.extend({
   4. Publish!
 
     > gulp publish
-    `
+    `;
     if (this.meta.gitInit) {
-      this.spawnCommand('git', ['init'])
+      this.spawnCommand('git', ['init']);
     }
-    this.log(endMessage)
+    this.log(endMessage);
   }
 });

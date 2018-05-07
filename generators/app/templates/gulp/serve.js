@@ -1,6 +1,6 @@
 'use strict';
 
-const bs = require('./browsersync')
+const bs = require('./browsersync');
 const config = require('./config');
 
 module.exports = () => {
@@ -14,4 +14,4 @@ module.exports = () => {
     },
     open: false
   });
-}
+};

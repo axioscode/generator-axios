@@ -28,7 +28,7 @@ var addFile = function() {
           {"name": "Key/Value", "value": {"processor": "keyvalue"}},
           {"name": "Table", "value": {"processor": "table"}}
         ],
-        when: function(ans) { return ans.type === "sheet"; }
+        when: function(ans) { return ans.type === "sheet" }
       },{
         type: 'input',
         name: 'fileId',
@@ -49,9 +49,9 @@ var addFile = function() {
           console.log('Adding ' + res.fileId  + " to project.config.json");
         });
     }));
-}
+};
 
 module.exports = {
   addFile: addFile,
   fetch: require('./fetch/get-data'),
-}
+};
