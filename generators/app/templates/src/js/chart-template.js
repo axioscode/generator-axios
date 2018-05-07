@@ -1,8 +1,12 @@
-const d3 = require("d3");
+const d3 = Object.assign({},
+  require("d3-selection"),
+  require("d3-axis"),
+  require("d3-scale")
+);
 
 class makeChart {
   constructor(opts) {
-    Object.assign(this,opts)
+    Object.assign(this, opts)
     this.aspectHeight = opts.aspectHeight ? opts.aspectHeight : .68;
     this.appendElements();
     this.update();
