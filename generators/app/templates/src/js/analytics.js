@@ -1,6 +1,6 @@
 const AXIOS_VISUALS_CATEGORY = '<%= meta.GoogleAnalyticsCategory %>';
 const PRODUCTION = window.location.hostname.indexOf('localhost.com') === -1;
-let AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = 'UA-87586659-3';
+let AXIOS_VISUALS_GOOGLE_ANALYTICS_ID;
 
 if (PRODUCTION) {
   AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = 'UA-87586659-4';
