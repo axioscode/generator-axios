@@ -33,7 +33,7 @@ module.exports = () => {
       message: `You haven't specified an S3 folder. Continuing to run this command will replace everything in {projectConfig.s3.bucket}. Are you sure you want to contine?`,
       default: false
     })))
-    // .pipe(awspublish.gzip({ ext: '.gz' }))
+    .pipe(awspublish.gzip())
     .pipe(publisher.publish({}, {simulate: false, createOnly: false}))
     .pipe(publisher.cache())
     .pipe(awspublish.reporter())
