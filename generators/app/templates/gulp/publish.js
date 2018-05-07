@@ -37,11 +37,11 @@ module.exports = () => {
     .pipe(publisher.cache())
     .pipe(awspublish.reporter())
     .on("end", () => {
-      gutil.log("")
-      gutil.log("🎉 ", gutil.colors.green.bold("Success!"), gutil.colors.blue("Your project can be accessed and embedded using:"))
-      gutil.log(`https://${projectConfig.s3.bucket}/${projectConfig.s3.folder}/index.html`)
-      gutil.log("")
-      gutil.log("👉 ", gutil.colors.blue.bold("Then login to the Axios CMS"))
-      gutil.log("https://eden.axios.com/dashboard")
+      gutil.log("");
+      gutil.log("🎉 ", gutil.colors.green.bold("Success!"), gutil.colors.blue("Your project can be accessed and embedded using:"));
+      gutil.log(`https://${projectConfig.s3.bucket}/${projectConfig.s3.folder}/index.html`);
+      gutil.log("");
+      gutil.log("👉 ", gutil.colors.blue.bold("Then login to the Axios CMS"));
+      gutil.log("https://eden.axios.com/dashboard");
     });
-}
+};

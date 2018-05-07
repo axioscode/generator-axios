@@ -1,4 +1,4 @@
-const AXIOS_VISUALS_CATEGORY = '<%= meta.GoogleAnalyticsCategory %>'
+const AXIOS_VISUALS_CATEGORY = '<%= meta.GoogleAnalyticsCategory %>';
 const PRODUCTION = window.location.hostname.indexOf('localhost.com') === -1;
 let AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = 'UA-87586659-3';
 
@@ -17,7 +17,7 @@ var embedGa = function() {
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-}
+};
 
 var setupVisualsAnalytics = function() {
   ga('create', AXIOS_VISUALS_GOOGLE_ANALYTICS_ID, 'auto');
@@ -29,26 +29,26 @@ var setupVisualsAnalytics = function() {
 
   // Track Pageview
   ga('send', 'pageview');
-}
+};
 
 var setupVisualsGoogleAnalytics = function() {
   embedGa();
   setupVisualsAnalytics();
-}
+};
 
 var trackEvent = function(action, label, value) {
   var eventData = {
     'hitType': 'event',
     'eventCategory': AXIOS_VISUALS_CATEGORY,
     'eventAction': action
-  }
+  };
 
   // an optional string
-  if (label) { eventData['eventLabel'] = label; }
+  if (label) { eventData['eventLabel'] = label };
   // an optional integer
-  if (value) { eventData['eventValue'] = value; }
+  if (value) { eventData['eventValue'] = value };
 
   ga('send', eventData);
-}
+};
 
-module.exports = { setupVisualsGoogleAnalytics,trackEvent }
+module.exports = { setupVisualsGoogleAnalytics,trackEvent };

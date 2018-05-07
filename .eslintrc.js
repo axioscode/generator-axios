@@ -9,6 +9,13 @@ module.exports = {
       2,
       { SwitchCase: 1 }
     ],
+    "semi": [
+      "warn",
+      "always",
+      {
+        "omitLastInOneLineBlock": true
+      }
+    ],
     "linebreak-style": [
       "error",
       "unix"

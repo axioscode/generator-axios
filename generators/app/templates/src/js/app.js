@@ -12,11 +12,11 @@ function main() {
 
   const theChart = new makeChart({
     element: document.querySelector('.chart')
-  })
+  });
 
   window.addEventListener('optimizedResize', function() {
     theChart.update();
   });
 
-  new pym.Child();
+  new pym.Child({polling: 500});
 }

@@ -4,7 +4,7 @@ require("core-js/fn/object/values");
 
 const setup = function() {
   if (NodeList.prototype.forEach === undefined) {
-    NodeList.prototype.forEach = Array.prototype.forEach
+    NodeList.prototype.forEach = Array.prototype.forEach;
   }
 
   (function () {

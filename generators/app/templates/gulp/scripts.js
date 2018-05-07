@@ -12,7 +12,7 @@ const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const lazypipe = require('lazypipe');
 
-const bs = require('./browsersync')
+const bs = require('./browsersync');
 const config = require('./config');
 
 var getBundle = function() {
@@ -43,7 +43,7 @@ var rebundle = function(pkg) {
     .pipe(sourcemaps.init, {loadMaps: true})
     .pipe(uglify, {compress: {drop_console: true}})
     .pipe(sourcemaps.write, "./")
-    .pipe(gulp.dest, config.paths.dist.js + "/")
+    .pipe(gulp.dest, config.paths.dist.js + "/");
 
   return pkg.bundle()
     .on('error', function(error) {
@@ -53,9 +53,8 @@ var rebundle = function(pkg) {
     .pipe(gulp.dest(config.paths.tmp.js +  "/"))
     .pipe(gulpIf(process.env.NODE_ENV == "production", prdTasks()))
     .pipe(bs.stream({match: '**/*.js'}))
-    .pipe(size({title: 'scripts', showFiles: true}))
-}
-
+    .pipe(size({title: 'scripts', showFiles: true}));
+};
 
 module.exports = {
   build: function() {
@@ -69,5 +68,4 @@ module.exports = {
     });
     return rebundle(w);
   }
-}
-
+};

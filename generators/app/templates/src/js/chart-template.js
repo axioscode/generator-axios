@@ -6,7 +6,7 @@ const d3 = Object.assign({},
 
 class makeChart {
   constructor(opts) {
-    Object.assign(this, opts)
+    Object.assign(this, opts);
     this.aspectHeight = opts.aspectHeight ? opts.aspectHeight : .68;
     this.appendElements();
     this.update();
@@ -47,26 +47,26 @@ class makeChart {
     this.svg = d3.select(this.element).append('svg');
 
     this.plot = this.svg.append('g')
-      .attr("class", "chart-g")
+      .attr("class", "chart-g");
 
     this.xAxis = this.plot.append("g")
-      .classed("axis x-axis", true)
+      .classed("axis x-axis", true);
 
     this.yAxis = this.plot.append("g")
-      .classed("axis y-axis", true)
+      .classed("axis y-axis", true);
   }
 
   render() {
-    this.svg.attr('width', this.width + this.margin.left + this.margin.right)
-    this.svg.attr('height', this.height + this.margin.top + this.margin.bottom)
+    this.svg.attr('width', this.width + this.margin.left + this.margin.right);
+    this.svg.attr('height', this.height + this.margin.top + this.margin.bottom);
 
-    this.plot.attr('transform', `translate(${this.margin.left},${this.margin.top})`)
+    this.plot.attr('transform', `translate(${this.margin.left},${this.margin.top})`);
 
     this.xAxis.attr("transform", "translate(0," + (this.height+20) + ")")
       .call(
         d3.axisBottom(this.xScale)
           .tickSize(-this.height-20)
-      )
+      );
 
     this.yAxis.attr("transform", "translate(" + (-20) + ",0)")
       .call(
