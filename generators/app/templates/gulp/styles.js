@@ -30,7 +30,7 @@ module.exports = () => {
     .pipe(sourcemaps.init())
     .pipe(autoprefixer({
       'grid': true,
-      'browsers': require('../package.json')
+      'browsers': require('../package.json').browserslist
     }))
     .pipe(gulp.dest(config.paths.tmp.css))
     .pipe(gulpIf(process.env.NODE_ENV === "production", prdTasks()))
