@@ -27,7 +27,7 @@ var getBundle = function() {
   // If we're not in a production environment, build sourcemaps and preserve module IDs (I don't
   // konw what that second thing means).
   if (process.env.NODE_ENV !== "production") {
-    var props = Object.assign(props, {
+    props = Object.assign(props, {
       debug: true,
       fullPaths: true
     });

@@ -1,9 +1,11 @@
 module.exports = {
+  "extends": "eslint:recommended",
   parserOptions: {
     sourceType: "script",
     "ecmaVersion": 6
   },
   rules: {
+    "no-console": "off",
     "indent": [
       "warn",
       2,
@@ -23,6 +25,8 @@ module.exports = {
     "no-unused-vars": ["error"],
   },
   env: {
-    node: true
+    "browser": true,
+    "node": true,
+    "es6": true
   }
 }
