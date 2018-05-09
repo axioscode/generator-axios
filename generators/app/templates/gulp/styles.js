@@ -28,7 +28,10 @@ module.exports = () => {
       precision: 10
     }).on('error', sass.logError))
     .pipe(sourcemaps.init())
-    .pipe(autoprefixer({ 'grid': true }))
+    .pipe(autoprefixer({
+      'grid': true,
+      'browsers': require('../package.json')
+    }))
     .pipe(gulp.dest(config.paths.tmp.css))
     .pipe(gulpIf(process.env.NODE_ENV === "production", prdTasks()))
     .pipe(bs.stream({match: '**/*.css'}))
