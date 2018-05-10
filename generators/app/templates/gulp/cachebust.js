@@ -1,9 +1,9 @@
 const path = require('path');
 
-const gulp = require('gulp')
-const cachebust = require('gulp-cache-bust')
+const gulp = require('gulp');
+const cachebust = require('gulp-cache-bust');
 
-const config = require('./config')
+const config = require('./config');
 
 module.exports = () => {
   return gulp.src(path.join(config.dirs.dist, '**/*.html'))
@@ -11,5 +11,4 @@ module.exports = () => {
       type: 'timestamp'
     }))
     .pipe(gulp.dest(config.dirs.dist));
-}
-
+};
