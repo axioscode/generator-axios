@@ -191,8 +191,6 @@ module.exports = (env = {}, { p } = { p: false }) => {
       //   filename: "[name].[contenthash].css",
       // }),
 
-      // Same effect as turning on webpack CLI's --optimize-minimize flag
-      new webpack.optimize.minimize({ sourceMap: true }),
       ...wpconfig.plugins,
     ];
   }
