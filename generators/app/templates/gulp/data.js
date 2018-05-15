@@ -1,7 +1,6 @@
 'use strict';
 
 const gulp = require('gulp');
-const gutil = require('gulp-util');
 const gulpIf = require('gulp-if');
 const size = require('gulp-size');
 
@@ -14,4 +13,4 @@ module.exports = () => {
     .pipe(gulpIf(process.env.NODE_ENV === "production", gulp.dest(config.paths.dist.data)))
     .pipe(size({title: 'data'}))
     .pipe(bs.stream());
-}
+};

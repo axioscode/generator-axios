@@ -6,7 +6,6 @@ This project was created with `generator-axios`, Axios' yeoman generator for mak
 
 **Note** — You may also want to look at the documentation for the generator for some additional understanding of what each of the files in this project does and how they all work together.
 
-
 ## Configuration
 Most of this configuration should be accomplished already if you set up this project with `yo axios`. If you want to understand more of what's happening, here's some information.
 
@@ -84,15 +83,17 @@ Copies files from `src/img`.
 #### `gulp cachebust`
 Rewrite URLs in `dist/**/*.html` to add timestamps for cachebusting.
 
-## Analytics
+## Scripts
 
-### setupVisualsAnalytics
+### Analytics
+
+#### setupVisualsAnalytics
 
 `setupVisualsAnalytics()`
 
 Accepts no parameters, returns `undefined`. Necessary to call before attempting to record user interactions.
 
-### trackEvent
+#### trackEvent
 
 `trackEvent(action, label (optional), value (optional))`
 
@@ -101,3 +102,9 @@ Accepts three parameters and returns `undefined`. To be placed inside an event l
 * *action*: a string describing the event, e.g. scroll, tap, or graphic-visible
 * *label*: an optional string describing the event, e.g. clicked-dropdown
 * *value*: an option integer describing the event. useful for tracking time, e.g. 200
+
+### ES6 and beyond
+
+The generator comes with a file in `src/js/setup.js` which imports polyfills for newer JS methods like `Object.assign`. To ensure your code works in older browsers, or if you'd like to experiment with different methods, double-check setup.js.
+
+If you need to add an additional polyfills, visit the [core-js](https://github.com/zloirock/core-js) for a list of features you can use and polyfill in your project.

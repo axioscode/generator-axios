@@ -1,7 +1,6 @@
 'use strict';
 
 const gulp = require('gulp');
-const gutil = require('gulp-util');
 const gulpIf = require('gulp-if');
 const cache = require('gulp-cache');
 const imagemin = require('gulp-imagemin');
@@ -22,4 +21,4 @@ module.exports = () => {
     .pipe(gulpIf(process.env.NODE_ENV === "production", prdTasks()))
     .pipe(size({title: 'fallbacks'}))
     .pipe(bs.stream());
-}
+};

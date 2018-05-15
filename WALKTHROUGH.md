@@ -50,7 +50,7 @@ mkdir [project-name] && cd $_
 To publish to S3 you'll need to create a `default` profile in your `~/.aws/credentials` file. You will need to have the aws command line tools installed to do this (`pip install awscli`). To set up your credentials, simply run:
 
 ```bash
-$ aws configure --profile default
+$ aws configure --profile axios
 AWS Access Key ID [None]: [PUT YOUR ACCESS_KEY HERE]
 AWS Secret Access Key [None]: [PUT YOUR SECRET_ACCESS_KEY HERE]
 Default region name [None]: us-east-1

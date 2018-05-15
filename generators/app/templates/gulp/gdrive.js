@@ -1,7 +1,6 @@
 'use strict';
 
 const gulp = require('gulp');
-const debug = require('gulp-debug');
 const prompt = require('gulp-prompt');
 
 const config = require('./config');
@@ -29,7 +28,7 @@ var addFile = function() {
           {"name": "Key/Value", "value": {"processor": "keyvalue"}},
           {"name": "Table", "value": {"processor": "table"}}
         ],
-        when: function(ans) { return ans.type === "sheet"; }
+        when: function(ans) { return ans.type === "sheet" }
       },{
         type: 'input',
         name: 'fileId',
@@ -50,9 +49,9 @@ var addFile = function() {
           console.log('Adding ' + res.fileId  + " to project.config.json");
         });
     }));
-}
+};
 
 module.exports = {
   addFile: addFile,
   fetch: require('./fetch/get-data'),
-}
+};
