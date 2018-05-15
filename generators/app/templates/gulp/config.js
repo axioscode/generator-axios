@@ -10,7 +10,8 @@ var dirs = {
 var paths = {
 	projectConfig: dirs.root + 'project.config.json',
 	src: {
-		img: dirs.src + '/img',
+    img: dirs.src + '/img',
+    fallbacks: dirs.src + '/fallbacks',
 		js: dirs.src + '/js',
 		sass: dirs.src + '/sass',
 		templates: dirs.src + '/templates',
@@ -19,7 +20,8 @@ var paths = {
 	},
 	tmp: {
 		css: dirs.tmp + '/css',
-		img: dirs.tmp + '/img',
+    img: dirs.tmp + '/img',
+    fallbacks: dirs.tmp + '/fallbacks',
 		js: dirs.tmp + '/js',
 		fonts: dirs.tmp + '/fonts',
 		assets: dirs.tmp + '/assets',
@@ -27,7 +29,8 @@ var paths = {
 	},
 	dist: {
 		css: dirs.dist + '/css',
-		img: dirs.dist + '/img',
+    img: dirs.dist + '/img',
+    fallbacks: dirs.dist + '/fallbacks',
 		js: dirs.dist + '/js',
 		fonts: dirs.dist + '/fonts',
 		assets: dirs.dist + '/assets',

@@ -1,12 +1,15 @@
 {
   "project": {
     "name": "<%= meta.name %>",
-    "slug": "<%= meta.slug %>",
-    "description": ""
+    "slug": "<%= meta.slug %>"
   },
   "s3": {
     "bucket": "<%= meta.s3bucket %>",
     "folder": "<%= meta.s3folder %>"
   },
-  "files": []
+  "files": [],
+  "isFullbleed": false,
+  "appleFallback": "<%= meta.appleFallback %>",
+  "newsletterFallback": "<%= meta.newsletterFallback %>",
+  "embedVersion": "1.0"  
 }
