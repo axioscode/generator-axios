@@ -15,9 +15,5 @@
         "transform-regenerator"
       ]
     }]
-  ],
-  "plugins": [
-    "syntax-dynamic-import",
-    "transform-object-rest-spread"
   ]
 }

@@ -62,6 +62,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
   // ];
 
   const wpconfig = {
+    mode: isProd ? "production" : "development",
     entry: {
       bundle: "./src/js/app.js"
     },
@@ -191,7 +192,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
       // }),
 
       // Same effect as turning on webpack CLI's --optimize-minimize flag
-      new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
+      new webpack.optimize.minimize({ sourceMap: true }),
       ...wpconfig.plugins,
     ];
   }
