@@ -1,0 +1,23 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": [
+          "last 2 versions",
+          "Safari 9",
+          "IE 11"
+        ],
+        "node": "current"
+      },
+      "useBuiltIns": true,
+      "modules": false,
+      "exclude": [
+        "transform-regenerator"
+      ]
+    }]
+  ],
+  "plugins": [
+    "syntax-dynamic-import",
+    "transform-object-rest-spread"
+  ]
+}
