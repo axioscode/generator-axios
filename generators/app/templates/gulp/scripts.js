@@ -8,11 +8,12 @@ const bs = require('./browsersync');
 const config = require('./config');
 const webpackConfig = require('../webpack.config');
 
-const outputPath = process.env.NODE_ENV === "production" ? config.paths.dist.js : config.paths.tmp.js;
+const isProd = process.env.NODE_ENV === "production";
+const outputPath = isProd === "production" ? config.paths.dist.js : config.paths.tmp.js;
 
 const bundle = (watch = false) => webpackStream(Object.assign(
   { watch },
-  webpackConfig()
+  webpackConfig(isProd)
 ), webpack)
   .pipe(gulp.dest(`${outputPath}/`));
 
