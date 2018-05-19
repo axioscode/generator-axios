@@ -1,6 +1,7 @@
 'use strict';
 
 const gulp = require('gulp');
+const gulpIf = require('gulp-if');
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 
@@ -8,14 +9,12 @@ const bs = require('./browsersync');
 const config = require('./config');
 const webpackConfig = require('../webpack.config');
 
-const isProd = process.env.NODE_ENV === "production";
-const outputPath = isProd === "production" ? config.paths.dist.js : config.paths.tmp.js;
-
 const bundle = (watch = false) => webpackStream(Object.assign(
   { watch },
-  webpackConfig(isProd)
+  webpackConfig()
 ), webpack)
-  .pipe(gulp.dest(`${outputPath}/`));
+  .pipe(gulpIf(process.env.NODE_ENV === "production", gulp.dest(`${config.paths.dist.js}/`)))
+  .pipe(gulp.dest(`${config.paths.tmp.js}/`));
 
 module.exports = {
   build: () => bundle(),
