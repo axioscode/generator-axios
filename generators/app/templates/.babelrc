@@ -6,8 +6,7 @@
           "last 2 versions",
           "Safari 9",
           "IE 11"
-        ],
-        "node": "current"
+        ]
       },
       "useBuiltIns": true,
       "modules": false,

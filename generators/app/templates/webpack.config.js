@@ -25,4 +25,4 @@ module.exports = (env = {}, { p } = { p: false }) => {
   };
 
   return wpconfig;
-}
+};
