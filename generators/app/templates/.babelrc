@@ -1,0 +1,18 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": [
+          "last 2 versions",
+          "Safari 9",
+          "IE 11"
+        ]
+      },
+      "useBuiltIns": true,
+      "modules": false,
+      "exclude": [
+        "transform-regenerator"
+      ]
+    }]
+  ]
+}
