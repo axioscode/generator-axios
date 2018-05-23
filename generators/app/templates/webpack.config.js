@@ -14,13 +14,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
       rules: [{
         test: /\.js$/,
         include: path.join(__dirname, "src"),
-        use: [{
-          loader: "babel-loader",
-          options: {
-            "presets": ["env"]
-          },
-        }],
-      }, ],
+      }],
     },
 
     output: {
