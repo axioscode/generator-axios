@@ -25,7 +25,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
 
     devServer: {
       hot: true,  // Enable hot module reload
-      contentBase: path.join(__dirname,"tmp"),
+      contentBase: path.join(__dirname,".tmp"),
       publicPath: "/",
       overlay: true,  // When webpack encounters an error while building, display it in the browser in a redbox
       port: 3000
