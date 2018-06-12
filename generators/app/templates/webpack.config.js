@@ -22,6 +22,14 @@ module.exports = (env = {}, { p } = { p: false }) => {
       path: path.join(__dirname, "dist"),
       filename: "bundle.js",
     },
+
+    devServer: {
+      hot: true,  // Enable hot module reload
+      contentBase: path.join(__dirname,"tmp"),
+      publicPath: "/",
+      overlay: true,  // When webpack encounters an error while building, display it in the browser in a redbox
+      port: 3000
+    },
   };
 
   return wpconfig;

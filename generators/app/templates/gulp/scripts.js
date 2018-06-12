@@ -20,6 +20,10 @@ module.exports = {
   build: () => bundle(),
   // The watch task should run asynchronously; this is achieved in Gulp by returning a promise
   watch: () => Promise.resolve(
-    bundle(true).pipe(bs.stream({match: '**/*.js'}))
+    bundle(true)
+      .on("compilation-error", (error) => {
+        console.error(error);
+      })
+      .pipe(bs.stream({ match: "**/*.js" }))
   )
 };
