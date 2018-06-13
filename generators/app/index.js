@@ -4,7 +4,7 @@ var Generator = require('yeoman-generator');
 module.exports = class extends Generator{
   constructor(args, opts) {
     // Calling the super constructor is important so our generator is correctly set up
-    super(args, opts)
+    super(args, opts);
     this.option('skip-install-message', {
       desc: 'Skips the message after the installation of dependencies',
       type: Boolean

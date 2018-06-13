@@ -1,17 +1,32 @@
 'use strict';
 
-const bs = require('./browsersync');
-const config = require('./config');
+const path = require("path");
+const gutil = require('gulp-util');
+const webpack = require('webpack');
+const webpackDevServer = require('webpack-dev-server');
+const webpackConfig = require('../webpack.config');
 
 module.exports = () => {
-  bs.init({
-    server: {
-      baseDir: config.dirs.tmp,
-      middleware: function (req, res, next) {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        next();
-      }
+  // modify some webpack config options
+  var config = Object.assign({
+    mode: "development"
+  }, webpackConfig());
+  // Start a webpack-dev-server
+  const compiler = webpack(config);
+  new webpackDevServer(compiler, {
+    contentBase: path.join(__dirname, "../.tmp/"),
+    headers: { "Access-Control-Allow-Origin": "*" },
+    hot: true,
+    open: true,
+    overlay: true,
+    port: 3000,
+    stats: { colors: true },
+    watchContentBase: true,
+    watchOptions: {
+      poll: true
     },
-    open: false
+  }).listen(3000, "localhost", function(err) {
+    if(err) throw new gutil.PluginError("webpack-dev-server", err);
+    gutil.log("[webpack-dev-server]", `http://localhost:3000`);
   });
 };
