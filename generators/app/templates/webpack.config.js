@@ -22,16 +22,6 @@ module.exports = (env = {}, { p } = { p: false }) => {
       path: path.join(__dirname, "dist"),
       filename: "bundle.js",
     },
-
-    devServer: {
-      hot: true,  // Enable hot module reload
-      contentBase: path.join(__dirname, ".tmp"),
-      publicPath: "/",
-      overlay: true,
-      stats: { colors: true },
-      port: 3000,
-      historyApiFallback: true,
-    },
   };
 
   return wpconfig;
