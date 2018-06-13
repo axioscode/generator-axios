@@ -21,3 +21,5 @@ function main() {
 
   pymChild = new pym.Child({polling: 500});
 }
+
+module.exports = main;
