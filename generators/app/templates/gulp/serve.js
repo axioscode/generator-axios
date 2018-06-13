@@ -1,5 +1,6 @@
 'use strict';
 
+const path = require("path");
 const gutil = require('gulp-util');
 const webpack = require('webpack');
 const webpackDevServer = require('webpack-dev-server');
@@ -11,8 +12,18 @@ module.exports = () => {
     mode: "development"
   }, webpackConfig());
   // Start a webpack-dev-server
-  new webpackDevServer(webpack(config)).listen(config.devServer.port, "localhost", function(err) {
+  const compiler = webpack(config);
+  new webpackDevServer(compiler, {
+    contentBase: path.join(__dirname, "../.tmp/"),
+    headers: { "Access-Control-Allow-Origin": "*" },
+    hot: true,
+    open: true,
+    overlay: true,
+    port: 3000,
+    publicPath: path.join(__dirname, "../.tmp/"),
+    stats: { colors: true },
+  }).listen(3000, "localhost", function(err) {
     if(err) throw new gutil.PluginError("webpack-dev-server", err);
-    gutil.log("[webpack-dev-server]", `http://localhost:${config.devServer.port}`);
+    gutil.log("[webpack-dev-server]", `http://localhost:3000`);
   });
 };
