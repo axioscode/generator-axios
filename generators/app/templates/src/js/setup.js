@@ -30,6 +30,7 @@ const setup = function() {
   })();
 
   if (module.hot) {
+    console.log("hot");
     module.hot.accept('./app', () => {
       console.log("HMR accepting app");
       main();

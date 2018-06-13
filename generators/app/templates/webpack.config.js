@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = (env = {}, { p } = { p: false }) => {
   const isProd = p || env.production || process.env.NODE_ENV === "production";
@@ -21,6 +22,17 @@ module.exports = (env = {}, { p } = { p: false }) => {
     output: {
       path: path.join(__dirname, "dist"),
       filename: "bundle.js",
+    },
+
+    plugins: [
+      new webpack.NamedModulesPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
+    ],
+
+    performance: {
+      maxAssetSize: 350000,
+      maxEntrypointSize: 500000,
+      hints: isProd ? "warning" : false,
     },
   };
 
