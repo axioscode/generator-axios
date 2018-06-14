@@ -22,6 +22,10 @@ module.exports = (env = {}, { p } = { p: false }) => {
       path: path.join(__dirname, "dist"),
       filename: "bundle.js",
     },
+    
+    optimization: {
+      noEmitOnErrors: !isProd
+    },
   };
 
   return wpconfig;
