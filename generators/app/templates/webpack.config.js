@@ -23,9 +23,9 @@ module.exports = (env = {}, { p } = { p: false }) => {
       filename: "bundle.js",
     },
     
-    optimization: {
-      noEmitOnErrors: !isProd
-    },
+//     optimization: {
+//       noEmitOnErrors: !isProd
+//     },
   };
 
   return wpconfig;
