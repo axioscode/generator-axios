@@ -29,8 +29,8 @@ For more information on what’s getting installed and how to configure it, plea
 We’re close to getting you writing code! You still with us? Now all you need is the actual generator to get you started. We use our Yeoman to scaffold out projects from card decks to AWS Lambda functions for bots and scrapers.
 
 ```sh
-npm install -g yo
 git clone git@github.com:axioscode/generator-axios.git
+npm run setup
 ```
 
 ## Step 1. Setting up the Generator
