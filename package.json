@@ -1,5 +1,5 @@
 {
-  "name": "generator-axios",
+  "name": "generator-prometheus",
   "version": "1.2.0",
   "description": "A static site generator for d3 graphics",
   "scripts": {

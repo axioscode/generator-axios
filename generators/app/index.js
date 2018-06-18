@@ -4,7 +4,7 @@ var Generator = require('yeoman-generator');
 module.exports = class extends Generator{
   constructor(args, opts) {
     // Calling the super constructor is important so our generator is correctly set up
-    super(args, opts)
+    super(args, opts);
     this.option('skip-install-message', {
       desc: 'Skips the message after the installation of dependencies',
       type: Boolean
@@ -45,16 +45,36 @@ module.exports = class extends Generator{
   }
 
   configuring() {
+    // Copy all the dotfiles.
+    this.fs.copy(
+      this.templatePath("**/.*"),
+      this.destinationRoot()
+    );
+
     // Copy all the normal files.
-    this.fs.copyTpl(
+    this.fs.copy(
       this.templatePath("**/*"),
+      this.destinationRoot()
+    );
+
+    // Copy over templated files
+    // webpack
+    this.fs.copyTpl(
+      this.templatePath("**/*.js"),
       this.destinationRoot(),
       { meta: this.meta }
     );
 
-    // Copy all the dotfiles.
+    // project.config.json
     this.fs.copyTpl(
-      this.templatePath("**/.*"),
+      this.templatePath("**/*.json"),
+      this.destinationRoot(),
+      { meta: this.meta }
+    );
+
+    // readme
+    this.fs.copyTpl(
+      this.templatePath("**/*.md"),
       this.destinationRoot(),
       { meta: this.meta }
     );
