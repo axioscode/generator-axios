@@ -34,7 +34,7 @@ gulp.task("build", shell.task(
 
 gulp.task("deploy", shell.task(
   "aws s3 cp dist s3://<%= meta.s3bucket %>/<%= meta.s3folder %> --recursive --acl public-read"
-))
+));
 
 gulp.task("publish", ["build", "deploy"]);
 

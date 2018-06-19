@@ -1,4 +1,3 @@
-"use strict";
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -13,40 +12,46 @@ module.exports = (env = {}, { p } = { p: false }) => {
   let wpconfig = {
     mode: isProd ? "production" : "development",
     entry: {
-      bundle: path.join(__dirname, "src/js/app.js"),
+      index: "./src/js/app.js",
     },
 
     devtool: !isProd ? "inline-source-map" : "source-map",
 
     module: {
-      rules: [{
-        test: /\.js$/,
-        include: path.join(__dirname, "src/js"),
-        use: [{
-          loader: "babel-loader",
-          presets: ["env",]
-        }],
-      }, {
-        test: /\.scss$/,
-        include: path.join(__dirname, "src/sass"),
-        use: [{
-          loader: isProd ? "style-loader" : MiniCssExtractPlugin.loader,
-        }, {
-          loader: "css-loader", options: {
-            sourceMap: !isProd,
-            minimize: isProd,
-          }
-        }, {
-          loader: "sass-loader", options: {
-            sourceMap: !isProd
-          }
-        }],
-      }],
+      rules: [
+
+        {
+          test: /\.js$/,
+          include: path.join(__dirname, "src/js"),
+          use: [{ loader: "babel-loader" }],
+        },
+
+        {
+          test: /\.scss$/,
+          include: path.join(__dirname, "src/sass"),
+          use: [{
+            loader: isProd? MiniCssExtractPlugin.loader : "style-loader",
+          },
+          {
+            loader: "css-loader", options: {
+              sourceMap: !isProd,
+              minimize: isProd,
+              importLoaders: 1,
+            }
+          },
+          {
+            loader: "sass-loader", options: {
+              sourceMap: !isProd,
+              includePaths: ['node_modules/axios-feta/src']
+            }
+          }],
+        }
+      ]
     },
 
     output: {
       path: path.join(__dirname, "dist"),
-      filename: isProd ? "bundle.[chunkhash].js" : "bundle.js",
+      filename: isProd ? "[name].[chunkhash].js" : "[name].js",
     },
 
     resolve: {
@@ -62,19 +67,19 @@ module.exports = (env = {}, { p } = { p: false }) => {
       }),
 
       new MiniCssExtractPlugin({
-        filename: "dist/[name].[contenthash].css",
+        path: path.join(__dirname, "dist"),
+        filename: isProd? "[name].[contenthash].css" : "[name].css",
       }),
 
       new HtmlWebpackPlugin({
-        template: path.join(__dirname, "src/index.ejs"),
-        filename: path.join(__dirname, "dist/index.html"),
-        title: "<%= meta.name %>",
-        minify: isProd,
+        appleFallback: vizConfig.appleFallback,
         hash: isProd,
         isFullbleed: vizConfig.isFullbleed,
-        slug: vizConfig.slug,
-        appleFallback: vizConfig.appleFallback,
+        minify: isProd,
         newsletterFallback: vizConfig.newsletterFallback,
+        slug: vizConfig.slug,
+        template: path.join(__dirname, "src/index.ejs"),
+        title: "<%= meta.name %>",
       }),
 
       new ScriptExtHtmlWebpackPlugin({
@@ -85,16 +90,25 @@ module.exports = (env = {}, { p } = { p: false }) => {
     ],
 
     devServer: {
+      contentBase: path.join(__dirname, "src"),
       headers: { "Access-Control-Allow-Origin": "*" },
       hot: true,  // Enable hot module reload
-      publicPath: "src",
       overlay: true,  // When webpack encounters an error while building, display it in the browser in a redbox
       port: 3000,
+      stats: { colors: true },
+      watchContentBase: true,
+    },
+
+    performance: {
+      maxAssetSize: 350000,
+      maxEntrypointSize: 500000,
+      hints: isProd ? "warning" : false,
     },
   };
 
   if (!isProd) {
     wpconfig.plugins.push(
+      new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin()
     );
   }
