@@ -15,7 +15,7 @@ export default function main() {
     element: document.querySelector('.chart')
   });
 
-  window.addEventListener('optimizedResize', function() {
+  window.addEventListener('optimizedResize', () => {
     theChart.update();
   });
 

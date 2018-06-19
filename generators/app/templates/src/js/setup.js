@@ -11,7 +11,7 @@ export default function setup() {
   }
 
   (function () {
-    var throttle = function (type, name, obj) {
+    const throttle = (type, name, obj) => {
       obj = obj || window;
       var running = false;
       var func = function () {
@@ -19,7 +19,7 @@ export default function setup() {
           return;
         }
         running = true;
-        requestAnimationFrame(function () {
+        requestAnimationFrame(() => {
           obj.dispatchEvent(new CustomEvent(name));
           running = false;
         });
