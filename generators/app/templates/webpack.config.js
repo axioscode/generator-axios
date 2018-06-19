@@ -15,7 +15,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
       index: "./src/js/app.js",
     },
 
-    devtool: !isProd ? "inline-source-map" : "source-map",
+    devtool: isProd ? "source-map" : "inline-source-map",
 
     module: {
       rules: [
