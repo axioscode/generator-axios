@@ -29,7 +29,7 @@ gulp.task("lint", shell.task(
 ));
 
 gulp.task("build", shell.task(
-  "./node-modules/.bin/webpack --mode production"
+  "./node_modules/.bin/webpack -p"
 ));
 
 gulp.task("deploy", shell.task(

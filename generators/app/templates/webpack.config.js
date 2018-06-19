@@ -77,9 +77,9 @@ module.exports = (env = {}, { p } = { p: false }) => {
         isFullbleed: vizConfig.isFullbleed,
         minify: isProd,
         newsletterFallback: vizConfig.newsletterFallback,
-        slug: vizConfig.slug,
+        slug: vizConfig.project.slug,
         template: path.join(__dirname, "src/index.ejs"),
-        title: "<%= meta.name %>",
+        title: vizConfig.project.name,
       }),
 
       new ScriptExtHtmlWebpackPlugin({

@@ -4,7 +4,7 @@ const d3 = Object.assign({},
   require("d3-scale")
 );
 
-class makeChart {
+export default class makeChart {
   constructor(opts) {
     Object.assign(this, opts);
     this.aspectHeight = opts.aspectHeight ? opts.aspectHeight : .68;
@@ -75,5 +75,3 @@ class makeChart {
       );
   }
 }
-
-module.exports = makeChart;

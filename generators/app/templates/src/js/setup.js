@@ -1,12 +1,11 @@
-require("core-js/es6/promise");
-require("core-js/fn/object/assign");
-require("core-js/fn/object/entries");
-require("core-js/fn/object/values");
-require("../sass/main.scss");
+import "core-js/es6/promise";
+import "core-js/fn/object/assign";
+import "core-js/fn/object/entries";
+import "core-js/fn/object/values";
+import "../sass/main.scss";
+import main from "./app";
 
-const main = require("./app");
-
-const setup = function() {
+export default function setup() {
   if (NodeList.prototype.forEach === undefined) {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
@@ -37,6 +36,4 @@ const setup = function() {
       main();
     });
   }
-};
-
-module.exports = setup;
+}

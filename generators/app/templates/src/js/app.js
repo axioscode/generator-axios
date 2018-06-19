@@ -1,14 +1,15 @@
-require("./setup")();
+import "./setup";
+setup();
 
-const pym = require('pym.js');
-const makeChart = require("./chart-template");
-// const setupVisualsGoogleAnalytics = require('./analytics.js').setupVisualsGoogleAnalytics;
-// const trackEvent = require('./analytics.js').trackEvent;
-// const d3 = require("d3");
+import pym from "pym.js";
+import makeChart from "./chart-template";
+import setup from "./setup";
+// import { setupVisualsGoogleAnalytics, trackEvent } from "./analytics";
+// import d3 from "d3";
 
 document.addEventListener("DOMContentLoaded", main());
 
-function main() {
+export default function main() {
 
   const theChart = new makeChart({
     element: document.querySelector('.chart')
@@ -20,5 +21,3 @@ function main() {
 
   new pym.Child({polling: 500});
 }
-
-module.exports = main;
