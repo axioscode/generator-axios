@@ -1,9 +1,12 @@
+"use strict";
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const vizConfig = require("project.config.json"); 
+const WebpackMd5Hash = require('webpack-md5-hash');
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const vizConfig = require("./project.config");
 
 module.exports = (env = {}, { p } = { p: false }) => {
   const isProd = p || env.production || process.env.NODE_ENV === "production";
@@ -13,7 +16,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
       bundle: path.join(__dirname, "src/js/app.js"),
     },
 
-    devtool: !isProd ? "source-map" : false,
+    devtool: !isProd ? "inline-source-map" : "source-map",
 
     module: {
       rules: [{
@@ -43,12 +46,23 @@ module.exports = (env = {}, { p } = { p: false }) => {
 
     output: {
       path: path.join(__dirname, "dist"),
-      filename: "bundle.js",
+      filename: isProd ? "bundle.[chunkhash].js" : "bundle.js",
+    },
+
+    resolve: {
+      extensions: [".js", ".json", ".scss", ".css"],
+      modules: [path.join(__dirname, "src"), "node_modules"],
     },
 
     plugins: [
+      new CleanWebpackPlugin('dist'),
+
       new webpack.DefinePlugin({
         "process.env.NAME": JSON.stringify(vizConfig.name || ""),
+      }),
+
+      new MiniCssExtractPlugin({
+        filename: "dist/[name].[contenthash].css",
       }),
 
       new HtmlWebpackPlugin({
@@ -63,13 +77,11 @@ module.exports = (env = {}, { p } = { p: false }) => {
         newsletterFallback: vizConfig.newsletterFallback,
       }),
 
-      new MiniCssExtractPlugin({
-        filename: "dist/[name].[contenthash].css",
-      }),
-
       new ScriptExtHtmlWebpackPlugin({
         defaultAttribute: "defer",
       }),
+
+      new WebpackMd5Hash(),
     ],
 
     devServer: {

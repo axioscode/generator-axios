@@ -5,14 +5,6 @@
   "main": "src/js/app.js",
   "license": "Apache-2.0",
   "private": true,
-  "scripts": {
-    "start": "webpack-dev-server --open --mode development",
-    "setup-aws": "pip install awscli && aws init",
-    "build": "webpack -p",
-    "lint": "estlint src/js/*",
-    "publish": "npm run build && aws s3 cp dist s3://<%= meta.s3bucket %>/<%= meta.s3folder %> --recursive --acl public-read",
-    "clean": "rm -rf dist"
-  },
   "browserslist": [
     "last 2 major versions"
   ],
@@ -30,8 +22,11 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.6.1",
+    "clean-webpack-plugin": "^0.1.19",
     "core-js": "^2.5.5",
     "googleapis": "^30.0.0",
+    "gulp": "^3.9.1",
+    "gulp-shell": "^0.6.5",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.9.0",
@@ -40,6 +35,7 @@
     "style-loader": "^0.21.0",
     "webpack": "^4.8.3",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "3.1.4"
+    "webpack-dev-server": "3.1.4",
+    "webpack-md5-hash": "0.0.6"
   }
 }
