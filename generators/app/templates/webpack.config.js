@@ -15,7 +15,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
       index: "./src/js/app.js",
     },
 
-    devtool: isProd ? "source-map" : "inline-source-map",
+    devtool: "source-map",
 
     module: {
       rules: [
@@ -34,14 +34,14 @@ module.exports = (env = {}, { p } = { p: false }) => {
           },
           {
             loader: "css-loader", options: {
-              sourceMap: !isProd,
+              sourceMap: isProd,
               minimize: isProd,
               importLoaders: 1,
             }
           },
           {
             loader: "sass-loader", options: {
-              sourceMap: !isProd,
+              sourceMap: isProd,
               includePaths: ['node_modules/axios-feta/src']
             }
           }],
@@ -72,14 +72,10 @@ module.exports = (env = {}, { p } = { p: false }) => {
       }),
 
       new HtmlWebpackPlugin({
-        appleFallback: vizConfig.appleFallback,
-        hash: isProd,
-        isFullbleed: vizConfig.isFullbleed,
-        minify: isProd,
-        newsletterFallback: vizConfig.newsletterFallback,
-        slug: vizConfig.project.slug,
         template: path.join(__dirname, "src/index.ejs"),
-        title: vizConfig.project.name,
+        hash: isProd,
+        minify: isProd ? { collapseWhitespace: true } : false,
+        ...vizConfig,
       }),
 
       new ScriptExtHtmlWebpackPlugin({
@@ -95,8 +91,6 @@ module.exports = (env = {}, { p } = { p: false }) => {
       hot: true,  // Enable hot module reload
       overlay: true,  // When webpack encounters an error while building, display it in the browser in a redbox
       port: 3000,
-      stats: { colors: true },
-      watchContentBase: true,
     },
 
     performance: {
