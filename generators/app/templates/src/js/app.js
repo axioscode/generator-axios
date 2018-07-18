@@ -1,13 +1,10 @@
-import "./setup";
+import setup from "./setup";
 setup();
 
 import pym from "pym.js";
 import makeChart from "./chart-template";
-import setup from "./setup";
 // import { setupVisualsGoogleAnalytics, trackEvent } from "./analytics";
 // import d3 from "d3";
-
-document.addEventListener("DOMContentLoaded", main());
 
 export default function main() {
 
@@ -19,5 +16,7 @@ export default function main() {
     theChart.update();
   });
 
-  new pym.Child({polling: 500});
+  new pym.Child({ polling: 500 });
 }
+
+window.onload = main;

@@ -7,7 +7,7 @@ gulp.task("watch", shell.task(
 ));
 
 gulp.task("serve", shell.task(
-  "./node_modules/.bin/webpack-dev-server --open --mode development"
+  "./node_modules/.bin/webpack-dev-server --hot --mode development"
 ));
 
 gulp.task("setup:aws", shell.task([
@@ -19,10 +19,14 @@ gulp.task("setup:lint", shell.task(
   "npm install --global eslint"
 ));
 
-gulp.task("setup", [
+gulp.task("setup:imgmin", shell.task(
+  "brew install libpng"
+));
+
+gulp.task("setup", gulp.series(
   "setup:lint",
-  "setup:aws",
-]);
+  "setup:aws"
+));
 
 gulp.task("lint", shell.task(
   "eslint src/js"
@@ -36,11 +40,14 @@ gulp.task("deploy", shell.task(
   "aws s3 cp dist s3://<%= meta.s3bucket %>/<%= meta.s3folder %> --recursive --acl public-read"
 ));
 
-gulp.task("publish", ["build", "deploy"]);
+gulp.task("publish", gulp.series(
+  "build",
+  "deploy"
+));
 
 gulp.task("clean", shell.task(
   "rm -rf dist"
 ));
 
-gulp.task('default', ['serve']);
+gulp.task("default", gulp.series("serve"));
 

@@ -1,4 +1,4 @@
-@import 'feta';
+@import '~axios-feta/src/feta';
 @import 'reset';
 
 html,
@@ -14,6 +14,7 @@ body {
   width: 100%;
   text-align: center;
   max-width: 900px;
+  margin: 0 auto;
 
   .chart {
     display: inline-block;

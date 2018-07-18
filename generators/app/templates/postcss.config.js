@@ -1,6 +1,7 @@
-module.exports = {
-  plugins: [
-    require("stylelint"), 
-    require('autoprefixer'),
-  ],
-};
+module.exports = ({ file, options, env }) => ({
+  plugins: {
+    'postcss-import': { root: file.dirname },
+    'autoprefixer': env === 'production' ? options.autoprefixer : false,
+    'cssnano': env === 'production' ? options.cssnano : false
+  }
+});

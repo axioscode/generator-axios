@@ -1,9 +1,12 @@
+/* eslint-env node */
+
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const WebpackMd5Hash = require('webpack-md5-hash');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const vizConfig = require("./project.config");
 
@@ -17,41 +20,107 @@ module.exports = (env = {}, { p } = { p: false }) => {
 
     devtool: "source-map",
 
+    stats: {
+      colors: true
+    },
+
     module: {
       rules: [
 
         {
-          test: /\.js$/,
-          include: path.join(__dirname, "src/js"),
-          use: [{ loader: "babel-loader" }],
+          test: /\.ejs$/,
+          use: "ejs-loader",
         },
 
         {
-          test: /\.scss$/,
-          include: path.join(__dirname, "src/sass"),
+          test: /\.(gif|png|jpe?g|svg|webp)$/i,
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                name: "[path][name].[ext]",
+                context: path.join(__dirname, "src"),
+              }
+            },
+            {
+              loader: "image-webpack-loader",
+              options: {
+                bypassOnDebug: true, // webpack@1.x
+                disable: true, // webpack@2.x and newer
+                mozjpeg: {
+                  quality: 70
+                },
+                // optipng.enabled: false will disable optipng
+                optipng: {
+                  enabled: true,
+                },
+                pngquant: {
+                  quality: "70-90",
+                  speed: 4
+                },
+                gifsicle: {
+                  optimizationLevel: 2,
+                },
+                webp: {
+                  quality: 70
+                }
+              },
+            },
+          ],
+        },
+
+        {
+          test: /\.s[c|a]ss$/,
           use: [{
-            loader: isProd? MiniCssExtractPlugin.loader : "style-loader",
+            loader: isProd ? MiniCssExtractPlugin.loader : "style-loader",
           },
           {
-            loader: "css-loader", options: {
-              sourceMap: isProd,
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
               minimize: isProd,
-              importLoaders: 1,
+              localIdentName: "[name]__[local]--[hash:base64:5]",
+              importLoaders: 2,
             }
           },
           {
-            loader: "sass-loader", options: {
-              sourceMap: isProd,
-              includePaths: ['node_modules/axios-feta/src']
+            loader: "postcss-loader",
+            options: {
+              sourceMap: true,
+              config: {
+                ctx: {
+                  autoprefixer: {
+                    browsers: [
+                      "last 2 versions",
+                      "Safari 9",
+                      "IE 11"
+                    ],
+                    grid: true,
+                  }
+                }
+              }
+            }
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
             }
           }],
-        }
+        },
+
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: "babel-loader",
+        },
+
       ]
     },
 
     output: {
       path: path.join(__dirname, "dist"),
-      filename: isProd ? "[name].[chunkhash].js" : "[name].js",
+      filename: isProd ? "[name]-[hash].min.js" : "[name].js",
     },
 
     resolve: {
@@ -60,37 +129,47 @@ module.exports = (env = {}, { p } = { p: false }) => {
     },
 
     plugins: [
-      new CleanWebpackPlugin('dist'),
+      // Don't create a file if Webpack encounters an error while bundling
+      new webpack.NoEmitOnErrorsPlugin(),
 
+      new CleanWebpackPlugin("dist", {}),
+
+      // Make project name available to client code as process.env.NAME
+      // Useful for sending data back to Google Analytics
       new webpack.DefinePlugin({
-        "process.env.NAME": JSON.stringify(vizConfig.name || ""),
+        "process.env.NAME": vizConfig.project.name,
       }),
 
-      new MiniCssExtractPlugin({
-        path: path.join(__dirname, "dist"),
-        filename: isProd? "[name].[contenthash].css" : "[name].css",
+      // Make NODE_ENV available to client code as process.env.ENV, helpful for switching between APIs or toggling analytics
+      // Staging and production are set by env vars in Jenkins. Development is the default.
+      new webpack.DefinePlugin({
+        "process.env.ENV": JSON.stringify(process.env.NODE_ENV || "development"),
       }),
 
       new HtmlWebpackPlugin({
         template: path.join(__dirname, "src/index.ejs"),
         hash: isProd,
         minify: isProd ? { collapseWhitespace: true } : false,
+        title: vizConfig.project.name,
         ...vizConfig,
       }),
 
       new ScriptExtHtmlWebpackPlugin({
         defaultAttribute: "defer",
       }),
-
-      new WebpackMd5Hash(),
     ],
 
     devServer: {
-      contentBase: path.join(__dirname, "src"),
+      contentBase: path.join(__dirname, "dist"),
       headers: { "Access-Control-Allow-Origin": "*" },
+      compress: true,
       hot: true,  // Enable hot module reload
       overlay: true,  // When webpack encounters an error while building, display it in the browser in a redbox
+      open: true,
       port: 3000,
+      stats: {
+        colors: true
+      },
     },
 
     performance: {
@@ -98,12 +177,40 @@ module.exports = (env = {}, { p } = { p: false }) => {
       maxEntrypointSize: 500000,
       hints: isProd ? "warning" : false,
     },
+
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: true,
+          uglifyOptions: {
+            ie8: true,
+            safari10: true,
+          },
+        }),
+        new OptimizeCSSAssetsPlugin({
+          cssProcessorOptions: {
+            map: {
+              inline: false
+            }
+          }
+        })
+      ]
+    },
   };
 
   if (!isProd) {
     wpconfig.plugins.push(
+      // Show names of modules instead of IDs. Helpful for seeing what is getting reloaded in each HMR patch.
       new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin()
+    );
+  } else {
+    wpconfig.plugins.push(
+      new MiniCssExtractPlugin({
+        filename: "[name]-[contenthash].min.css",
+      })
     );
   }
 
