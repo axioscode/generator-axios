@@ -33,6 +33,15 @@ module.exports = (env = {}, { p } = { p: false }) => {
         },
 
         {
+          test: /\.(woff2?|ttf|otf|eot|svg)$/,
+          exclude: /node_modules/,
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[ext]'
+          }
+        },
+
+        {
           test: /\.(gif|png|jpe?g|svg|webp)$/i,
           use: [
             {
@@ -80,7 +89,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
               sourceMap: true,
               minimize: isProd,
               localIdentName: "[name]__[local]--[hash:base64:5]",
-              importLoaders: 2,
+              importLoaders: 3,
             }
           },
           {
@@ -102,17 +111,19 @@ module.exports = (env = {}, { p } = { p: false }) => {
             }
           },
           {
+            loader: "resolve-url-loader",
+            options: { sourceMap: true },
+          },
+          {
             loader: "sass-loader",
-            options: {
-              sourceMap: true,
-            }
+            options: { sourceMap: true }
           }],
         },
 
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: "babel-loader",
+          use: "babel-loader",
         },
 
       ]
