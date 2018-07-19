@@ -1,6 +1,10 @@
 "use strict";
 const gulp = require("gulp");
+const log = require("fancy-log");
+const colors = require("ansi-colors");
 const shell = require("gulp-shell");
+
+const projectConfig = require('./project.config.json');
 
 gulp.task("watch", shell.task(
   "./node-modules/.bin/webpack --watch"
@@ -41,9 +45,21 @@ gulp.task("deploy", shell.task(
   "aws s3 cp dist s3://<%= meta.s3bucket %>/<%= meta.s3folder %> --recursive --acl public-read"
 ));
 
+gulp.task("publish:log", (done) => {
+  log("");
+  log("🎉 ", colors.green.bold("Your project can be accessed and embedded using the following url:"));
+  log(`\thttps://${projectConfig.s3.bucket}/${projectConfig.s3.folder}/index.html`);
+  log("");
+  log("👉 ", colors.blue.bold("Login to the Axios CMS:"));
+  log("\thttps://eden.axios.com/dashboard");
+  log("");
+  done();
+});
+
 gulp.task("publish", gulp.series(
   "build",
-  "deploy"
+  "deploy",
+  "publish:log"
 ));
 
 gulp.task("clean", shell.task(
