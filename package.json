@@ -1,13 +1,10 @@
 {
-  "name": "generator-prometheus",
-  "version": "1.2.0",
+  "name": "generator-axios",
+  "version": "2.0.0",
   "description": "A static site generator for d3 graphics",
   "scripts": {
     "setup": "npm install -g yo gulp-cli && npm install && npm link"
   },
-  "browserslist": [
-    "last 2 major versions"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/axioscode/generator-axios"
