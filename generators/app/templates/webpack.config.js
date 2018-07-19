@@ -32,7 +32,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
         // excluding json which are natively handled by webpack
         // todo: inline sm
         {
-          test: /\.(.+json|.+sv|.*aml)$/,
+          test: /\.(.+sv|.*aml)$/,
           include: path.join(__dirname, "src/data"),
           loader: "file-loader",
           options: {
