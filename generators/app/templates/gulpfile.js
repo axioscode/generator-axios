@@ -25,7 +25,8 @@ gulp.task("setup:imgmin", shell.task(
 
 gulp.task("setup", gulp.series(
   "setup:lint",
-  "setup:aws"
+  "setup:aws",
+  "setup:imgmin"
 ));
 
 gulp.task("lint", shell.task(
