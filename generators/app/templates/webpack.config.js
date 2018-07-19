@@ -13,9 +13,11 @@ const vizConfig = require("./project.config");
 module.exports = (env = {}, { p } = { p: false }) => {
   const isProd = p || env.production || process.env.NODE_ENV === "production";
   let wpconfig = {
+
     mode: isProd ? "production" : "development",
+
     entry: {
-      index: "./src/js/app.js",
+      app: "./src/js/app.js",
     },
 
     devtool: "source-map",
@@ -26,23 +28,35 @@ module.exports = (env = {}, { p } = { p: false }) => {
 
     module: {
       rules: [
-
+        // data files
+        // excluding json which are natively handled by webpack
+        // todo: inline sm
         {
-          test: /\.ejs$/,
-          use: "ejs-loader",
-        },
-
-        {
-          test: /\.(woff2?|ttf|otf|eot|svg)$/,
-          exclude: /node_modules/,
-          loader: 'file-loader',
+          test: /\.(.+json|.+sv|.*aml)$/,
+          include: path.join(__dirname, "src/data"),
+          loader: "file-loader",
           options: {
-            name: '[path][name].[ext]'
+            name: '[path][name].[hash].[ext]',
+            context: path.join(__dirname, "src"),
           }
         },
-
+        // fonts
+        {
+          test: /\.(woff2?|ttf|otf|eot|svg)$/,
+          loader: "file-loader",
+          options: {
+            name: '[path][name].[ext]',
+            context: path.join(__dirname, "src"),
+          }
+        },
+        // images
+        // optimizations are unique to each image optimizer
         {
           test: /\.(gif|png|jpe?g|svg|webp)$/i,
+          include: [
+            path.join(__dirname, "src/fallbacks"),
+            path.join(__dirname, "src/img"),
+          ],
           use: [
             {
               loader: "file-loader",
@@ -78,9 +92,13 @@ module.exports = (env = {}, { p } = { p: false }) => {
           ],
         },
 
+        // styles
+        // specifically sass files, .scss and .sass
         {
           test: /\.s[c|a]ss$/,
           use: [{
+            // prod: extract sass to separate css file
+            // dev: inject css via js as a blob in index.html
             loader: isProd ? MiniCssExtractPlugin.loader : "style-loader",
           },
           {
@@ -93,6 +111,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
             }
           },
           {
+            // auto prefixes for older browsers
             loader: "postcss-loader",
             options: {
               sourceMap: true,
@@ -111,6 +130,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
             }
           },
           {
+            // required by sass-loader to resolve urls in sass files
             loader: "resolve-url-loader",
             options: { sourceMap: true },
           },
@@ -118,6 +138,12 @@ module.exports = (env = {}, { p } = { p: false }) => {
             loader: "sass-loader",
             options: { sourceMap: true }
           }],
+        },
+
+        // handle any require statements in index.ejs for img assets
+        {
+          test: /\.ejs$/,
+          use: "ejs-loader",
         },
 
         {
@@ -131,7 +157,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
 
     output: {
       path: path.join(__dirname, "dist"),
-      filename: isProd ? "[name]-[hash].min.js" : "[name].js",
+      filename: isProd ? "js/[name].[hash].min.js" : "[name].js",
     },
 
     resolve: {
@@ -160,7 +186,10 @@ module.exports = (env = {}, { p } = { p: false }) => {
       new HtmlWebpackPlugin({
         template: path.join(__dirname, "src/index.ejs"),
         hash: isProd,
-        minify: isProd ? { collapseWhitespace: true } : false,
+        minify: isProd ? {
+          collapseWhitespace: true,
+          removeComments: true,
+        } : false,
         title: vizConfig.project.name,
         ...vizConfig,
       }),
@@ -220,7 +249,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
   } else {
     wpconfig.plugins.push(
       new MiniCssExtractPlugin({
-        filename: "[name]-[contenthash].min.css",
+        filename: "css/styles.[contenthash].min.css",
       })
     );
   }
