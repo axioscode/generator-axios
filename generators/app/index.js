@@ -93,20 +93,15 @@ module.exports = class extends Generator{
   Nice! You're ready to start making an Axios interactive!
   Start by writing code into files in the src/ director
 
-  1. Add data from Google Drive, docs or spreadsheets:
-
-    > gulp gdrive:add
-    > gulp gdrive:fetch
-
-  2. Preview it locally on browsers and devices to make sure it looks ok:
+  1. Preview it locally on browsers and devices to make sure it looks ok:
 
     > gulp serve
 
-  3. Troubleshooting? Check the logs when you compile everything:
+  2. Troubleshooting? Check the logs when you compile everything:
 
     > gulp build
 
-  4. Publish!
+  3. Publish!
 
     > gulp publish
     `;
