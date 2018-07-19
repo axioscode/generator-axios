@@ -14,6 +14,10 @@ gulp.task("serve", shell.task(
   "./node_modules/.bin/webpack-dev-server --hot --mode development"
 ));
 
+gulp.task("setup:analyzer", shell.task(
+  "npm install --global webpack webpack-cli webpack-bundle-analyzer"
+));
+
 gulp.task("setup:aws", shell.task([
   "pip install awscli",
   "aws init",
@@ -28,9 +32,10 @@ gulp.task("setup:imgmin", shell.task(
 ));
 
 gulp.task("setup", gulp.series(
-  "setup:lint",
+  "setup:analyzer",
   "setup:aws",
-  "setup:imgmin"
+  "setup:imgmin",
+  "setup:lint"
 ));
 
 gulp.task("lint", shell.task(
