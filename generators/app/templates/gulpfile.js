@@ -28,8 +28,8 @@ gulp.task("setup", gulp.series(
 ));
 
 // Google Drive tasks
-gulp.task('gdrive:add', require('./gulp/gdrive').addFile);
-gulp.task('gdrive:fetch', require('./gulp/gdrive').fetch);
+// gulp.task('gdrive:add', require('./utils/gdrive').addFile);
+// gulp.task('gdrive:fetch', require('./utils/gdrive').fetch);
 
 // Development tasks
 gulp.task("watch", shell.task(
