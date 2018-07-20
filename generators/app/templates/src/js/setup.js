@@ -3,8 +3,16 @@ import "core-js/fn/object/assign";
 import "core-js/fn/object/entries";
 import "core-js/fn/object/values";
 import "raf/polyfill";
+
+require.context("../fallbacks");
+require.context("../img");
+
 import "../sass/main.scss";
-import main from "./app";
+import "../index.ejs";
+
+if (module.hot) {
+  module.hot.accept();
+}
 
 export default function setup() {
   if (NodeList.prototype.forEach === undefined) {
@@ -30,11 +38,4 @@ export default function setup() {
 
     throttle('resize', 'optimizedResize');
   })();
-
-  if (module.hot) {
-    module.hot.accept('./app', () => {
-      console.log("HMR accepting app");
-      main();
-    });
-  }
 }
