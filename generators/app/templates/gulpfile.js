@@ -47,7 +47,7 @@ gulp.task("build", shell.task(
   "./node_modules/.bin/webpack -p"
 ));
 gulp.task("deploy", shell.task(
-  "aws s3 cp dist s3://<%= meta.s3bucket %>/<%= meta.s3folder %> --recursive --acl public-read"
+  `aws s3 cp dist s3://${projectConfig.s3.bucket}/${projectConfig.s3.folder} --recursive --acl public-read`
 ));
 gulp.task("publish:log", (done) => {
   log("");
