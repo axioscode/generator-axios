@@ -5,8 +5,7 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "setup-gulp": "npm install --global gulp-cli",
-    "analyze": "webpack -p --json > webpack-stats.json && webpack-bundle-analyzer webpack-stats.json dist"
+    "setup-gulp": "npm install --global gulp-cli"
   },
   "dependencies": {
     "axios-feta": "0.0.5",

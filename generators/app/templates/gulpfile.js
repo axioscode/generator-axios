@@ -27,10 +27,6 @@ gulp.task("setup", gulp.series(
   "setup:lint"
 ));
 
-// Google Drive tasks
-// gulp.task('gdrive:add', require('./utils/gdrive').addFile);
-// gulp.task('gdrive:fetch', require('./utils/gdrive').fetch);
-
 // Development tasks
 gulp.task("watch", shell.task(
   "./node-modules/.bin/webpack --watch"
@@ -40,6 +36,9 @@ gulp.task("serve", shell.task(
 ));
 gulp.task("lint", shell.task(
   "eslint src/js && stylelint src/sass"
+));
+gulp.task("analyze", shell.task(
+  "webpack -p --json > webpack-stats.json && webpack-bundle-analyzer webpack-stats.json dist"
 ));
 
 // Publishing tasks
