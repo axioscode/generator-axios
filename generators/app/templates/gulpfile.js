@@ -42,7 +42,7 @@ gulp.task("serve", shell.task(
   "./node_modules/.bin/webpack-dev-server --hot --mode development"
 ));
 gulp.task("stage". shell.task([
-  "gulp build",
+  "gulp watch",
   "cd dist",
   "ngrok http 80"
 ]));
