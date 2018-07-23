@@ -21,7 +21,7 @@ gulp.task("setup:imgmin", shell.task(
   "brew install libpng"
 ));
 gulp.task("setup:stage", shell.task(
-  "npm install -g ngrok"
+  "npm install --global ngrok"
 ));
 gulp.task("setup", gulp.series(
   "setup:analyzer",
