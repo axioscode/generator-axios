@@ -20,6 +20,9 @@ gulp.task("setup:lint", shell.task(
 gulp.task("setup:imgmin", shell.task(
   "brew install libpng"
 ));
+gulp.task("setup:stage", shell.task(
+  "npm install -g ngrok"
+));
 gulp.task("setup", gulp.series(
   "setup:analyzer",
   "setup:aws",
@@ -28,17 +31,21 @@ gulp.task("setup", gulp.series(
 ));
 
 // Development tasks
-gulp.task("watch", shell.task(
-  "./node_modules/.bin/webpack --watch"
-));
-gulp.task("serve", shell.task(
-  "./node_modules/.bin/webpack-dev-server --hot --mode development"
+gulp.task("analyze", shell.task(
+  "webpack -p --json > webpack-stats.json && webpack-bundle-analyzer webpack-stats.json dist"
 ));
 gulp.task("lint", shell.task(
   "eslint src/js && stylelint src/sass"
 ));
-gulp.task("analyze", shell.task(
-  "webpack -p --json > webpack-stats.json && webpack-bundle-analyzer webpack-stats.json dist"
+gulp.task("serve", shell.task(
+  "./node_modules/.bin/webpack-dev-server --hot --mode development"
+));
+gulp.task("stage". shell.task([
+  "gulp build",
+  "ngrok dist"
+]));
+gulp.task("watch", shell.task(
+  "./node_modules/.bin/webpack --watch"
 ));
 
 // Publishing tasks
