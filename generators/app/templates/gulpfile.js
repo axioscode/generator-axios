@@ -27,7 +27,8 @@ gulp.task("setup", gulp.series(
   "setup:analyzer",
   "setup:aws",
   "setup:imgmin",
-  "setup:lint"
+  "setup:lint",
+  "setup:stage"
 ));
 
 // Development tasks
