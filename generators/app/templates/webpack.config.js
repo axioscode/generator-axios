@@ -107,7 +107,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
               sourceMap: true,
               minimize: isProd,
               localIdentName: "[name]__[local]--[hash:base64:5]",
-              url: isProd? false : true,
+              url: !isProd,
               importLoaders: 3,
             }
           },
