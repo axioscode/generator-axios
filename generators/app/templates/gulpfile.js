@@ -41,7 +41,7 @@ gulp.task("lint", shell.task(
 gulp.task("serve", shell.task(
   "./node_modules/.bin/webpack-dev-server --hot --mode development"
 ));
-gulp.task("stage". shell.task([
+gulp.task("stage", shell.task([
   "gulp watch",
   "cd dist",
   "ngrok http 80"
