@@ -42,7 +42,8 @@ gulp.task("serve", shell.task(
 ));
 gulp.task("stage". shell.task([
   "gulp build",
-  "ngrok dist"
+  "cd dist",
+  "ngrok http 80"
 ]));
 gulp.task("watch", shell.task(
   "./node_modules/.bin/webpack --watch"
