@@ -29,7 +29,7 @@ gulp.task("setup", gulp.series(
 
 // Development tasks
 gulp.task("watch", shell.task(
-  "./node-modules/.bin/webpack --watch"
+  "./node_modules/.bin/webpack --watch"
 ));
 gulp.task("serve", shell.task(
   "./node_modules/.bin/webpack-dev-server --hot --mode development"
