@@ -33,7 +33,7 @@ gulp.task("setup:lint").description = "Installs linters to catch style & semanti
 gulp.task("setup:imgmin", shell.task(
   "brew install libpng"
 ));
-gulp.task("setup:lint").description = "Installs an image optimizing dependency";
+gulp.task("setup:imgmin").description = "Installs an image optimizing dependency";
 gulp.task("setup", gulp.parallel(
   "setup:analyzer",
   "setup:aws",
@@ -80,7 +80,7 @@ gulp.task("build", shell.task(
 ));
 gulp.task("build").description = "Compile all your code, styles, and assets to the dist/ subdirectory";
 gulp.task("deploy", shell.task(
-  `aws s3 cp dist s3://${projectConfig.s3.bucket}/${projectConfig.s3.folder} --recursive --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate --acl public-read`
+  `aws s3 cp dist s3://${projectConfig.s3.bucket}/${projectConfig.s3.folder} --recursive --metadata-directive REPLACE --cache-control max-age=30,public --acl public-read`
 ));
 gulp.task("deploy").description = "Upload the dist/ subdirecotry to visuals.axios.com on AWS S3";
 gulp.task("log:publish", (done) => {
