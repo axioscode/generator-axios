@@ -197,6 +197,16 @@ module.exports = (env = {}, { p } = { p: false }) => {
         ...vizConfig,
       }),
 
+      // Ignore all Moment locales. Via: https://webpack.js.org/plugins/ignore-plugin/
+      // (literally the canonical use case for this plugin I hate Moment so much)
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+
+      // More fun hacks necessitated by our friends at moment dot js
+      new webpack.NormalModuleReplacementPlugin(
+        /moment-timezone\/data\/packed\/latest\.json/,
+        require.resolve(path.join(__dirname, "./utils/timezones.json"))
+      ),
+
       new ScriptExtHtmlWebpackPlugin({
         defaultAttribute: "defer",
       }),
@@ -227,7 +237,6 @@ module.exports = (env = {}, { p } = { p: false }) => {
           parallel: true,
           sourceMap: true,
           uglifyOptions: {
-            ie8: true,
             safari10: true,
           },
         }),
