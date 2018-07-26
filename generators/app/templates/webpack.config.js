@@ -2,12 +2,13 @@
 
 const webpack = require("webpack");
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+
 const vizConfig = require("./project.config");
 
 module.exports = (env = {}, { p } = { p: false }) => {
@@ -183,6 +184,8 @@ module.exports = (env = {}, { p } = { p: false }) => {
         "process.env.ENV": JSON.stringify(process.env.NODE_ENV || "development"),
       }),
 
+      // Generate HTML from the ejs file, minifying for production
+      // Useful for passing data into the EJS template
       new HtmlWebpackPlugin({
         template: path.join(__dirname, "src/index.ejs"),
         hash: isProd,
@@ -206,7 +209,6 @@ module.exports = (env = {}, { p } = { p: false }) => {
       hot: true,  // Enable hot module reload
       overlay: true,  // When webpack encounters an error while building, display it in the browser in a redbox
       open: true,
-      port: 3000,
       stats: {
         colors: true
       },

@@ -1,7 +1,8 @@
 "use strict";
+const colors = require("ansi-colors");
 const gulp = require("gulp");
 const log = require("fancy-log");
-const colors = require("ansi-colors");
+const minimist = require('minimist');
 const shell = require("gulp-shell");
 
 const projectConfig = require('./project.config.json');
@@ -15,6 +16,13 @@ const timestamp = {
   min: ( (date.getMinutes()<10?'0':'') + date.getMinutes() ),
   sec: ( (date.getSeconds()<10?'0':'') + date.getSeconds() )
 };
+
+const defaultOptions = {
+  string: 'port',
+  default: { port: 3000 },
+  alias: { p: 'port' }
+};
+const argv = minimist(process.argv.slice(2), defaultOptions);
 
 // Setup tasks
 gulp.task("setup:analyzer", shell.task(
@@ -52,19 +60,19 @@ gulp.task("lint", shell.task(
 ));
 gulp.task("lint").description = "Runs a linter to check your code for errors and style";
 gulp.task("serve", shell.task(
-  "./node_modules/.bin/webpack-dev-server --hot --host 0.0.0.0 --mode development"
+  `./node_modules/.bin/webpack-dev-server --hot --host 0.0.0.0 --port ${argv.port} --mode development`
 ));
-gulp.task("serve").description = "Runs a local development server";
+gulp.task("serve").description = "Runs a local development server. Accepts --port, -p integer";
 gulp.task("watch", shell.task(
   "./node_modules/.bin/webpack -p --watch"
 ));
 gulp.task("watch").description = "Rebuilds the dist/ subdirectory whenever you make changes";
 gulp.task("localip", shell.task([
-  "echo \"http://`ipconfig getifaddr en0`:3000\" | pbcopy",
+  `echo "http://\`ipconfig getifaddr en0\`:${argv.port}" | pbcopy`,
   "echo \"\ncopied url to your clipboard:\"",
-  "echo \"http://`ipconfig getifaddr en0`:3000\n\""
+  `echo "http://\`ipconfig getifaddr en0\`:${argv.port}\n"`
 ]));
-gulp.task("localip").description = "Copy the local ip to your clipboard for device testing";
+gulp.task("localip").description = "Copy the local ip to your clipboard for device testing. Accepts --port, -p integer";
 
 // Publishing tasks
 gulp.task("push", shell.task([
