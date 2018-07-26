@@ -1,5 +1,5 @@
 const AXIOS_VISUALS_CATEGORY = process.env.NAME;
-const PRODUCTION = window.location.hostname.indexOf('localhost.com') === -1;
+const PRODUCTION = process.env.ENV === "production";
 let AXIOS_VISUALS_GOOGLE_ANALYTICS_ID;
 
 if (PRODUCTION) {

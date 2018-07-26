@@ -179,7 +179,6 @@ module.exports = (env = {}, { p } = { p: false }) => {
       }),
 
       // Make NODE_ENV available to client code as process.env.ENV, helpful for switching between APIs or toggling analytics
-      // Staging and production are set by env vars in Jenkins. Development is the default.
       new webpack.DefinePlugin({
         "process.env.ENV": JSON.stringify(process.env.NODE_ENV || "development"),
       }),
