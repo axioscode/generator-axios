@@ -1,15 +1,26 @@
-require("core-js/es6/promise");
-require("core-js/fn/object/assign");
-require("core-js/fn/object/entries");
-require("core-js/fn/object/values");
+import "core-js/es6/promise";
+import "core-js/fn/object/assign";
+import "core-js/fn/object/entries";
+import "core-js/fn/object/values";
+import "raf/polyfill";
 
-const setup = function() {
+require.context("../fallbacks");
+require.context("../img");
+
+import "../sass/main.scss";
+import "../index.ejs";
+
+if (module.hot) {
+  module.hot.accept();
+}
+
+export default function setup() {
   if (NodeList.prototype.forEach === undefined) {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
 
   (function () {
-    var throttle = function (type, name, obj) {
+    const throttle = (type, name, obj) => {
       obj = obj || window;
       var running = false;
       var func = function () {
@@ -17,7 +28,7 @@ const setup = function() {
           return;
         }
         running = true;
-        requestAnimationFrame(function () {
+        requestAnimationFrame(() => {
           obj.dispatchEvent(new CustomEvent(name));
           running = false;
         });
@@ -27,6 +38,4 @@ const setup = function() {
 
     throttle('resize', 'optimizedResize');
   })();
-};
-
-module.exports = setup;
+}

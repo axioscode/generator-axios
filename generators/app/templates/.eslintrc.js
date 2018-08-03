@@ -1,10 +1,13 @@
 module.exports = {
   "extends": "eslint:recommended",
-  parserOptions: {
-    sourceType: "script",
-    "ecmaVersion": 6
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
   },
-  rules: {
+  "rules": {
     "no-console": "off",
     "indent": [
       "warn",
@@ -24,7 +27,11 @@ module.exports = {
     ],
     "no-unused-vars": ["error"],
   },
-  env: {
+  "globals": {
+    "module": true,
+    "process": true
+  },
+  "env": {
     "browser": true,
     "node": true,
     "es6": true

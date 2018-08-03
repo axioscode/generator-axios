@@ -1,5 +1,5 @@
-const AXIOS_VISUALS_CATEGORY = '<%= meta.GoogleAnalyticsCategory %>';
-const PRODUCTION = window.location.hostname.indexOf('localhost.com') === -1;
+const AXIOS_VISUALS_CATEGORY = process.env.NAME;
+const PRODUCTION = process.env.ENV === "production";
 let AXIOS_VISUALS_GOOGLE_ANALYTICS_ID;
 
 if (PRODUCTION) {
@@ -10,16 +10,17 @@ if (PRODUCTION) {
 
 // Heavily inspired by our friends at NPR
 // https://github.com/nprapps/anno-docs/blob/a3bae37a467217a4e446861a57df7dd49f7570f6/www/js/analytics.js
+const ga = window.ga;
 
-var embedGa = function() {
+const embedGa = () => {
   (function(i,s,o,g,r,a,m) {
     i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      (i[r].q=i[r].q||[]).push(arguments);},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 };
 
-var setupVisualsAnalytics = function() {
+const setupVisualsAnalytics = () => {
   ga('create', AXIOS_VISUALS_GOOGLE_ANALYTICS_ID, 'auto');
 
   // By default Google tracks the query string, we want to ignore it.
@@ -31,12 +32,12 @@ var setupVisualsAnalytics = function() {
   ga('send', 'pageview');
 };
 
-var setupVisualsGoogleAnalytics = function() {
+export function setupVisualsGoogleAnalytics() {
   embedGa();
   setupVisualsAnalytics();
-};
+}
 
-var trackEvent = function(action, label, value) {
+export function trackEvent(action, label, value) {
   var eventData = {
     'hitType': 'event',
     'eventCategory': AXIOS_VISUALS_CATEGORY,
@@ -44,11 +45,9 @@ var trackEvent = function(action, label, value) {
   };
 
   // an optional string
-  if (label) { eventData['eventLabel'] = label };
+  if (label) { eventData['eventLabel'] = label }
   // an optional integer
-  if (value) { eventData['eventValue'] = value };
+  if (value) { eventData['eventValue'] = value }
 
   ga('send', eventData);
-};
-
-module.exports = { setupVisualsGoogleAnalytics,trackEvent };
+}

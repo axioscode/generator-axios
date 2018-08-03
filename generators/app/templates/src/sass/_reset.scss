@@ -1,3 +1,4 @@
+@import '~axios-feta/src/feta';
 //
 // Base Styles
 // --------------------------------------------------
@@ -29,8 +30,8 @@ td {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font: inherit;
+  font-size: 100%;
   vertical-align: baseline;
 }
 
@@ -51,14 +52,11 @@ caption,
 dl,
 dt,
 dd,
-ol,
-ul,
 li {
   margin: 0;
   padding: 0;
   font: inherit;
 }
-
 
 // Normalize Patches
 // -------------------------
@@ -68,8 +66,8 @@ blockquote,
 q {
   quotes: none;
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: "";
     content: none;
   }
@@ -81,18 +79,19 @@ html {
 }
 
 *,
-*:before,
-*:after {
-  @include prefix((box-sizing: inherit), moz)
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 // Responsive Images
-img { max-width: 100%; height: auto; }
-
+img {
+  max-width: 100%;
+  height: auto;
+}
 
 // no border on iframes
 iframe { border: 0; }
-
 
 // Ensure we only define type using our default classes.
 small {
@@ -104,16 +103,14 @@ sup {
   font-size: $base-font-size;
 }
 
-
 // Switching from ems to rems for consistency and our own sanity.
 sup {
   top: (-$space-1);
 }
 
 sub {
-  bottom: -.25rem;
+  bottom: -0.25rem;
 }
-
 
 code,
 kbd,
@@ -122,7 +119,6 @@ samp {
   font-size: $base-font-size;
 }
 
-
 // We should define fieldset with classes if we're going to define it.
 fieldset {
   border: 0;
@@ -130,18 +126,9 @@ fieldset {
   padding: 0;
 }
 
-
 // Making sure that bold is 600, since we use semibold instead.
 optgroup {
   font-weight: $bold;
-}
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
 }
 
 // Overriding default iOS input style

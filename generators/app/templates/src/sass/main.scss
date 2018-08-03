@@ -1,101 +1,103 @@
-@import 'feta';
+@import '~axios-feta/src/feta';
 @import 'reset';
 
-html, body {
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
   width: auto;
   height: auto;
 }
 
 .chart-container {
-	width: 100%;
-	text-align: center;
-	max-width: 900px;
+  width: 100%;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
 
-	.chart {
-		display: inline-block;
-		width: 100%;
+  .chart {
+    display: inline-block;
+    width: 100%;
 
+    .axis {
+      text {
+        font-family: $mono;
+        fill: $color-gray-600;
+        pointer-events: none;
+      }
 
-		.axis {
-			text {
-				font-family: $mono;
-				fill: $color-gray-600;
-				pointer-events: none;
-			}
+      .tick text {
+        font-size: 12px;
+      }
 
-			.tick text {
-				font-size: 12px;
-			}
+      line,
+      path {
+        stroke: $color-gray-300;
+        stroke-width: 0.5;
+        pointer-events: none;
+      }
 
-			line, path {
-				stroke: $color-gray-300;
-				stroke-width: .5;
-				pointer-events: none;
-			}
-
-			.domain {
-				display: none;
-			}
-		}
-	}
+      .domain {
+        display: none;
+      }
+    }
+  }
 }
 
 .headline {
-	font-family: $sans;
-	font-size: 16px;
-	line-height: 25px;
-	font-weight: 500;
-	color: $color-gray-800;
-	margin-bottom: 10px;
+  font-family: $sans;
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: 500;
+  color: $color-gray-800;
+  margin-bottom: 10px;
 }
 
 .headline-units {
-	font-family: $mono;
-	font-size: 14px;
-	line-height: 22px;
-	color: $color-gray-600;
-	margin-bottom: 10px;
+  font-family: $mono;
+  font-size: 14px;
+  line-height: 22px;
+  color: $color-gray-600;
+  margin-bottom: 10px;
 }
 
 .subhead {
-	font-family: $sans;
-	font-size: 11px;
-	line-height: 16px;
-	font-weight: 500;
-	letter-spacing: 1.1px;
-	color: $color-gray-800;
-	text-transform: uppercase;
-	margin-bottom: 8px;
+  font-family: $sans;
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 1.1px;
+  color: $color-gray-800;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
 .axis-label {
-	font-family: $mono;
-	font-size: 14px;
-	line-height: 20px;
-	color: $color-gray-800;
+  font-family: $mono;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-gray-800;
 }
 
 .annotation {
-	font-family: $sans;
-	font-size: 14px;
-	line-height: 22px;
-	color: $color-gray-800;
+  font-family: $sans;
+  font-size: 14px;
+  line-height: 22px;
+  color: $color-gray-800;
 }
 
 .annotation--bold {
-	font-family: $sans;
-	font-weight: 500;
-	font-size: 14px;
-	line-height: 22px;
-	color: $color-gray-800;
+  font-family: $sans;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  color: $color-gray-800;
 }
 
 .annotation--number {
-	font-family: $mono;
-	font-size: 16px;
-	line-height: 22px;
-	color: $color-purple-500;
+  font-family: $mono;
+  font-size: 16px;
+  line-height: 22px;
+  color: $color-purple-500;
 }
