@@ -3,17 +3,7 @@ var Generator = require('yeoman-generator');
 
 module.exports = class extends Generator{
   constructor(args, opts) {
-    // Calling the super constructor is important so our generator is correctly set up
     super(args, opts);
-    this.option('skip-install-message', {
-      desc: 'Skips the message after the installation of dependencies',
-      type: Boolean
-    });
-
-    this.option('skip-install', {
-      desc: 'Skips installing dependencies',
-      type: Boolean
-    });
   }
 
   initializing() {
@@ -31,15 +21,15 @@ module.exports = class extends Generator{
     }]).then((answers, err) => {
       done(err);
       this.meta = {
-        ['gitInit']: answers.gitInit,
-        ['googleAnalyticsCategory']: slugify(this.appname) + '-v1.0',
-        ['isFullbleed']: this.projectConfig.isFullbleed,
-        ['name']: this.appname,
-        ['s3bucket']: 'graphics.axios.com',
-        ['s3folder']: slugify(this.appname),
-        ['slug']: slugify(this.appname),
-        ['appleFallback']: `fallbacks/${slugify(this.appname)}-apple.png`,
-        ['newsletterFallback']: `fallbacks/${slugify(this.appname)}-fallback.png`
+        gitInit: answers.gitInit,
+        googleAnalyticsCategory: slugify(this.appname) + '-v1.0',
+        isFullbleed: this.projectConfig.isFullbleed,
+        name: this.appname,
+        s3bucket: 'graphics.axios.com',
+        s3folder: slugify(this.appname),
+        slug: slugify(this.appname),
+        appleFallback: `fallbacks/${slugify(this.appname)}-apple.png`,
+        newsletterFallback: `fallbacks/${slugify(this.appname)}-fallback.png`
       };
     });
   }
@@ -81,11 +71,7 @@ module.exports = class extends Generator{
   }
 
   install() {
-    this.installDependencies({
-      bower: false,
-      skipMessage: this.options['skip-install-message'],
-      skipInstall: this.options['skip-install']
-    });
+    this.yarnInstall();
   }
 
   end() {
