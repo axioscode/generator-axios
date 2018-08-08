@@ -42,6 +42,10 @@ gulp.task("setup:imgmin", shell.task(
   "brew install libpng"
 ));
 gulp.task("setup:imgmin").description = "Installs an image optimizing dependency";
+gulp.task("setup:yarn", shell.task(
+  "brew install yarn"
+));
+gulp.task("setup:yarn").description = "Installs package manager for the generator";
 gulp.task("setup", gulp.parallel(
   "setup:analyzer",
   "setup:aws",
