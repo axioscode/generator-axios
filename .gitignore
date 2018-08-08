@@ -30,6 +30,6 @@ dist
 # Local configs
 .env
 
-.DS_Store
+**/.DS_Store
 .yo-rc.json
 .vscode
