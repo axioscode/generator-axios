@@ -50,7 +50,8 @@ gulp.task("setup", gulp.parallel(
   "setup:analyzer",
   "setup:aws",
   "setup:imgmin",
-  "setup:lint"
+  "setup:lint",
+  "setup:yarn"
 ));
 gulp.task("setup").description = "Installs all external dependencies for using the generator";
 
