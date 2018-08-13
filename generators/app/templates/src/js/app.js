@@ -15,7 +15,9 @@ export default function main() {
     theChart.update();
   });
 
-  new pym.Child({ polling: 500 });
+  new pym.Child({
+    polling: 500
+  });
 }
 
 window.onload = main;

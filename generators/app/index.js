@@ -1,7 +1,7 @@
 var slugify = require('slugify');
 var Generator = require('yeoman-generator');
 
-module.exports = class extends Generator{
+module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
   }
@@ -14,10 +14,10 @@ module.exports = class extends Generator{
   prompting() {
     var done = this.async();
     return this.prompt([{
-      type    : 'confirm',
-      name    : "gitInit",
-      message : "Initialize empty git repository?",
-      default : true
+      type: 'confirm',
+      name: "gitInit",
+      message: "Initialize empty git repository?",
+      default: true
     }]).then((answers, err) => {
       done(err);
       this.meta = {
@@ -51,22 +51,25 @@ module.exports = class extends Generator{
     // webpack
     this.fs.copyTpl(
       this.templatePath("**/*.js"),
-      this.destinationRoot(),
-      { meta: this.meta }
+      this.destinationRoot(), {
+        meta: this.meta
+      }
     );
 
     // project.config.json
     this.fs.copyTpl(
       this.templatePath("**/*.json"),
-      this.destinationRoot(),
-      { meta: this.meta }
+      this.destinationRoot(), {
+        meta: this.meta
+      }
     );
 
     // readme
     this.fs.copyTpl(
       this.templatePath("**/*.md"),
-      this.destinationRoot(),
-      { meta: this.meta }
+      this.destinationRoot(), {
+        meta: this.meta
+      }
     );
   }
 
