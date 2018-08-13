@@ -1,8 +1,14 @@
-const d3 = Object.assign({},
-  require("d3-selection"),
-  require("d3-axis"),
-  require("d3-scale")
-);
+import {
+  axisBottom,
+  axisLeft,
+} from "d3-axis";
+import {
+  scaleLinear
+} from "d3-scale";
+import {
+  select
+} from "d3-selection";
+
 
 export default class makeChart {
   constructor(opts) {
@@ -34,17 +40,17 @@ export default class makeChart {
 
 
   _setScales() {
-    this.xScale = d3.scaleLinear()
+    this.xScale = scaleLinear()
       .rangeRound([0, this.width])
       .domain([0, 100]);
 
-    this.yScale = d3.scaleLinear()
+    this.yScale = scaleLinear()
       .rangeRound([this.height, 0])
       .domain([0, 100]);
   }
 
   appendElements() {
-    this.svg = d3.select(this.element).append('svg');
+    this.svg = select(this.element).append('svg');
 
     this.plot = this.svg.append('g')
       .attr("class", "chart-g");
@@ -64,13 +70,13 @@ export default class makeChart {
 
     this.xAxis.attr("transform", "translate(0," + (this.height + 20) + ")")
       .call(
-        d3.axisBottom(this.xScale)
+        axisBottom(this.xScale)
         .tickSize(-this.height - 20)
       );
 
     this.yAxis.attr("transform", "translate(" + (-20) + ",0)")
       .call(
-        d3.axisLeft(this.yScale)
+        axisLeft(this.yScale)
         .tickSize(-this.width - 20)
       );
   }
