@@ -14,7 +14,6 @@ const vizConfig = require("./project.config");
 module.exports = (env = {}, { p } = { p: false }) => {
   const isProd = p || env.production || process.env.NODE_ENV === "production";
   let wpconfig = {
-
     mode: isProd ? "production" : "development",
 
     entry: {
@@ -24,7 +23,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
     devtool: "source-map",
 
     stats: {
-      colors: true
+      colors: true,
     },
 
     module: {
@@ -37,18 +36,18 @@ module.exports = (env = {}, { p } = { p: false }) => {
           include: path.join(__dirname, "src/data"),
           loader: "file-loader",
           options: {
-            name: '[path][name].[hash].[ext]',
+            name: "[path][name].[hash].[ext]",
             context: path.join(__dirname, "src"),
-          }
+          },
         },
         // fonts
         {
           test: /\.(woff2?|ttf|otf|eot|svg)$/,
           loader: "file-loader",
           options: {
-            name: '[path][name].[ext]',
+            name: "[path][name].[ext]",
             context: path.join(__dirname, "src"),
-          }
+          },
         },
         // images
         // optimizations are unique to each image optimizer
@@ -64,7 +63,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
               options: {
                 name: "[path][name].[ext]",
                 context: path.join(__dirname, "src"),
-              }
+              },
             },
             {
               loader: "image-webpack-loader",
@@ -72,7 +71,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
                 bypassOnDebug: true, // webpack@1.x
                 disable: true, // webpack@2.x and newer
                 mozjpeg: {
-                  quality: 70
+                  quality: 70,
                 },
                 // optipng.enabled: false will disable optipng
                 optipng: {
@@ -80,14 +79,14 @@ module.exports = (env = {}, { p } = { p: false }) => {
                 },
                 pngquant: {
                   quality: "70-90",
-                  speed: 4
+                  speed: 4,
                 },
                 gifsicle: {
                   optimizationLevel: 2,
                 },
                 webp: {
-                  quality: 70
-                }
+                  quality: 70,
+                },
               },
             },
           ],
@@ -97,49 +96,47 @@ module.exports = (env = {}, { p } = { p: false }) => {
         // specifically sass files, .scss and .sass
         {
           test: /\.s[c|a]ss$/,
-          use: [{
-            // prod: extract sass to separate css file
-            // dev: inject css via js as a blob in index.html
-            loader: isProd ? MiniCssExtractPlugin.loader : "style-loader",
-          },
-          {
-            loader: "css-loader",
-            options: {
-              sourceMap: true,
-              minimize: isProd,
-              localIdentName: "[name]__[local]--[hash:base64:5]",
-              url: !isProd,
-              importLoaders: 3,
-            }
-          },
-          {
-            // auto prefixes for older browsers
-            loader: "postcss-loader",
-            options: {
-              sourceMap: true,
-              config: {
-                ctx: {
-                  autoprefixer: {
-                    browsers: [
-                      "last 2 versions",
-                      "Safari 9",
-                      "IE 11"
-                    ],
-                    grid: true,
-                  }
-                }
-              }
-            }
-          },
-          {
-            // required by sass-loader to resolve urls in sass files
-            loader: "resolve-url-loader",
-            options: { sourceMap: true },
-          },
-          {
-            loader: "sass-loader",
-            options: { sourceMap: true }
-          }],
+          use: [
+            {
+              // prod: extract sass to separate css file
+              // dev: inject css via js as a blob in index.html
+              loader: isProd ? MiniCssExtractPlugin.loader : "style-loader",
+            },
+            {
+              loader: "css-loader",
+              options: {
+                sourceMap: true,
+                minimize: isProd,
+                localIdentName: "[name]__[local]--[hash:base64:5]",
+                url: !isProd,
+                importLoaders: 3,
+              },
+            },
+            {
+              // auto prefixes for older browsers
+              loader: "postcss-loader",
+              options: {
+                sourceMap: true,
+                config: {
+                  ctx: {
+                    autoprefixer: {
+                      browsers: ["last 2 versions", "Safari 9", "IE 11"],
+                      grid: true,
+                    },
+                  },
+                },
+              },
+            },
+            {
+              // required by sass-loader to resolve urls in sass files
+              loader: "resolve-url-loader",
+              options: { sourceMap: true },
+            },
+            {
+              loader: "sass-loader",
+              options: { sourceMap: true },
+            },
+          ],
         },
 
         // handle any require statements in index.ejs for img assets
@@ -153,8 +150,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
           exclude: /node_modules/,
           use: "babel-loader",
         },
-
-      ]
+      ],
     },
 
     output: {
@@ -181,7 +177,9 @@ module.exports = (env = {}, { p } = { p: false }) => {
 
       // Make NODE_ENV available to client code as process.env.ENV, helpful for switching between APIs or toggling analytics
       new webpack.DefinePlugin({
-        "process.env.ENV": JSON.stringify(process.env.NODE_ENV || "development"),
+        "process.env.ENV": JSON.stringify(
+          process.env.NODE_ENV || "development"
+        ),
       }),
 
       // Generate HTML from the ejs file, minifying for production
@@ -189,10 +187,12 @@ module.exports = (env = {}, { p } = { p: false }) => {
       new HtmlWebpackPlugin({
         template: path.join(__dirname, "src/index.ejs"),
         hash: isProd,
-        minify: isProd ? {
-          collapseWhitespace: true,
-          removeComments: true,
-        } : false,
+        minify: isProd
+          ? {
+              collapseWhitespace: true,
+              removeComments: true,
+            }
+          : false,
         title: vizConfig.project.name,
         ...vizConfig,
       }),
@@ -216,11 +216,11 @@ module.exports = (env = {}, { p } = { p: false }) => {
       contentBase: path.join(__dirname, "dist"),
       headers: { "Access-Control-Allow-Origin": "*" },
       compress: true,
-      hot: true,  // Enable hot module reload
-      overlay: true,  // When webpack encounters an error while building, display it in the browser in a redbox
+      hot: true, // Enable hot module reload
+      overlay: true, // When webpack encounters an error while building, display it in the browser in a redbox
       open: true,
       stats: {
-        colors: true
+        colors: true,
       },
     },
 
@@ -243,11 +243,11 @@ module.exports = (env = {}, { p } = { p: false }) => {
         new OptimizeCSSAssetsPlugin({
           cssProcessorOptions: {
             map: {
-              inline: false
-            }
-          }
-        })
-      ]
+              inline: false,
+            },
+          },
+        }),
+      ],
     },
   };
 

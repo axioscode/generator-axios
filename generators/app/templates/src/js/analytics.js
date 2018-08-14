@@ -3,9 +3,9 @@ const PRODUCTION = process.env.ENV === "production";
 let AXIOS_VISUALS_GOOGLE_ANALYTICS_ID;
 
 if (PRODUCTION) {
-  AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = 'UA-87586659-4';
+  AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = "UA-87586659-4";
 } else {
-  AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = 'UA-87586659-3';
+  AXIOS_VISUALS_GOOGLE_ANALYTICS_ID = "UA-87586659-3";
 }
 
 // Heavily inspired by our friends at NPR
@@ -13,29 +13,41 @@ if (PRODUCTION) {
 const ga = window.ga;
 
 const embedGa = () => {
-  (function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
-      (i[r].q = i[r].q || []).push(arguments);
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-      m = s.getElementsByTagName(o)[0];
+  (function(i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    (i[r] =
+      i[r] ||
+      function() {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date());
+    (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
     a.async = 1;
     a.src = g;
     m.parentNode.insertBefore(a, m);
-  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  })(
+    window,
+    document,
+    "script",
+    "//www.google-analytics.com/analytics.js",
+    "ga"
+  );
 };
 
 const setupVisualsAnalytics = () => {
-  ga('create', AXIOS_VISUALS_GOOGLE_ANALYTICS_ID, 'auto');
+  ga("create", AXIOS_VISUALS_GOOGLE_ANALYTICS_ID, "auto");
 
   // By default Google tracks the query string, we want to ignore it.
-  var location = window.location.protocol + '//' + window.location.hostname + window.location.pathname;
-  ga('set', 'location', location);
-  ga('set', 'page', window.location.pathname);
+  let location =
+    window.location.protocol +
+    "//" +
+    window.location.hostname +
+    window.location.pathname;
+  ga("set", "location", location);
+  ga("set", "page", window.location.pathname);
 
   // Track Pageview
-  ga('send', 'pageview');
+  ga("send", "pageview");
 };
 
 export function setupVisualsGoogleAnalytics() {
@@ -44,20 +56,20 @@ export function setupVisualsGoogleAnalytics() {
 }
 
 export function trackEvent(action, label, value) {
-  var eventData = {
-    'hitType': 'event',
-    'eventCategory': AXIOS_VISUALS_CATEGORY,
-    'eventAction': action
+  let eventData = {
+    hitType: "event",
+    eventCategory: AXIOS_VISUALS_CATEGORY,
+    eventAction: action,
   };
 
   // an optional string
   if (label) {
-    eventData['eventLabel'] = label
+    eventData["eventLabel"] = label;
   }
   // an optional integer
   if (value) {
-    eventData['eventValue'] = value
+    eventData["eventValue"] = value;
   }
 
-  ga('send', eventData);
+  ga("send", eventData);
 }

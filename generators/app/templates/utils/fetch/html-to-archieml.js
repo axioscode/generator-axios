@@ -1,10 +1,10 @@
-'use strict'
+"use strict";
 
-const url = require('url')
+const url = require("url");
 
-const Entities = require('html-entities').AllHtmlEntities
-const htmlparser = require('htmlparser2')
-const archieml = require('archieml')
+const Entities = require("html-entities").AllHtmlEntities;
+const htmlparser = require("htmlparser2");
+const archieml = require("archieml");
 
 /**
  * Consumes raw Google Docs HTML and converts it to an ArchieML object.
@@ -13,76 +13,78 @@ const archieml = require('archieml')
  * @param  {String} rawHtml
  * @param  {Function} callback
  */
-function htmlToArchieML (rawHtml, callback) {
-  const handler = new htmlparser.DomHandler(function (err, dom) {
-    if (err) callback(err)
+function htmlToArchieML(rawHtml, callback) {
+  const handler = new htmlparser.DomHandler(function(err, dom) {
+    if (err) callback(err);
 
-    const body = dom[0].children[1]
+    const body = dom[0].children[1];
 
     const tagHandlers = {
-      base: function (tag) {
-        let str = ''
+      base: function(tag) {
+        let str = "";
 
-        tag.children.forEach(function (child) {
+        tag.children.forEach(function(child) {
           if (tagHandlers[child.name || child.type]) {
-            const func = tagHandlers[child.name || child.type]
-            str += func(child)
+            const func = tagHandlers[child.name || child.type];
+            str += func(child);
           }
-        })
+        });
 
-        return str
+        return str;
       },
-      text: function (textTag) {
-        return textTag.data
+      text: function(textTag) {
+        return textTag.data;
       },
-      span: function (spanTag) {
-        return tagHandlers.base(spanTag)
+      span: function(spanTag) {
+        return tagHandlers.base(spanTag);
       },
-      p: function (pTag) {
-        return tagHandlers.base(pTag) + '\n'
+      p: function(pTag) {
+        return tagHandlers.base(pTag) + "\n";
       },
-      a: function (aTag) {
-        let href = aTag.attribs.href
+      a: function(aTag) {
+        let href = aTag.attribs.href;
 
-        if (href === undefined) return ''
+        if (href === undefined) return "";
 
-        if (aTag.attribs.href && url.parse(aTag.attribs.href, true).query && url.parse(aTag.attribs.href, true).query.q) {
-          href = url.parse(aTag.attribs.href, true).query.q
+        if (
+          aTag.attribs.href &&
+          url.parse(aTag.attribs.href, true).query &&
+          url.parse(aTag.attribs.href, true).query.q
+        ) {
+          href = url.parse(aTag.attribs.href, true).query.q;
         }
 
-        let str = '<a href="' + href + '">'
-        str += tagHandlers.base(aTag)
-        str += '</a>'
+        let str = '<a href="' + href + '">';
+        str += tagHandlers.base(aTag);
+        str += "</a>";
 
-        return str
+        return str;
       },
-      li: function (tag) {
-        return '* ' + tagHandlers.base(tag) + '\n'
-      }
-    }
+      li: function(tag) {
+        return "* " + tagHandlers.base(tag) + "\n";
+      },
+    };
+    ["ul", "ol"].forEach(function(tag) {
+      tagHandlers[tag] = tagHandlers.span;
+    });
+    ["h1", "h2", "h3", "h4", "h5", "h6"].forEach(function(tag) {
+      tagHandlers[tag] = tagHandlers.p;
+    });
 
-    ;['ul', 'ol'].forEach(function (tag) {
-      tagHandlers[tag] = tagHandlers.span
-    })
+    let parsedText = tagHandlers.base(body);
+    let entities = new Entities();
+    parsedText = entities.decode(parsedText);
 
-    ;['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].forEach(function (tag) {
-      tagHandlers[tag] = tagHandlers.p
-    })
+    parsedText = parsedText.replace(/<[^<>]*>/g, function(match) {
+      return match.replace(/”|“/g, '"').replace(/‘|’/g, "'");
+    });
 
-    var parsedText = tagHandlers.base(body)
-    var entities = new Entities()
-    parsedText = entities.decode(parsedText)
+    callback(null, archieml.load(parsedText));
+  });
 
-    parsedText = parsedText.replace(/<[^<>]*>/g, function (match) {
-      return match.replace(/”|“/g, '"').replace(/‘|’/g, '\'')
-    })
-
-    callback(null, archieml.load(parsedText))
-  })
-
-  var parser = new htmlparser.Parser(handler)
-  parser.write(rawHtml)
-  parser.done()
+  let parser = new htmlparser.Parser(handler);
+  parser.write(rawHtml);
+  parser.done();
 }
 
-module.exports = htmlToArchieML
+module.exports = htmlToArchieML;

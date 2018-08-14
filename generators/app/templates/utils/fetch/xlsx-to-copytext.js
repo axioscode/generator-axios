@@ -1,19 +1,19 @@
-'use strict'
+"use strict";
 
-const copytext = require('copytext')
+const copytext = require("copytext");
 
-function xlsxToCopyText (xlsx, opts, callback) {
-  let parsed, err
+function xlsxToCopyText(xlsx, opts, callback) {
+  let parsed, err;
 
   try {
-    parsed = copytext.process(xlsx, opts)
-    err = null
+    parsed = copytext.process(xlsx, opts);
+    err = null;
   } catch (e) {
-    parsed = null
-    err = e
+    parsed = null;
+    err = e;
   }
 
-  callback(err, parsed)
+  callback(err, parsed);
 }
 
-module.exports = xlsxToCopyText
+module.exports = xlsxToCopyText;

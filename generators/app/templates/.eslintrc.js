@@ -1,39 +1,33 @@
 module.exports = {
-  "extends": "eslint:recommended",
+  "env": {
+    "browser": true,
+    "es6": true,
+  },
+  "extends": "plugin:prettier/recommended",
+  "parser": "babel-eslint",
   "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 6,
     "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    }
+      "experimentalObjectRestSpread": true,
+    },
+    ecmaVersion: 8,
+    "sourceType": "module"
   },
   "rules": {
-    "no-console": "off",
-    "indent": [
-      "warn",
-      2,
-      { SwitchCase: 1 }
-    ],
-    "semi": [
-      "warn",
-      "always",
-      {
-        "omitLastInOneLineBlock": true
-      }
-    ],
-    "linebreak-style": [
+    "prettier/prettier": [
       "error",
-      "unix"
+      {
+        "trailingComma": "es5"
+      },
     ],
-    "no-unused-vars": ["error"],
+    "one-var": ["error", {
+      "initialized": "never"
+    }],
+    "no-var": "error",
   },
   "globals": {
     "module": true,
-    "process": true
-  },
-  "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
+    "process": true,
+    "__BROWSER__": true,
+    "global": true,
   }
-}
+};

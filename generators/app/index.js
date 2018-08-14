@@ -1,5 +1,5 @@
-var slugify = require('slugify');
-var Generator = require('yeoman-generator');
+let slugify = require("slugify");
+let Generator = require("yeoman-generator");
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -7,70 +7,57 @@ module.exports = class extends Generator {
   }
 
   initializing() {
-    this.pkg = require('../../package.json');
-    this.projectConfig = require('./templates/project.config.json');
+    this.pkg = require("../../package.json");
+    this.projectConfig = require("./templates/project.config.json");
   }
 
   prompting() {
-    var done = this.async();
-    return this.prompt([{
-      type: 'confirm',
-      name: "gitInit",
-      message: "Initialize empty git repository?",
-      default: true
-    }]).then((answers, err) => {
+    let done = this.async();
+    return this.prompt([
+      {
+        type: "confirm",
+        name: "gitInit",
+        message: "Initialize empty git repository?",
+        default: true,
+      },
+    ]).then((answers, err) => {
       done(err);
       this.meta = {
         gitInit: answers.gitInit,
-        googleAnalyticsCategory: slugify(this.appname) + '-v1.0',
+        googleAnalyticsCategory: slugify(this.appname) + "-v1.0",
         isFullbleed: this.projectConfig.isFullbleed,
         name: this.appname,
-        s3bucket: 'graphics.axios.com',
+        s3bucket: "graphics.axios.com",
         s3folder: slugify(this.appname),
         slug: slugify(this.appname),
         appleFallback: `fallbacks/${slugify(this.appname)}-apple.png`,
-        newsletterFallback: `fallbacks/${slugify(this.appname)}-fallback.png`
+        newsletterFallback: `fallbacks/${slugify(this.appname)}-fallback.png`,
       };
     });
   }
 
   configuring() {
     // Copy all the dotfiles.
-    this.fs.copy(
-      this.templatePath("**/.*"),
-      this.destinationRoot()
-    );
+    this.fs.copy(this.templatePath("**/.*"), this.destinationRoot());
 
     // Copy all the normal files.
-    this.fs.copy(
-      this.templatePath("**/*"),
-      this.destinationRoot()
-    );
+    this.fs.copy(this.templatePath("**/*"), this.destinationRoot());
 
     // Copy over templated files
     // webpack
-    this.fs.copyTpl(
-      this.templatePath("**/*.js"),
-      this.destinationRoot(), {
-        meta: this.meta
-      }
-    );
+    this.fs.copyTpl(this.templatePath("**/*.js"), this.destinationRoot(), {
+      meta: this.meta,
+    });
 
     // project.config.json
-    this.fs.copyTpl(
-      this.templatePath("**/*.json"),
-      this.destinationRoot(), {
-        meta: this.meta
-      }
-    );
+    this.fs.copyTpl(this.templatePath("**/*.json"), this.destinationRoot(), {
+      meta: this.meta,
+    });
 
     // readme
-    this.fs.copyTpl(
-      this.templatePath("**/*.md"),
-      this.destinationRoot(), {
-        meta: this.meta
-      }
-    );
+    this.fs.copyTpl(this.templatePath("**/*.md"), this.destinationRoot(), {
+      meta: this.meta,
+    });
   }
 
   install() {
@@ -78,7 +65,7 @@ module.exports = class extends Generator {
   }
 
   end() {
-    var endMessage = `
+    let endMessage = `
   Nice! You're ready to start making an Axios interactive!
   Start by writing code into files in the src/ subdirectory
 
@@ -95,7 +82,7 @@ module.exports = class extends Generator {
     > gulp publish
     `;
     if (this.meta.gitInit) {
-      this.spawnCommand('git', ['init']);
+      this.spawnCommand("git", ["init"]);
     }
     this.log(endMessage);
   }

@@ -19,11 +19,11 @@ export default function setup() {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
 
-  (function () {
+  (function() {
     const throttle = (type, name, obj) => {
       obj = obj || window;
-      var running = false;
-      var func = function () {
+      let running = false;
+      let func = function() {
         if (running) {
           return;
         }
@@ -36,6 +36,6 @@ export default function setup() {
       obj.addEventListener(type, func);
     };
 
-    throttle('resize', 'optimizedResize');
+    throttle("resize", "optimizedResize");
   })();
 }
