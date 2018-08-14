@@ -38,7 +38,7 @@ pipeline {
     }
 
     stage ("Test") {
-      agent { docker "node:8.5-alpine" }
+      agent { docker "node:8.11-alpine" }
       steps {
         sh "echo 'here is where we would run yo axios (or something?)'"
       }
