@@ -80,7 +80,7 @@ module.exports = class extends Generator {
   end() {
     var endMessage = `
   Nice! You're ready to start making an Axios interactive!
-  Start by writing code into files in the src/ director
+  Start by writing code into files in the src/ subdirectory
 
   1. Preview it locally on browsers and devices to make sure it looks ok:
 
