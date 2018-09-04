@@ -54,7 +54,7 @@ $ aws configure
 AWS Access Key ID [None]: [PUT YOUR ACCESS_KEY HERE]
 AWS Secret Access Key [None]: [PUT YOUR SECRET_ACCESS_KEY HERE]
 Default region name [None]: us-east-1
-Default output format [None]: text
+Default output format [None]: json
 ```
 
 ## Step 2. Building an Interactive Graphic
