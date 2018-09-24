@@ -4,6 +4,11 @@ import "core-js/fn/object/entries";
 import "core-js/fn/object/values";
 import "raf/polyfill";
 
+import {
+  setupVisualsGoogleAnalytics
+} from "./analytics";
+setupVisualsGoogleAnalytics();
+
 require.context("../fallbacks");
 require.context("../img");
 
@@ -19,11 +24,11 @@ export default function setup() {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
 
-  (function() {
+  (function () {
     const throttle = (type, name, obj) => {
       obj = obj || window;
       let running = false;
-      let func = function() {
+      let func = function () {
         if (running) {
           return;
         }
