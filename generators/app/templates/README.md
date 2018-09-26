@@ -80,6 +80,12 @@ The generator comes with a file in `src/js/setup.js` which imports polyfills for
 
 If you need to add an additional polyfills, visit the [core-js](https://github.com/zloirock/core-js) for a list of features you can use and polyfill in your project.
 
+## Examples
+
+* `dynamicImport.js`
+  * What: Import a data file after a browser event, like click or hover
+  * Why: Interactives with lots of data can wait to import data until a user requests it
+
 ## Utils
 
 ### Google Docs
