@@ -3,6 +3,7 @@
  * @param  {number} n
  * @param  {number} width - Number of places to pad
  * @param  {number|string} z - Padding char, defaults to 0
+ * @return {string} - A zero-padded string
  */
 function zeroPad(n, width, z) {
   z = z || '0';
