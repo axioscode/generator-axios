@@ -80,6 +80,10 @@ The generator comes with a file in `src/js/setup.js` which imports polyfills for
 
 If you need to add an additional polyfills, visit the [core-js](https://github.com/zloirock/core-js) for a list of features you can use and polyfill in your project.
 
+## Examples
+
+Use this folder for useful JS and webpack examples.
+
 ## Utils
 
 ### Google Docs
