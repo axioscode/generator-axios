@@ -2,9 +2,8 @@
  * An asynchronous Javascript function that dynamically imports data
  * This is a newer version of Promises and callbacks
  * Why it matters: escape promise/callback hell by returning your values asynchronously
- * 
  * @param  {string} id
- * @returns {object} json
+ * @returns {Object} json
  */
 async function dynamicImport(id) {
   var json = await import("../data/" + id + ".json");

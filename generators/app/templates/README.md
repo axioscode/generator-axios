@@ -82,9 +82,7 @@ If you need to add an additional polyfills, visit the [core-js](https://github.c
 
 ## Examples
 
-* `dynamicImport.js`
-  * What: Import a data file after a browser event, like click or hover
-  * Why: Interactives with lots of data can wait to import data until a user requests it
+Use this folder for useful JS and webpack examples.
 
 ## Utils
 

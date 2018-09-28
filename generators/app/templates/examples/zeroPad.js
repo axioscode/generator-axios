@@ -1,5 +1,9 @@
-// Add zero padding (or another character)
-// number, places, character(defaultes to `0`)
+/**
+ * Add zero padding (or another character)
+ * @param  {number} n
+ * @param  {number} width - Number of places to pad
+ * @param  {number|string} z - Padding char, defaults to 0
+ */
 function zeroPad(n, width, z) {
   z = z || '0';
   n = n + '';
