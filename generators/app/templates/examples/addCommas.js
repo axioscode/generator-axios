@@ -1,7 +1,7 @@
 /**
  * Add commas to a number and make it a string
  * @param  {number} val
- * @returns {stinrg} val
+ * @returns {string} val
  */
 function addCommas(val) {
   while (/(\d+)(\d{3})/.test(val.toString())) {
