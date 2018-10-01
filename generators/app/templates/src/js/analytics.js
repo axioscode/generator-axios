@@ -1,4 +1,4 @@
-const AXIOS_VISUALS_CATEGORY = process.env.NAME;
+const AXIOS_VISUALS_CATEGORY = `${process.env.SLUG}`;
 const PRODUCTION = process.env.ENV === "production";
 let AXIOS_VISUALS_GOOGLE_ANALYTICS_ID;
 
@@ -10,7 +10,6 @@ if (PRODUCTION) {
 
 // Heavily inspired by our friends at NPR
 // https://github.com/nprapps/anno-docs/blob/a3bae37a467217a4e446861a57df7dd49f7570f6/www/js/analytics.js
-const ga = window.ga;
 
 const embedGa = () => {
   (function (i, s, o, g, r, a, m) {
@@ -35,6 +34,7 @@ const embedGa = () => {
 };
 
 const setupVisualsAnalytics = () => {
+  const ga = window.ga;
   ga("create", AXIOS_VISUALS_GOOGLE_ANALYTICS_ID, "auto");
 
   // By default Google tracks the query string, we want to ignore it.
