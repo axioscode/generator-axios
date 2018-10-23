@@ -2,6 +2,7 @@ import "core-js/es6/promise";
 import "core-js/fn/object/assign";
 import "core-js/fn/object/entries";
 import "core-js/fn/object/values";
+import "core-js/fn/array/includes";
 import "raf/polyfill";
 
 import {
