@@ -108,7 +108,8 @@ gulp.task(
         timestamp.date
       } ${timestamp.hour}:${timestamp.min}:${timestamp.sec}"`,
       "git push",
-    ], {
+    ],
+    {
       ignoreErrors: true,
     }
   )

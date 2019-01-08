@@ -9,14 +9,14 @@
         ]
       },
       "useBuiltIns": true,
-      "modules": false,
-      "exclude": [
-        "transform-regenerator"
-      ]
+      "modules": false
     }]
   ],
   "plugins": [
+    "syntax-dynamic-import",
     "transform-object-rest-spread",
-    "transform-class-properties"
+    "transform-class-properties",
+    "transform-runtime",
+    "transform-async-to-generator"
   ]
 }

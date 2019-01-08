@@ -3,7 +3,6 @@ setup();
 
 import pym from "pym.js";
 import makeChart from "./chart-template";
-// import { setupVisualsGoogleAnalytics, trackEvent } from "./analytics";
 
 export default function main() {
   const theChart = new makeChart({

@@ -2,8 +2,12 @@
   "name": "generator-axios",
   "version": "2.0.0",
   "description": "A static site generator for d3 graphics",
+  "main": "generators/index.js",
   "scripts": {
-    "setup": "npm install -g yo gulp-cli && npm install && npm link"
+    "pretest": "eslint .",
+    "setup": "npm install -g yo gulp-cli && npm install && npm link",
+    "test": "NODE_ENV=test jest",
+    "test:watch": "NODE_ENV=test jest --watchAll"
   },
   "repository": {
     "type": "git",
@@ -14,7 +18,9 @@
   ],
   "keywords": [
     "yeoman-generator",
-    "axios"
+    "axios",
+    "d3",
+    "webpack"
   ],
   "author": "Alex Duner <duner@axios.com>, Gerald Rich <gerald@axios.com>",
   "license": "Apache-2.0",
@@ -24,8 +30,41 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",
+    "eslint": "^5.12.0",
+    "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^2.6.2",
+    "jest": "^23.6.0",
+    "jest-junit": "^5.2.0",
+    "lint-staged": "^8.1.0",
     "prettier": "^1.14.2",
-    "stylelint-config-standard": "^18.2.0"
+    "stylelint-config-standard": "^18.2.0",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-test": "^1.9.1"
+  },
+  "jest": {
+    "bail": true,
+    "verbose": true,
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "<rootDir>/generators/",
+      "<rootDir>/node_modules/"
+    ],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ]
+  },
+  "jest-junit": {
+    "output": "./reports/junit.xml"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

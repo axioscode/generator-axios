@@ -1,4 +1,5 @@
-# generator-axios
+# generator-axios [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url]
+
 Yeoman generator to make developing graphics at Axios simpler and faster.
 
 ## Generator
@@ -34,6 +35,12 @@ function av-viz() {
 `npm run setup`
 
 This will
-* Install global dependencies: `yo`, `yeoman-generator`, `gulp-cli`
-* Install local dependencies
-* Link `generators/app/` to `yo`
+
+- Install global dependencies: `yo`, `yeoman-generator`, `gulp-cli`
+- Install local dependencies
+- Link `generators/app/` to `yo`
+
+[npm-image]: https://badge.fury.io/js/generator-axios-ssr.svg
+[npm-url]: https://npmjs.org/package/generator-axios-ssr
+[daviddm-image]: https://david-dm.org/axioscode/generator-axios-ssr.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/axioscode/generator-axios-ssr
