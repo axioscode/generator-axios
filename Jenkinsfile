@@ -60,7 +60,11 @@ pipeline {
         }
       }
       steps {
-        sh "ls -la ./node_modules/.bin"
+        sh "yarn global add yo"
+        sh "yarn link"
+        sh "mkdir test-project && cd test-project"
+        sh "yo axios"
+        sh "y"
         sh "yarn webpack"
       }
     }
@@ -68,7 +72,7 @@ pipeline {
 
   post {
     always {
-      dir ("project-name") { deleteDir() }
+      dir ("test-project") { deleteDir() }
 
       logBuildMetrics()
     }
