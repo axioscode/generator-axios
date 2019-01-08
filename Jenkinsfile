@@ -60,13 +60,10 @@ pipeline {
         }
       }
       steps {
-        sh "export PATH=\"$PATH:$(yarn global bin)\""
         sh "yarn global add yo"
         sh "yarn link"
         sh "mkdir test-project && cd test-project"
-        sh "yo axios"
-        sh "y"
-        sh "yarn webpack -p"
+        sh "yarn bin"
       }
     }
   }
