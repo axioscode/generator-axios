@@ -31,6 +31,7 @@ pipeline {
         docker {
           image NODE_IMAGE
           args "-v /ecs/jenkins/yarn-cache:/yarn-cache -v /ecs/jenkins/yarn-mirror:/yarn-mirror"
+          reuseNode true
         }
       }
       steps {
@@ -40,7 +41,12 @@ pipeline {
     }
 
     stage ("Test") {
-      agent { docker NODE_IMAGE }
+      agent {
+        docker {
+          image NODE_IMAGE
+          reuseNode true
+        }
+      }
       steps {
         sh "yarn test"
       }
