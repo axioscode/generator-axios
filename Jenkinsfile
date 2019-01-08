@@ -36,7 +36,7 @@ pipeline {
       }
       steps {
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
-        sh "yarn install --prod=false --cache-folder /yarn-cache"
+        sh "yarn install --prod=false --frozen-lockfile --cache-folder /yarn-cache"
       }
     }
 
@@ -53,9 +53,15 @@ pipeline {
     // }
 
     stage ("Build") {
+      agent {
+        docker {
+          image NODE_IMAGE
+          reuseNode true
+        }
+      }
       steps {
         sh "ls -la ./node_modules/.bin"
-        sh "./node_modules/.bin/webpack -p"
+        sh "yarn webpack"
       }
     }
   }
