@@ -30,12 +30,13 @@ pipeline {
       agent {
         docker {
           image NODE_IMAGE
-          args "-v /ecs/jenkins/yarn-cache:/yarn-cache -v /ecs/jenkins/yarn-mirror:/yarn-mirror"
+          args "-v /cache/yarn-cache:/yarn-cache -v /cache/yarn-mirror:/yarn-mirror"
           reuseNode true
         }
       }
       steps {
-        sh "yarn install --frozen-lockfile"
+        sh "yarn config set yarn-offline-mirror /yarn-mirror"
+        sh "yarn install --frozen-lockfile --cache-folder /yarn-cache"
       }
     }
 
