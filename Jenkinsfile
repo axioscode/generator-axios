@@ -36,7 +36,7 @@ pipeline {
       }
       steps {
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
-        sh "yarn install --prod=false --frozen-lockfile --cache-folder /yarn-cache"
+        sh "yarn install --prod=false --cache-folder /yarn-cache"
       }
     }
 
