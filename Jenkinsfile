@@ -51,6 +51,18 @@ pipeline {
         sh "yarn test"
       }
     }
+
+    stage ("Build") {
+      agent {
+        docker {
+          image NODE_IMAGE
+          reuseNode true
+        }
+      }
+      steps {
+        sh "./node_modules/.bin/webpack -p"
+      }
+    }
   }
 
   post {
