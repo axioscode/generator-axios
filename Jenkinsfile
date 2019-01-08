@@ -60,12 +60,12 @@ pipeline {
         }
       }
       steps {
-        sh "yarn global add yo"
+        sh "yarn add yo"
         sh "yarn link"
         sh "mkdir test-project && cd test-project"
-        sh "yo axios"
+        sh "yarn yo axios"
         sh "y"
-        sh "yarn webpack"
+        sh "yarn webpack -p"
       }
     }
   }
