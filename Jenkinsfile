@@ -53,12 +53,6 @@ pipeline {
     // }
 
     stage ("Build") {
-      agent {
-        docker {
-          image NODE_IMAGE
-          reuseNode true
-        }
-      }
       steps {
         sh "ls -la ./node_modules/.bin"
         sh "./node_modules/.bin/webpack -p"
