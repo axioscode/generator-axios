@@ -5,6 +5,8 @@
 // in addition to standard pipeline plugins
 @Library("jenkins-utils") _
 
+def NODE_IMAGE = "node:10.12-alpine"
+
 pipeline {
   agent { label "docker" }
 
@@ -27,7 +29,7 @@ pipeline {
     stage ("Install dependencies") {
       agent {
         docker {
-          image "node:8.11-alpine"
+          image NODE_IMAGE
           args "-v /ecs/jenkins/yarn-cache:/yarn-cache -v /ecs/jenkins/yarn-mirror:/yarn-mirror"
         }
       }
@@ -38,9 +40,9 @@ pipeline {
     }
 
     stage ("Test") {
-      agent { docker "node:8.11-alpine" }
+      agent { docker NODE_IMAGE }
       steps {
-        sh "echo 'here is where we would run yo axios (or something?)'"
+        sh "yarn test"
       }
     }
   }
