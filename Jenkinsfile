@@ -36,7 +36,7 @@ pipeline {
       }
       steps {
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
-        sh "yarn install --frozen-lockfile --cache-folder /yarn-cache"
+        sh "yarn install --prod=false --frozen-lockfile --cache-folder /yarn-cache"
       }
     }
 
@@ -60,7 +60,7 @@ pipeline {
         }
       }
       steps {
-        sh "ls -la node_modules/.bin"
+        sh "ls -la ./node_modules/.bin"
         sh "./node_modules/.bin/webpack -p"
       }
     }
