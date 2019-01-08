@@ -60,8 +60,8 @@ pipeline {
         }
       }
       steps {
-        sh "ls -la"
-        sh "node_modules/.bin/webpack -p"
+        sh "ls -la node_modules/.bin"
+        sh "./node_modules/.bin/webpack -p"
       }
     }
   }
