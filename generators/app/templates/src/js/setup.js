@@ -6,9 +6,7 @@ import "core-js/fn/array/includes";
 import "raf/polyfill";
 import "whatwg-fetch";
 
-import {
-  setupVisualsGoogleAnalytics
-} from "./analytics";
+import { setupVisualsGoogleAnalytics } from "./analytics";
 setupVisualsGoogleAnalytics();
 
 require.context("../fallbacks");
@@ -26,11 +24,11 @@ export default function setup() {
     NodeList.prototype.forEach = Array.prototype.forEach;
   }
 
-  (function () {
+  (function() {
     const throttle = (type, name, obj) => {
       obj = obj || window;
       let running = false;
-      let func = function () {
+      let func = function() {
         if (running) {
           return;
         }

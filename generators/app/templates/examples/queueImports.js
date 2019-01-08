@@ -8,10 +8,7 @@ import csvFile2 from "../data/csvFile2.csv";
  * @returns {Object[]} [data1, data2]
  */
 async function queueImports(csvFile1, csvFile2) {
-  let [data1, data2] = await Promise.all([
-    d3.csv(csvFile1),
-    d3.csv(csvFile2)
-  ]);
+  let [data1, data2] = await Promise.all([d3.csv(csvFile1), d3.csv(csvFile2)]);
 
   return [data1, data2];
 }

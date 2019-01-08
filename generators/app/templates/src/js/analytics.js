@@ -12,14 +12,14 @@ if (PRODUCTION) {
 // https://github.com/nprapps/anno-docs/blob/a3bae37a467217a4e446861a57df7dd49f7570f6/www/js/analytics.js
 
 const embedGa = () => {
-  (function (i, s, o, g, r, a, m) {
+  (function(i, s, o, g, r, a, m) {
     i["GoogleAnalyticsObject"] = r;
     (i[r] =
       i[r] ||
-      function () {
+      function() {
         (i[r].q = i[r].q || []).push(arguments);
       }),
-    (i[r].l = 1 * new Date());
+      (i[r].l = 1 * new Date());
     (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
     a.async = 1;
     a.src = g;

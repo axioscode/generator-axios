@@ -6,6 +6,6 @@
  * @returns {Object} json
  */
 async function dynamicImport(id) {
-  var json = await import("../data/" + id + ".json");
+  let json = await import("../data/" + id + ".json");
   return json;
 }

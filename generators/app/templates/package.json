@@ -1,4 +1,5 @@
 {
+  "name": "<%= meta.name %>",
   "version": "0.0.1",
   "main": "src/js/app.js",
   "license": "Apache-2.0",

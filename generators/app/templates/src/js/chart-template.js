@@ -1,13 +1,6 @@
-import {
-  axisBottom,
-  axisLeft
-} from "d3-axis";
-import {
-  scaleLinear
-} from "d3-scale";
-import {
-  select
-} from "d3-selection";
+import { axisBottom, axisLeft } from "d3-axis";
+import { scaleLinear } from "d3-scale";
+import { select } from "d3-selection";
 
 export default class makeChart {
   constructor(opts) {
