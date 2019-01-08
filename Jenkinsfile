@@ -64,9 +64,7 @@ pipeline {
         sh "yarn link"
         sh "mkdir test-project && cd test-project"
         sh "yarn yo axios"
-        sh "y"
-        sh "a"
-        sh "yarn webpack -p"
+        sh "ls -la"
       }
     }
   }
