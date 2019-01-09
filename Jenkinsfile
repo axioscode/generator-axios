@@ -41,7 +41,7 @@ pipeline {
       }
       steps {
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
-        sh "yarn install --prod=false --cache-folder /yarn-cache"
+        sh "yarn install --frozen-lockfile --prod=false --cache-folder /yarn-cache"
       }
     }
 
@@ -70,7 +70,7 @@ pipeline {
         // todo: don't overwrite/force Yeoman. try workspaces (maybe?)
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
         sh """
-          yarn global add yo
+          yarn global add yo lodash
           yarn link
           echo 'n' | NODE_ENV=test /home/node/.yarn/bin/yo axios --force
           yarn webpack -p
