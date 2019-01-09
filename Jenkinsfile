@@ -41,7 +41,7 @@ pipeline {
       }
       steps {
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
-        sh "yarn install --prod=false --cache-folder /yarn-cache"
+        sh "yarn install --frozen-lockfile --prod=false --cache-folder /yarn-cache"
       }
     }
 
@@ -53,13 +53,12 @@ pipeline {
         }
       }
       steps {
-        sh "yarn add lodash"
         parallel (
           "ESLint": {
             sh "yarn eslint . --format=junit --output-file=./reports/junit-eslint.xml"
           },
           "Jest": {
-            sh "NODE_ENV=test yarn jest"  // Set node_env to test so Babel will transpile ESM for us.
+            sh "NODE_ENV=test yarn jest -w 2"  // Set node_env to test so Babel will transpile ESM for us.
           }
         )
       }
