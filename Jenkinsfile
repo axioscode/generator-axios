@@ -67,7 +67,7 @@ pipeline {
       steps {
         // Run Yeoman, then see if its generated files build
         sh """
-          yarn global yo
+          yarn global add yo
           yarn link
           mkdir test-project && cd test-project
           echo 'n' | yarn yo axios --force
