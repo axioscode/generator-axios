@@ -5,7 +5,7 @@
 // in addition to standard pipeline plugins
 @Library("jenkins-utils") _
 
-def NODE_IMAGE = "node:10.15-alpine"
+def NODE_IMAGE = "node:10.12-alpine"
 
 pipeline {
   agent {
