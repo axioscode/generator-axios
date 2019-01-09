@@ -63,11 +63,8 @@ pipeline {
         sh """
           yarn add yo
           yarn link
-          mkdir test-project && cd test-project
-          yarn yo axios
-          n
-          a
-          ls -la
+          yes | yarn yo axios
+          yarn webpack -p
         """
       }
     }
