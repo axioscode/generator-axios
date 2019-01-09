@@ -16,7 +16,6 @@ pipeline {
   }
 
   environment {
-    PATH = "${PATH}:/home/node/.yarn/bin"
     NODE_ENV = "staging"
   }
 
@@ -73,8 +72,8 @@ pipeline {
         sh """
           yarn global add yo
           yarn link
-          mkdir tmp
-          cd tmp
+          mkdir test-project
+          cd test-project
           echo 'n' | NODE_ENV=test yarn global yo axios --force
           yarn webpack -p
         """
