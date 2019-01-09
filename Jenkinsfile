@@ -16,6 +16,7 @@ pipeline {
   }
 
   environment {
+    PATH = "${PATH}:/home/node/.yarn/bin"
     NODE_ENV = "staging"
   }
 
