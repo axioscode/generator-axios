@@ -4,7 +4,7 @@
   "description": "A static site generator for d3 graphics",
   "main": "generators/index.js",
   "scripts": {
-    "pretest": "eslint .",
+    "pretest": "yarn eslint .",
     "setup": "npm install -g yo gulp-cli && npm install && npm link",
     "test": "NODE_ENV=test jest",
     "test:watch": "NODE_ENV=test jest --watchAll"
