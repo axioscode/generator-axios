@@ -71,11 +71,11 @@ pipeline {
         // todo: don't overwrite/force Yeoman. try workspaces (maybe?)
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
         sh """
-          yarn global bin
           yarn global add yo
           yarn link
-          mkdir tmp && cd tmp
-          echo 'n' | NODE_ENV=test yo axios --force
+          mkdir tmp
+          cd tmp
+          echo 'n' | NODE_ENV=test yarn global yo axios --force
           yarn webpack -p
         """
       }
