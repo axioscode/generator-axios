@@ -58,7 +58,7 @@ pipeline {
             sh "yarn eslint . --format=junit --output-file=./reports/junit-eslint.xml"
           },
           "Jest": {
-            sh "yarn test -w 2"  // Set node_env to test so Babel will transpile ESM for us.
+            sh "NODE_ENV=test yarn jest -w 2"  // Set node_env to test so Babel will transpile ESM for us.
           }
         )
       }
