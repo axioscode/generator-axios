@@ -4,7 +4,6 @@
   "description": "A static site generator for d3 graphics",
   "main": "generators/index.js",
   "scripts": {
-    "pretest": "yarn eslint .",
     "setup": "npm install -g yo gulp-cli && npm install && npm link",
     "test": "NODE_ENV=test jest",
     "test:watch": "NODE_ENV=test jest --watchAll"
@@ -35,7 +34,6 @@
     "eslint-plugin-prettier": "^2.6.2",
     "jest": "^23.6.0",
     "jest-junit": "^5.2.0",
-    "lint-staged": "^8.1.0",
     "prettier": "^1.14.2",
     "stylelint-config-standard": "^18.2.0",
     "yeoman-assert": "^3.1.1",
@@ -56,15 +54,5 @@
   },
   "jest-junit": {
     "output": "./reports/junit.xml"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.json": [
-      "prettier --write",
-      "git add"
-    ]
   }
 }

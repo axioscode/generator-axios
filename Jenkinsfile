@@ -45,7 +45,7 @@ pipeline {
       }
     }
 
-    stage ("Test") {
+    stage ("Lint and Test") {
       agent {
         docker {
           image NODE_IMAGE
@@ -53,7 +53,14 @@ pipeline {
         }
       }
       steps {
-        sh "yarn test"
+        parallel (
+          "ESLint": {
+            sh "yarn eslint . --format=junit --output-file=./reports/junit-eslint.xml"
+          },
+          "Jest": {
+            sh "yarn test -w 2"  // Set node_env to test so Babel will transpile ESM for us.
+          }
+        )
       }
     }
 
