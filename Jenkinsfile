@@ -53,6 +53,7 @@ pipeline {
         }
       }
       steps {
+        sh "yarn add lodash"
         sh "NODE_ENV=test yarn jest -w 2"  // Set node_env to test so Babel will transpile ESM for us.
       }
     }
