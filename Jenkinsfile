@@ -82,7 +82,7 @@ pipeline {
   post {
     always {
       dir ("test-project") { deleteDir() }
-
+      cleanWs()
       logBuildMetrics()
     }
 
