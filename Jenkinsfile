@@ -41,7 +41,7 @@ pipeline {
       }
       steps {
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
-        sh "yarn install --prod=false --cache-folder /yarn-cache"
+        sh "yarn install --ignore-scripts --prod=false --cache-folder /yarn-cache"
       }
     }
 
@@ -67,7 +67,6 @@ pipeline {
       steps {
         // Run Yeoman, then see if its generated files build
         sh """
-          yarn add yo
           yarn link
           mkdir test-project && cd test-project
           echo 'n' | yarn yo axios --force
