@@ -16,7 +16,7 @@ pipeline {
   }
 
   environment {
-    PATH="$PATH:$(yarn global bin)"
+    PATH = "${PATH}:$(yarn global bin)"
     NODE_ENV = "staging"
   }
 
