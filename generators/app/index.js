@@ -61,13 +61,7 @@ module.exports = class extends Generator {
   }
 
   install() {
-    process.env.NODE_ENV === "test"
-      ? this.yarnInstall(null, {
-          prod: false,
-          "frozen-lockfile": true,
-          "cache-folder": "/yarn-cache",
-        })
-      : this.yarnInstall();
+    this.yarnInstall();
   }
 
   end() {

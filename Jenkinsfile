@@ -16,7 +16,6 @@ pipeline {
   }
 
   environment {
-    PATH = "${PATH}:$(yarn global bin)"
     NODE_ENV = "staging"
   }
 
@@ -71,7 +70,6 @@ pipeline {
         // todo: don't overwrite/force Yeoman. try workspaces (maybe?)
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
         sh """
-          yarn global add yo
           yarn link
           mkdir tmp && cd tmp
           echo 'n' | NODE_ENV=test yo axios --force
