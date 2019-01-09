@@ -5,7 +5,7 @@
 // in addition to standard pipeline plugins
 @Library("jenkins-utils") _
 
-def NODE_IMAGE = "node:10.12-alpine"
+def NODE_IMAGE = "node:10.15-alpine"
 
 pipeline {
   agent { label "docker" }
@@ -40,17 +40,17 @@ pipeline {
       }
     }
 
-    // stage ("Test") {
-    //   agent {
-    //     docker {
-    //       image NODE_IMAGE
-    //       reuseNode true
-    //     }
-    //   }
-    //   steps {
-    //     sh "yarn test"
-    //   }
-    // }
+    stage ("Test") {
+      agent {
+        docker {
+          image NODE_IMAGE
+          reuseNode true
+        }
+      }
+      steps {
+        sh "yarn test"
+      }
+    }
 
     stage ("Build") {
       agent {
@@ -64,7 +64,7 @@ pipeline {
         // todo: don't overwrite/force Yeoman. try workspaces (maybe?)
         sh """
           yarn link
-          echo 'n' | yarn yo axios --force
+          echo 'n' | NODE_ENV=test yarn yo axios --force
           yarn webpack -p
         """
       }
