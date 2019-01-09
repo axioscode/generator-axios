@@ -36,21 +36,21 @@ pipeline {
       }
       steps {
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
-        sh "yarn install --prod=false --frozen-lockfile --cache-folder /yarn-cache"
+        sh "yarn install --verbose --prod=false --frozen-lockfile --cache-folder /yarn-cache"
       }
     }
 
-    stage ("Test") {
-      agent {
-        docker {
-          image NODE_IMAGE
-          reuseNode true
-        }
-      }
-      steps {
-        sh "yarn test"
-      }
-    }
+    // stage ("Test") {
+    //   agent {
+    //     docker {
+    //       image NODE_IMAGE
+    //       reuseNode true
+    //     }
+    //   }
+    //   steps {
+    //     sh "yarn test"
+    //   }
+    // }
 
     stage ("Build") {
       agent {
