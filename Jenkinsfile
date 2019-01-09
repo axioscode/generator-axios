@@ -41,7 +41,7 @@ pipeline {
       }
       steps {
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
-        sh "yarn install --prod=false --frozen-lockfile --cache-folder /yarn-cache"
+        sh "yarn install --prod=false --cache-folder /yarn-cache"
       }
     }
 
@@ -72,8 +72,6 @@ pipeline {
         sh """
           yarn global add yo
           yarn link
-          mkdir test-project
-          cd test-project
           echo 'n' | NODE_ENV=test /home/node/.yarn/bin/yo axios --force
           yarn webpack -p
         """
