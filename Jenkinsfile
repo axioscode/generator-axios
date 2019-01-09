@@ -45,17 +45,17 @@ pipeline {
       }
     }
 
-    // stage ("Test") {
-    //   agent {
-    //     docker {
-    //       image NODE_IMAGE
-    //       reuseNode true
-    //     }
-    //   }
-    //   steps {
-    //     sh "yarn test"
-    //   }
-    // }
+    stage ("Test") {
+      agent {
+        docker {
+          image NODE_IMAGE
+          reuseNode true
+        }
+      }
+      steps {
+        sh "yarn test"
+      }
+    }
 
     stage ("Build") {
       agent {
