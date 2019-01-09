@@ -9,8 +9,10 @@ def NODE_IMAGE = "node:10.15-alpine"
 
 pipeline {
   agent {
-    label "docker"
-    customWorkspace "/scratch/${env.JOB_NAME}"
+    node {
+      label "docker"
+      customWorkspace "/scratch/${env.JOB_NAME}"
+    }
   }
 
   environment {
