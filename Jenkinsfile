@@ -74,7 +74,7 @@ pipeline {
           yarn link
           mkdir test-project
           cd test-project
-          echo 'n' | NODE_ENV=test yarn yo axios --force
+          echo 'n' | NODE_ENV=test /home/node/.yarn/bin/yo axios --force
           yarn webpack -p
         """
       }
