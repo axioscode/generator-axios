@@ -66,12 +66,11 @@ pipeline {
       }
       steps {
         // Run Yeoman, then see if its generated files build
-        // todo: don't overwrite/force Yeoman
         sh """
           yarn global add yo
           yarn link
           mkdir test-project && cd test-project
-          echo 'n' | NODE_ENV=test /home/node/.yarn/bin/yo axios --force
+          echo 'n' | /home/node/.yarn/bin/yo axios --force
           yarn webpack -p
         """
       }
