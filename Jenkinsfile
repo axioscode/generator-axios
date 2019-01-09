@@ -41,7 +41,7 @@ pipeline {
       }
       steps {
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
-        sh "yarn install --verbose --ignore-scripts --prod=false --frozen-lockfile --cache-folder /yarn-cache"
+        sh "yarn install --verbose --prod=false --frozen-lockfile --cache-folder /yarn-cache"
       }
     }
 
@@ -68,6 +68,7 @@ pipeline {
         // Run Yeoman, then see if its generated files build
         // todo: don't overwrite/force Yeoman. try workspaces (maybe?)
         sh """
+          yarn add yo --cache-folder /yarn-cache
           yarn link
           echo 'n' | NODE_ENV=test yarn yo axios --force
           yarn webpack -p
