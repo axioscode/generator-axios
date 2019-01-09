@@ -41,7 +41,7 @@ pipeline {
       }
       steps {
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
-        sh "yarn install --frozen-lockfile --prod=false --cache-folder /yarn-cache"
+        sh "yarn install --prod=false --cache-folder /yarn-cache"
       }
     }
 
@@ -61,17 +61,16 @@ pipeline {
       agent {
         docker {
           image NODE_IMAGE
-          args "-v /cache/yarn-cache:/yarn-cache -v /cache/yarn-mirror:/yarn-mirror"
           reuseNode true
         }
       }
       steps {
         // Run Yeoman, then see if its generated files build
-        // todo: don't overwrite/force Yeoman. try workspaces (maybe?)
-        sh "yarn config set yarn-offline-mirror /yarn-mirror"
+        // todo: don't overwrite/force Yeoman
         sh """
-          yarn global add yo lodash
+          yarn global add yo
           yarn link
+          mkdir test-project && cd test-project
           echo 'n' | NODE_ENV=test /home/node/.yarn/bin/yo axios --force
           yarn webpack -p
         """
