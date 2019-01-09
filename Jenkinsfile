@@ -60,11 +60,15 @@ pipeline {
         }
       }
       steps {
-        sh "yarn add yo"
-        sh "yarn link"
-        sh "mkdir test-project && cd test-project"
-        sh "yarn yo axios"
-        sh "ls -la"
+        sh """
+          yarn add yo
+          yarn link
+          mkdir test-project && cd test-project
+          yarn yo axios
+          n
+          a
+          ls -la
+        """
       }
     }
   }
