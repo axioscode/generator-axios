@@ -5,7 +5,7 @@
 // in addition to standard pipeline plugins
 @Library("jenkins-utils") _
 
-def NODE_IMAGE = "node:10.12-alpine"
+def NODE_IMAGE = "node:10.15-alpine"
 
 pipeline {
   agent {
@@ -70,6 +70,8 @@ pipeline {
         // todo: don't overwrite/force Yeoman. try workspaces (maybe?)
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
         sh """
+          yarn global bin
+          yarn global add yo
           yarn link
           mkdir tmp && cd tmp
           echo 'n' | NODE_ENV=test yo axios --force
