@@ -45,7 +45,7 @@ pipeline {
       }
     }
 
-    stage ("Lint and Test") {
+    stage ("Test") {
       agent {
         docker {
           image NODE_IMAGE
@@ -53,14 +53,9 @@ pipeline {
         }
       }
       steps {
-        parallel (
-          "ESLint": {
-            sh "yarn eslint . --format=junit --output-file=./reports/junit-eslint.xml"
-          },
-          "Jest": {
-            sh "NODE_ENV=test yarn jest -w 2"  // Set node_env to test so Babel will transpile ESM for us.
-          }
-        )
+          sh "yarn add lodash"
+          sh "NODE_ENV=test yarn jest -w 2"  // Set node_env to test so Babel will transpile ESM for us.
+        }
       }
     }
 
