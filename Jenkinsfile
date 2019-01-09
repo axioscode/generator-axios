@@ -70,7 +70,7 @@ pipeline {
         // todo: don't overwrite/force Yeoman. try workspaces (maybe?)
         sh "yarn config set yarn-offline-mirror /yarn-mirror"
         sh """
-          yarn add yo --cache-folder /yarn-cache --ignore-scripts
+          yarn add yo yeoman-doctor --cache-folder /yarn-cache
           yarn link
           echo 'n' | NODE_ENV=test yarn yo axios --force
           yarn webpack -p
