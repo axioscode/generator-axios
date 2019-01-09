@@ -39,7 +39,8 @@
     "prettier": "^1.14.2",
     "stylelint-config-standard": "^18.2.0",
     "yeoman-assert": "^3.1.1",
-    "yeoman-test": "^1.9.1"
+    "yeoman-test": "^1.9.1",
+    "yo": "^2.0.5"
   },
   "jest": {
     "bail": true,

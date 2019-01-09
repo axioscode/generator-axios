@@ -60,8 +60,9 @@ pipeline {
         }
       }
       steps {
+        // Run Yeoman, then see if its generated files build
+        // todo: don't overwrite/force Yeoman. try workspaces (maybe?)
         sh """
-          yarn add yo
           yarn link
           echo 'n' | yarn yo axios --force
           yarn webpack -p
