@@ -5,7 +5,7 @@
 // in addition to standard pipeline plugins
 @Library("jenkins-utils") _
 
-def NODE_IMAGE = "node:10.12-alpine"
+def NODE_IMAGE = "node:10.15-alpine"
 
 pipeline {
   agent {
@@ -53,9 +53,7 @@ pipeline {
         }
       }
       steps {
-          sh "yarn add lodash"
-          sh "NODE_ENV=test yarn jest -w 2"  // Set node_env to test so Babel will transpile ESM for us.
-        }
+        sh "NODE_ENV=test yarn jest -w 2"  // Set node_env to test so Babel will transpile ESM for us.
       }
     }
 
