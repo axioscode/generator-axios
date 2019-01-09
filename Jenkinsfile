@@ -63,7 +63,7 @@ pipeline {
         sh """
           yarn add yo
           yarn link
-          yes | yarn yo axios
+          echo 'n' | yarn yo axios --force
           yarn webpack -p
         """
       }
