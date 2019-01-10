@@ -12,7 +12,7 @@ describe("generator-axios unit tests", () => {
 
   it("copies config files", () => {
     assert.file([
-      ".babelrc",
+      "babel.config.js",
       "gulpfile.js",
       "project.config.json",
       "package.json",
