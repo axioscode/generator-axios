@@ -31,6 +31,15 @@ pipeline {
       }
     }
 
+    stage("Prep Greenkeeper") {
+      when {
+        branch "greenkeeper/**"
+      }
+      steps {
+        greenkeeper("update")
+      }
+    }
+
     stage ("Install dependencies") {
       agent {
         docker {
@@ -75,6 +84,15 @@ pipeline {
           echo 'n' | yarn yo axios --force
           yarn webpack -p
         """
+      }
+    }
+
+    stage("Finish Greenkeeper") {
+      when {
+        branch "greenkeeper/**"
+      }
+      steps {
+        greenkeeper("upload")
       }
     }
   }
