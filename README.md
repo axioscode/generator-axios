@@ -1,5 +1,4 @@
-# generator-axios [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url]
-
+# generator-axios
 Yeoman generator to make developing graphics at Axios simpler and faster.
 
 ## Generator
