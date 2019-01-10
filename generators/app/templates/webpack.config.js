@@ -106,9 +106,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
               loader: "css-loader",
               options: {
                 sourceMap: true,
-                minimize: isProd,
                 localIdentName: "[name]__[local]--[hash:base64:5]",
-                url: !isProd,
                 importLoaders: 3,
               },
             },
