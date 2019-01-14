@@ -45,7 +45,7 @@ module.exports = class extends Generator {
     // Copy over templated files
     // webpack
     this.fs.copyTpl(
-      [this.templatePath("**/webpack.config.js"), "!**/node_modules"],
+      [this.templatePath("**/webpack.config.js"), "!**/node_modules/**"],
       this.destinationRoot(),
       {
         meta: this.meta,
@@ -54,7 +54,7 @@ module.exports = class extends Generator {
 
     // project.config.json
     this.fs.copyTpl(
-      [this.templatePath("**/project.config.json"), "!**/node_modules"],
+      [this.templatePath("**/project.config.json"), "!**/node_modules/**"],
       this.destinationRoot(),
       {
         meta: this.meta,
@@ -63,7 +63,7 @@ module.exports = class extends Generator {
 
     // readme
     this.fs.copyTpl(
-      [this.templatePath("**/README.md"), "!**/node_modules"],
+      [this.templatePath("**/README.md"), "!**/node_modules/**"],
       this.destinationRoot(),
       {
         meta: this.meta,
