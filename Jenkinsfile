@@ -109,7 +109,7 @@ pipeline {
         branch "greenkeeper/**"
       }
       steps {
-        sh "ls -la .git/info"
+        sh "ls -la .git"
         greenkeeper("upload")
       }
     }
