@@ -37,6 +37,7 @@ module.exports = class extends Generator {
   }
 
   configuring() {
+    if (this.fs.exists("node_modules")) this.fs.delete("node_modules");
     // Copy all the files.
     this.fs.copy(this.templatePath("**/*"), this.destinationRoot(), {
       globOptions: { dot: true },
@@ -44,17 +45,13 @@ module.exports = class extends Generator {
 
     // Copy over templated files
     // webpack
-    this.fs.copyTpl(
-      [this.templatePath("**/webpack.config.js"), "!**/node_modules/**"],
-      this.destinationRoot(),
-      {
-        meta: this.meta,
-      }
-    );
+    this.fs.copyTpl(this.templatePath("*.config.js"), this.destinationRoot(), {
+      meta: this.meta,
+    });
 
     // project.config.json
     this.fs.copyTpl(
-      [this.templatePath("**/project.config.json"), "!**/node_modules/**"],
+      this.templatePath("*.config.json"),
       this.destinationRoot(),
       {
         meta: this.meta,
@@ -62,13 +59,9 @@ module.exports = class extends Generator {
     );
 
     // readme
-    this.fs.copyTpl(
-      [this.templatePath("**/README.md"), "!**/node_modules/**"],
-      this.destinationRoot(),
-      {
-        meta: this.meta,
-      }
-    );
+    this.fs.copyTpl(this.templatePath("*.md"), this.destinationRoot(), {
+      meta: this.meta,
+    });
   }
 
   install() {

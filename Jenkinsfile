@@ -94,7 +94,6 @@ pipeline {
       steps {
         // Run Yeoman, then see if its generated files build
         sh """
-          rm -rf node_modules
           yarn global add yeoman-doctor
           yarn add yo
           yarn link
