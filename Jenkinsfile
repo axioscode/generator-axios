@@ -22,12 +22,7 @@ pipeline {
   stages {
     stage ("Setup environment") {
       steps {
-        // In a parameterized build pipeline, the ENVIRONMENT will be provided by a dropdown menu.
-        // In Git pipelines, set the ENVIRONMENT to staging by default.
         script {
-          if (!env.ENVIRONMENT) {
-            env.ENVIRONMENT = "staging"
-          }
           env.GK_LOCK_DEFAULT_BRANCH = "gk-origin/master"
         }
       }
