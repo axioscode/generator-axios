@@ -37,10 +37,9 @@ module.exports = class extends Generator {
   }
 
   configuring() {
-    if (this.fs.exists("node_modules")) this.fs.delete("node_modules");
     // Copy all the files.
     this.fs.copy(this.templatePath("**/*"), this.destinationRoot(), {
-      globOptions: { dot: true },
+      globOptions: { dot: true, ignore: ["node_modules"] },
     });
 
     // Copy over templated files
