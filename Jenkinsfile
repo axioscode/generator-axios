@@ -71,20 +71,7 @@ pipeline {
       }
     }
 
-    stage ("Test") {
-      agent {
-        docker {
-          image NODE_IMAGE
-          reuseNode true
-        }
-      }
-      steps {
-        sh "yarn add lodash"
-        sh "NODE_ENV=test yarn jest -w 2 -v"  // Set node_env to test so Babel will transpile ESM for us.
-      }
-    }
-
-    // stage ("Build") {
+    // stage ("Test") {
     //   agent {
     //     docker {
     //       image NODE_IMAGE
@@ -92,17 +79,30 @@ pipeline {
     //     }
     //   }
     //   steps {
-    //     // Run Yeoman, then see if its generated files build
-    //     sh """
-    //       yarn global add yeoman-doctor
-    //       yarn add yo
-    //       yarn link
-    //       mkdir test-project && cd test-project
-    //       echo 'n' | yarn yo axios --force
-    //       yarn webpack -p
-    //     """
+    //     sh "yarn add lodash"
+    //     sh "NODE_ENV=test yarn jest -w 2 -v"  // Set node_env to test so Babel will transpile ESM for us.
     //   }
     // }
+
+    stage ("Build") {
+      agent {
+        docker {
+          image NODE_IMAGE
+          reuseNode true
+        }
+      }
+      steps {
+        // Run Yeoman, then see if its generated files build
+        sh """
+          yarn global add yeoman-doctor
+          yarn add yo
+          yarn link
+          mkdir test-project && cd test-project
+          echo 'n' | yarn yo axios --force
+          yarn webpack -p
+        """
+      }
+    }
 
     stage("Finish Greenkeeper") {
       when {
