@@ -23,7 +23,16 @@ pipeline {
     stage ("Checkout code") {
       steps {
         script {
-          def scmVars = checkout(scm)
+          def scmVars = checkout([
+            $class: "GitSCM",
+            // In a parameterized build pipeline, the ref will be provided by the user.
+            // In Git pipelines, BRANCH_NAME is set in the environment.
+            branches: [[name: env.ref ?: env.BRANCH_NAME]],
+            userRemoteConfigs: [[
+              url: "git@github.com:axioscode/generator-axios.git",
+              credentialsId: "axios-machine-user"
+            ]]
+          ])
           env.GIT_COMMIT = scmVars.GIT_COMMIT
           env.GIT_BRANCH = scmVars.GIT_BRANCH
           env.GIT_URL = scmVars.GIT_URL
