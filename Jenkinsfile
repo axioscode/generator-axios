@@ -97,6 +97,7 @@ pipeline {
           yarn global add yeoman-doctor
           yarn add yo
           yarn link
+          rm -rf node_modules/ejs
           mkdir test-project && cd test-project
           echo 'n' | yarn yo axios --force
           yarn webpack -p
