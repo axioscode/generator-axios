@@ -100,7 +100,7 @@ pipeline {
         // Run Yeoman, then see if its generated files build
         sh """
           yarn global add yeoman-doctor
-          yarn yo
+          yarn add yo
           yarn link
           mkdir test-project && cd test-project
           echo 'n' | yarn yo axios --force
