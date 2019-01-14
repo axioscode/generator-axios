@@ -109,6 +109,7 @@ pipeline {
         branch "greenkeeper/**"
       }
       steps {
+        sh "git config --list"
         greenkeeper("upload")
       }
     }
