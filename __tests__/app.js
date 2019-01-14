@@ -12,10 +12,12 @@ describe("generator-axios unit tests", () => {
 
   it("copies config files", () => {
     assert.file([
+      ".eslintrc.js",
       "babel.config.js",
       "gulpfile.js",
-      "project.config.json",
       "package.json",
+      "project.config.json",
+      "README.md",
     ]);
   });
 });

@@ -22,12 +22,7 @@ pipeline {
   stages {
     stage ("Setup environment") {
       steps {
-        // In a parameterized build pipeline, the ENVIRONMENT will be provided by a dropdown menu.
-        // In Git pipelines, set the ENVIRONMENT to staging by default.
         script {
-          if (!env.ENVIRONMENT) {
-            env.ENVIRONMENT = "staging"
-          }
           env.GK_LOCK_DEFAULT_BRANCH = "gk-origin/master"
         }
       }
@@ -85,7 +80,7 @@ pipeline {
       }
       steps {
         sh "yarn add lodash"
-        sh "NODE_ENV=test yarn jest -w 2"  // Set node_env to test so Babel will transpile ESM for us.
+        sh "NODE_ENV=test yarn jest -w 2 -v"  // Set node_env to test so Babel will transpile ESM for us.
       }
     }
 
@@ -114,6 +109,8 @@ pipeline {
         branch "greenkeeper/**"
       }
       steps {
+        sh "git config user.email 'devs@axios.com'"
+        sh "git config user.name 'axios-machine-user'"
         greenkeeper("upload")
       }
     }
