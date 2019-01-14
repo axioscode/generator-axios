@@ -38,24 +38,31 @@ module.exports = class extends Generator {
 
   configuring() {
     // Copy all the dotfiles.
-    this.fs.copy(this.templatePath("**/.*"), this.destinationRoot());
-
-    // Copy all the normal files.
-    this.fs.copy(this.templatePath("**/*"), this.destinationRoot());
+    this.fs.copy(this.templatePath("**/*"), this.destinationRoot(), {
+      globOptions: { dot: true },
+    });
 
     // Copy over templated files
     // webpack
-    this.fs.copyTpl(this.templatePath("**/*.js"), this.destinationRoot(), {
-      meta: this.meta,
-    });
+    this.fs.copyTpl(
+      this.templatePath("**/webpack.config.js"),
+      this.destinationRoot(),
+      {
+        meta: this.meta,
+      }
+    );
 
     // project.config.json
-    this.fs.copyTpl(this.templatePath("**/*.json"), this.destinationRoot(), {
-      meta: this.meta,
-    });
+    this.fs.copyTpl(
+      this.templatePath("**/project.config.json"),
+      this.destinationRoot(),
+      {
+        meta: this.meta,
+      }
+    );
 
     // readme
-    this.fs.copyTpl(this.templatePath("**/*.md"), this.destinationRoot(), {
+    this.fs.copyTpl(this.templatePath("**/README.md"), this.destinationRoot(), {
       meta: this.meta,
     });
   }
