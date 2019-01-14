@@ -53,9 +53,7 @@ pipeline {
         branch "greenkeeper/**"
       }
       steps {
-        sh "git config --global --list"
         greenkeeper("update")
-        sh "git config --global --list"
       }
     }
 
@@ -113,7 +111,6 @@ pipeline {
       steps {
         sh "git config --global --list"
         greenkeeper("upload")
-        sh "git config --global --list"
       }
     }
   }
