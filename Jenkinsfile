@@ -84,25 +84,25 @@ pipeline {
       }
     }
 
-    stage ("Build") {
-      agent {
-        docker {
-          image NODE_IMAGE
-          reuseNode true
-        }
-      }
-      steps {
-        // Run Yeoman, then see if its generated files build
-        sh """
-          yarn global add yeoman-doctor
-          yarn add yo
-          yarn link
-          mkdir test-project && cd test-project
-          echo 'n' | yarn yo axios --force
-          yarn webpack -p
-        """
-      }
-    }
+    // stage ("Build") {
+    //   agent {
+    //     docker {
+    //       image NODE_IMAGE
+    //       reuseNode true
+    //     }
+    //   }
+    //   steps {
+    //     // Run Yeoman, then see if its generated files build
+    //     sh """
+    //       yarn global add yeoman-doctor
+    //       yarn add yo
+    //       yarn link
+    //       mkdir test-project && cd test-project
+    //       echo 'n' | yarn yo axios --force
+    //       yarn webpack -p
+    //     """
+    //   }
+    // }
 
     stage("Finish Greenkeeper") {
       when {
