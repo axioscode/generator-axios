@@ -1,9 +1,0 @@
-{
-  "generator-node": {
-    "promptValues": {
-      "authorName": "Gerald Rich",
-      "authorEmail": "gerald@axios.com",
-      "authorUrl": "https://axios.com/about#team"
-    }
-  }
-}

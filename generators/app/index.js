@@ -45,31 +45,19 @@ module.exports = class extends Generator {
 
     // Copy over templated files
     // webpack
-    this.fs.copyTpl(
-      this.templatePath(["**/*.js", "!node_modules"]),
-      this.destinationRoot(),
-      {
-        meta: this.meta,
-      }
-    );
+    this.fs.copyTpl(this.templatePath("**/*.js"), this.destinationRoot(), {
+      meta: this.meta,
+    });
 
     // project.config.json
-    this.fs.copyTpl(
-      this.templatePath(["**/*.json", , "!node_modules"]),
-      this.destinationRoot(),
-      {
-        meta: this.meta,
-      }
-    );
+    this.fs.copyTpl(this.templatePath("**/*.json"), this.destinationRoot(), {
+      meta: this.meta,
+    });
 
     // readme
-    this.fs.copyTpl(
-      this.templatePath(["**/*.md", , "!node_modules"]),
-      this.destinationRoot(),
-      {
-        meta: this.meta,
-      }
-    );
+    this.fs.copyTpl(this.templatePath("**/*.md"), this.destinationRoot(), {
+      meta: this.meta,
+    });
   }
 
   install() {
