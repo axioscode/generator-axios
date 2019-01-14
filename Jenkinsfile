@@ -20,10 +20,27 @@ pipeline {
   }
 
   stages {
+    stage ("Setup environment") {
+      steps {
+        script {
+          env.GK_LOCK_DEFAULT_BRANCH = "gk-origin/master"
+        }
+      }
+    }
+  
     stage ("Checkout code") {
       steps {
         script {
-          def scmVars = checkout(scm)
+          def scmVars = checkout([
+            $class: "GitSCM",
+            // In a parameterized build pipeline, the ref will be provided by the user.
+            // In Git pipelines, BRANCH_NAME is set in the environment.
+            branches: [[name: env.ref ?: env.BRANCH_NAME]],
+            userRemoteConfigs: [[
+              url: "git@github.com:axioscode/generator-axios.git",
+              credentialsId: "axios-machine-user"
+            ]]
+          ])
           env.GIT_COMMIT = scmVars.GIT_COMMIT
           env.GIT_BRANCH = scmVars.GIT_BRANCH
           env.GIT_URL = scmVars.GIT_URL
@@ -63,7 +80,7 @@ pipeline {
       }
       steps {
         sh "yarn add lodash"
-        sh "NODE_ENV=test yarn jest -w 2"  // Set node_env to test so Babel will transpile ESM for us.
+        sh "NODE_ENV=test yarn jest -w 2 -v"  // Set node_env to test so Babel will transpile ESM for us.
       }
     }
 
@@ -92,6 +109,8 @@ pipeline {
         branch "greenkeeper/**"
       }
       steps {
+        sh "git config user.email 'devs@axios.com'"
+        sh "git config user.name 'axios-machine-user'"
         greenkeeper("upload")
       }
     }
