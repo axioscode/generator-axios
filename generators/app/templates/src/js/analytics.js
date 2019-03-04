@@ -1,4 +1,5 @@
-const AXIOS_VISUALS_CATEGORY = `${process.env.SLUG}`;
+import { project } from "../../project.config.json";
+const AXIOS_VISUALS_CATEGORY = `${project.slug}`;
 const PRODUCTION = process.env.ENV === "production";
 let AXIOS_VISUALS_GOOGLE_ANALYTICS_ID;
 

@@ -3,36 +3,36 @@ module.exports = {
     browser: true,
     es6: true,
     node: true,
-    jest: true
+    jest: true,
   },
-  extends: "plugin:prettier/recommended",
+  extends: ["eslint:recommended", "plugin:prettier/recommended"],
   parser: "babel-eslint",
   parserOptions: {
     ecmaFeatures: {
-      experimentalObjectRestSpread: true
+      experimentalObjectRestSpread: true,
     },
     ecmaVersion: 8,
-    sourceType: "module"
+    sourceType: "module",
   },
   rules: {
     "prettier/prettier": [
       "error",
       {
-        trailingComma: "es5"
-      }
+        trailingComma: "es5",
+      },
     ],
     "one-var": [
       "error",
       {
-        initialized: "never"
-      }
+        initialized: "never",
+      },
     ],
-    "no-var": "error"
+    "no-var": "error",
   },
   globals: {
     module: true,
     process: true,
     __BROWSER__: true,
-    global: true
-  }
+    global: true,
+  },
 };

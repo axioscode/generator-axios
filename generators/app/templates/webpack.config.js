@@ -169,12 +169,10 @@ module.exports = (env = {}, { p } = { p: false }) => {
 
       // Make project name available to client code as process.env.NAME
       // Useful for sending data back to Google Analytics
-      new webpack.DefinePlugin({
-        "process.env.NAME": vizConfig.project.name,
-      }),
-
       // Make NODE_ENV available to client code as process.env.ENV, helpful for switching between APIs or toggling analytics
       new webpack.DefinePlugin({
+        "process.env.NAME": vizConfig.project.name,
+        "process.env.SLUG": vizConfig.project.slug,
         "process.env.ENV": JSON.stringify(
           process.env.NODE_ENV || "development"
         ),
