@@ -165,7 +165,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
       // Don't create a file if Webpack encounters an error while bundling
       new webpack.NoEmitOnErrorsPlugin(),
 
-      new CleanWebpackPlugin("dist", {}),
+      new CleanWebpackPlugin(),
 
       // Make project name available to client code as process.env.NAME
       // Useful for sending data back to Google Analytics
