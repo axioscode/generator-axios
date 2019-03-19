@@ -9,7 +9,7 @@
   "dependencies": {
     "@babel/runtime": "^7.2.0",
     "axios-feta": "0.0.5",
-    "core-js": "^2.6.2",
+    "core-js": "^3.0.0",
     "d3-axis": "^1.0.8",
     "d3-collection": "^1.0.4",
     "d3-fetch": "^1.1.0",
