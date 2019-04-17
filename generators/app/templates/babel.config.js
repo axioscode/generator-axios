@@ -8,9 +8,8 @@ module.exports = api => {
           targets: {
             browsers: ["last 2 versions", "Safari 9", "IE 11"],
           },
-          useBuiltIns: "entry",
-          modules: false,
-          exclude: ["transform-regenerator"],
+          useBuiltIns: "usage",
+          corejs: 3,
         },
       ],
     ],

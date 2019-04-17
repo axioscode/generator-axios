@@ -145,7 +145,7 @@ module.exports = (env = {}, { p } = { p: false }) => {
 
         {
           test: /\.js$/,
-          exclude: /node_modules/,
+          exclude: /node_modules\/(?!d3-*)/,
           use: "babel-loader",
         },
       ],
