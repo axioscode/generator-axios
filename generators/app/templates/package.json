@@ -32,7 +32,7 @@
     "ansi-colors": "^3.2.3",
     "archieml": "^0.4.2",
     "autoprefixer": "^9.4.5",
-    "aws-sdk": "^2.387.0",
+    "aws-sdk": "^2.443.0",
     "babel-core": "^7.0.0-bridge",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
