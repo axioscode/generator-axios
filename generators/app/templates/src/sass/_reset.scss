@@ -1,4 +1,4 @@
-@import '~axios-feta/src/feta';
+@import "~@axioscode/axios-feta/src/feta";
 //
 // Base Styles
 // --------------------------------------------------
@@ -91,7 +91,9 @@ img {
 }
 
 // no border on iframes
-iframe { border: 0; }
+iframe {
+  border: 0;
+}
 
 // Ensure we only define type using our default classes.
 small {
