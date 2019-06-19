@@ -1,7 +1,5 @@
 # generator-axios
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/axioscode/generator-axios.svg)](https://greenkeeper.io/)
-
 Yeoman generator to make developing graphics at Axios simpler and faster.
 
 ## Generator
