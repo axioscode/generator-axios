@@ -1,30 +1,21 @@
-var setupVisualsGoogleAnalytics = require('./analytics.js').setupVisualsGoogleAnalytics;
-var trackEvent = require('./analytics.js').trackEvent;
+import setup from "./setup";
+setup();
 
-var pym = require('pym.js');
-var pymChild = null;
-
-let d3 = require("d3");
-
-
+import pym from "pym.js";
 import makeChart from "./chart-template";
 
-if (NodeList.prototype.forEach === undefined) {
-    NodeList.prototype.forEach = Array.prototype.forEach
-}
-
-document.addEventListener("DOMContentLoaded", main());
-
-function main() {
-
-  let theChart = new makeChart({
-  	element: document.querySelector('.chart')
-  })
-
-  d3.select(window).on("resize", d=> {
-  	theChart.update();
+export default function main() {
+  const theChart = new makeChart({
+    element: document.querySelector(".chart"),
   });
 
-  var pymChild = new pym.Child();
+  window.addEventListener("optimizedResize", () => {
+    theChart.update();
+  });
 
+  new pym.Child({
+    polling: 500,
+  });
 }
+
+window.onload = main;

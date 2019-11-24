@@ -2,6 +2,7 @@
 logs
 *.log
 npm-debug.log*
+yarn-error.log*
 .DS_Store
 
 # Runtime data
@@ -18,6 +19,9 @@ build/Release
 # Dependency directories
 node_modules
 
+# Built directories
+dist
+
 # Optional npm cache directory
 .npm
 
@@ -27,6 +31,8 @@ node_modules
 # Local configs
 .env
 
-.DS_Store
-.yo-rc.json
+**/.DS_Store
 .vscode
+coverage/
+reports/
+junit.xml

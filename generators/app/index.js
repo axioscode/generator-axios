@@ -1,102 +1,92 @@
-var path = require('path');
-var slugify = require('slugify');
-var mkdirp = require('mkdirp');
-var dateFormat = require('dateformat');
+let slugify = require("slugify");
+let Generator = require("yeoman-generator");
 
-var Generator = require('yeoman-generator');
+module.exports = class extends Generator {
+  constructor(args, opts) {
+    super(args, opts);
+  }
 
-module.exports = Generator.extend({
-  constructor: function () {
-    Generator.apply(this, arguments);
-    this.option('skip-install-message', {
-      desc: 'Skips the message after the installation of dependencies',
-      type: Boolean
+  initializing() {
+    this.pkg = require("../../package.json");
+    this.projectConfig = require("./templates/project.config.json");
+  }
+
+  prompting() {
+    let done = this.async();
+    return this.prompt([
+      {
+        type: "confirm",
+        name: "gitInit",
+        message: "Initialize empty git repository?",
+        default: true,
+      },
+    ]).then((answers, err) => {
+      done(err);
+      this.meta = {
+        gitInit: answers.gitInit,
+        googleAnalyticsCategory: slugify(this.appname) + "-v1.0",
+        isFullbleed: this.projectConfig.isFullbleed,
+        name: this.appname,
+        s3bucket: "graphics.axios.com",
+        s3folder: slugify(this.appname),
+        slug: slugify(this.appname),
+        appleFallback: `fallbacks/${slugify(this.appname)}-apple.png`,
+        newsletterFallback: `fallbacks/${slugify(this.appname)}-fallback.png`,
+      };
+    });
+  }
+
+  configuring() {
+    // Copy all the files.
+    this.fs.copy(this.templatePath("**/*"), this.destinationRoot(), {
+      globOptions: { dot: true, ignore: ["node_modules"] },
     });
 
-    this.option('skip-install', {
-      desc: 'Skips installing dependencies',
-      type: Boolean
+    // Copy over templated files
+    // webpack
+    this.fs.copyTpl(this.templatePath("*.config.js"), this.destinationRoot(), {
+      meta: this.meta,
     });
-  },
 
-  initializing: function () {
-    this.pkg = require('../../package.json');
-    this.projectConfig = require('./templates/project.config.json');
-  },
-
-  prompting: {
-    meta: function() {
-      var done = this.async();
-      var dateString = dateFormat(new Date(), 'yyyy-mm-dd')
-      this.prompt([{
-        type    : 'confirm',
-        name    : "gitInit",
-        message : "Initialize empty git repository?",
-        default : true
-      }]).then(function(answers, err) {
-        done(err);
-        this.meta = {
-          ['gitInit']: answers.gitInit,
-          ['googleAnalyticsCategory']: slugify(this.appname) + '-v1.0',
-          ['isFullbleed']: this.projectConfig.isFullbleed,
-          ['name']: this.appname,
-          ['s3bucket']: 'graphics.axios.com',
-          ['s3folder']: slugify(this.appname),
-          ['slug']: slugify(this.appname),
-          ['appleFallback']: `fallbacks/${slugify(this.appname)}-apple.png`,
-          ['newsletterFallback']: `fallbacks/${slugify(this.appname)}-fallback.png`,
-        };
-      }.bind(this));
-    }
-  },
-
-  configuring: function() {
-    // Copy all the normal files.
+    // project.config.json
     this.fs.copyTpl(
-      this.templatePath("**/*"),
+      this.templatePath("*.config.json"),
       this.destinationRoot(),
-      { meta: this.meta }
+      {
+        meta: this.meta,
+      }
     );
 
-    // Copy all the dotfiles.
-    this.fs.copyTpl(
-      this.templatePath("**/.*"),
-      this.destinationRoot(),
-      { meta: this.meta }
-    );
-  },
-  install: function () {
-    this.installDependencies({
-      bower: false,
-      skipMessage: this.options['skip-install-message'],
-      skipInstall: this.options['skip-install']
+    // readme
+    this.fs.copyTpl(this.templatePath("*.md"), this.destinationRoot(), {
+      meta: this.meta,
     });
-  },
-  end: function() {
-    var endMessage = `
+  }
+
+  install() {
+    this.yarnInstall();
+  }
+
+  end() {
+    let endMessage = `
   Nice! You're ready to start making an Axios interactive!
-  Start by writing code into files in the src/ director
+  Start by writing code into files in the src/ subdirectory
 
-  1. Add data from Google Drive, docs or spreadsheets:
-
-    > gulp gdrive:add
-    > gulp gdrive:fetch
-
-  2. Preview it locally on browsers and devices to make sure it looks ok:
+  1. Preview it locally on browsers and devices to make sure it looks ok:
 
     > gulp serve
 
-  3. Troubleshooting? Check the logs when you compile everything:
+  2. Troubleshooting? Check the logs when you compile everything:
 
     > gulp build
 
-  4. Publish!
+  3. Publish!
 
     > gulp publish
-    `
-    if (this.gitInit) {
-      this.spawnCommand('git', ['init'])
+    `;
+    if (this.meta.gitInit) {
+      this.spawnCommand("git", ["init"]);
     }
-    this.log(endMessage)
+    this.log(endMessage);
   }
-});
+};
