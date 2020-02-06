@@ -1,13 +1,14 @@
 @import "~@axioscode/axios-feta/src/feta";
-@import "reset";
+@import 'reset';
 
 html,
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
   width: auto;
   height: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .chart-container {
@@ -23,17 +24,17 @@ body {
     .axis {
       text {
         font-family: $mono;
-        fill: $color-gray-600;
+        fill: $color-gray-500;
         pointer-events: none;
       }
 
       .tick text {
-        font-size: 12px;
+        font-size: 11px;
       }
 
       line,
       path {
-        stroke: $color-gray-300;
+        stroke: $color-gray-200;
         stroke-width: 0.5;
         pointer-events: none;
       }
@@ -47,29 +48,41 @@ body {
 
 .headline {
   font-family: $sans;
-  font-size: 16px;
-  line-height: 25px;
-  font-weight: 500;
-  color: $color-gray-800;
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 400;
+  color: $color-text;
+  margin-bottom: 10px;
+
+  @media (max-width: 500px) { // Same styles as .headline--small
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
+.headline--small {
+  font-family: $sans;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 400;
+  color: $color-text;
   margin-bottom: 10px;
 }
 
 .headline-units {
-  font-family: $mono;
-  font-size: 14px;
-  line-height: 22px;
-  color: $color-gray-600;
+  font-family: $sans;
+  font-size: 12px;
+  line-height: 18px;
+  color: $color-text-light;
   margin-bottom: 10px;
 }
 
 .subhead {
   font-family: $sans;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 16px;
-  font-weight: 500;
-  letter-spacing: 1.1px;
-  color: $color-gray-800;
-  text-transform: uppercase;
+  font-weight: 600;
+  color: $color-text;
   margin-bottom: 8px;
 }
 
@@ -77,27 +90,42 @@ body {
   font-family: $mono;
   font-size: 14px;
   line-height: 20px;
-  color: $color-gray-800;
+  color: $color-text;
 }
 
 .annotation {
   font-family: $sans;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 22px;
-  color: $color-gray-800;
+  color: $color-text;
 }
 
 .annotation--bold {
   font-family: $sans;
-  font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
   line-height: 22px;
-  color: $color-gray-800;
+  color: $color-text;
 }
 
 .annotation--number {
   font-family: $mono;
   font-size: 16px;
   line-height: 22px;
-  color: $color-purple-500;
+  color: $color-text;
+}
+
+.annotation--number-large {
+  font-family: $mono;
+  font-size: 20px;
+  line-height: 28px;
+  color: $color-text;
+}
+
+.tertiary-label {
+  font-family: $sans;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text-light;
 }
