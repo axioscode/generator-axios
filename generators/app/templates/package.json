@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.2.0",
-    "@axioscode/axios-feta": "^1.0.1",
+    "@axioscode/axios-feta": "^1.0.2",
     "core-js": "^3.0.0",
     "d3-axis": "^1.0.8",
     "d3-collection": "^1.0.4",
