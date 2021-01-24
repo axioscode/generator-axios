@@ -152,7 +152,15 @@ gulp.task("preview").description =
   "Open a browser tab to the visual and copy the URL to your clipboard";
 gulp.task(
   "publish",
-  gulp.series("fallbacks", "push", "build", "deploy", "log:publish", "preview")
+  gulp.series(
+    "push",
+    "build",
+    "deploy",
+    "log:publish",
+    "preview",
+    "fallbacks",
+    "push"
+  )
 );
 gulp.task("publish").description =
   "A series of commands which publishes a visual to AWS S3";
