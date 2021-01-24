@@ -6,9 +6,7 @@ const minimist = require("minimist");
 const shell = require("gulp-shell");
 
 const projectConfig = require("./project.config.json");
-const prodUrl = `https://${projectConfig.s3.bucket}/${
-  projectConfig.s3.folder
-}/index.html`;
+const prodUrl = `https://${projectConfig.s3.bucket}/${projectConfig.s3.folder}/index.html`;
 const date = new Date();
 const timestamp = {
   year: date.getFullYear(),
@@ -16,17 +14,17 @@ const timestamp = {
   date: (date.getDate() < 10 ? "0" : "") + date.getDate(),
   hour: (date.getHours() < 10 ? "0" : "") + date.getHours(),
   min: (date.getMinutes() < 10 ? "0" : "") + date.getMinutes(),
-  sec: (date.getSeconds() < 10 ? "0" : "") + date.getSeconds(),
+  sec: (date.getSeconds() < 10 ? "0" : "") + date.getSeconds()
 };
 
 const defaultOptions = {
   string: "port",
   default: {
-    port: 3000,
+    port: 3000
   },
   alias: {
-    p: "port",
-  },
+    p: "port"
+  }
 };
 const argv = minimist(process.argv.slice(2), defaultOptions);
 
@@ -77,9 +75,7 @@ gulp.task("lint").description =
 gulp.task(
   "serve",
   shell.task(
-    `./node_modules/.bin/webpack-dev-server --hot --host 0.0.0.0 --port ${
-      argv.port
-    } --mode development`
+    `./node_modules/.bin/webpack-dev-server --hot --host 0.0.0.0 --port ${argv.port} --mode development`
   )
 );
 gulp.task("serve").description =
@@ -92,25 +88,26 @@ gulp.task(
   shell.task([
     `echo "http://\`ipconfig getifaddr en0\`:${argv.port}" | pbcopy`,
     'echo "\ncopied url to your clipboard:"',
-    `echo "http://\`ipconfig getifaddr en0\`:${argv.port}\n"`,
+    `echo "http://\`ipconfig getifaddr en0\`:${argv.port}\n"`
   ])
 );
 gulp.task("localip").description =
   "Copy the local ip to your clipboard for device testing. Accepts --port, -p integer";
 
 // Publishing tasks
+gulp.task("fallbacks", shell.task("npm run fallbacks"));
+gulp.task("fallbacks").description =
+  "Generate fallback images to src/fallbacks";
 gulp.task(
   "push",
   shell.task(
     [
       "git add -A .",
-      `git commit -am "latest as of ${timestamp.year}-${timestamp.month}-${
-        timestamp.date
-      } ${timestamp.hour}:${timestamp.min}:${timestamp.sec}"`,
-      "git push",
+      `git commit -am "latest as of ${timestamp.year}-${timestamp.month}-${timestamp.date} ${timestamp.hour}:${timestamp.min}:${timestamp.sec}"`,
+      "git push"
     ],
     {
-      ignoreErrors: true,
+      ignoreErrors: true
     }
   )
 );
@@ -121,9 +118,7 @@ gulp.task("build").description =
 gulp.task(
   "deploy",
   shell.task(
-    `aws s3 cp dist s3://${projectConfig.s3.bucket}/${
-      projectConfig.s3.folder
-    } --recursive --metadata-directive REPLACE --cache-control max-age=30,public --acl public-read`
+    `aws s3 cp dist s3://${projectConfig.s3.bucket}/${projectConfig.s3.folder} --recursive --metadata-directive REPLACE --cache-control max-age=30,public --acl public-read`
   )
 );
 gulp.task("deploy").description =
@@ -150,14 +145,14 @@ gulp.task(
     `echo ${prodUrl} | pbcopy`,
     'echo "\ncopied to your clipboard:"',
     `echo "${prodUrl}\n"`,
-    `open ${prodUrl}`,
+    `open ${prodUrl}`
   ])
 );
 gulp.task("preview").description =
   "Open a browser tab to the visual and copy the URL to your clipboard";
 gulp.task(
   "publish",
-  gulp.series("push", "build", "deploy", "log:publish", "preview")
+  gulp.series("fallbacks", "push", "build", "deploy", "log:publish", "preview")
 );
 gulp.task("publish").description =
   "A series of commands which publishes a visual to AWS S3";

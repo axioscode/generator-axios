@@ -1,9 +1,10 @@
 const puppeteer = require("puppeteer");
 const jimp = require("jimp");
+const projectConfig = require("../project.config.json");
 
-const url = "https://graphics.axios.com/2021-01-19-global-cities/index.html";
-const destinationPath = "../src/fallbacks";
-const slug = "slug"; // todo: get this from gulpfile/project config
+const destinationPath = "src/fallbacks";
+const slug = projectConfig.project.slug;
+const url = `https://graphics.axios.com/${slug}/index.html`;
 
 const fallbacks = [
   { name: "apple", width: 375 },
@@ -54,7 +55,7 @@ const resizeSocial = async dms => {
   imageToResize
     .background(0xffffffff)
     .contain(dms.width * 2, dms.height * 2) // contain within these dimensions
-    .write(`${destinationPath}/${slug}-social-resized.png`);
+    .write(`${destinationPath}/${slug}-social.png`);
 };
 
 const init = async () => {

@@ -4,7 +4,8 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "setup-gulp": "npm install --global gulp-cli"
+    "setup-gulp": "npm install --global gulp-cli",
+    "fallbacks": "node ./scripts/fallbacks.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.2.0",

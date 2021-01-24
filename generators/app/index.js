@@ -18,8 +18,8 @@ module.exports = class extends Generator {
         type: "confirm",
         name: "gitInit",
         message: "Initialize empty git repository?",
-        default: true,
-      },
+        default: true
+      }
     ]).then((answers, err) => {
       done(err);
       this.meta = {
@@ -31,7 +31,7 @@ module.exports = class extends Generator {
         s3folder: slugify(this.appname),
         slug: slugify(this.appname),
         appleFallback: `fallbacks/${slugify(this.appname)}-apple.png`,
-        newsletterFallback: `fallbacks/${slugify(this.appname)}-fallback.png`,
+        newsletterFallback: `fallbacks/${slugify(this.appname)}-fallback.png`
       };
     });
   }
@@ -39,13 +39,13 @@ module.exports = class extends Generator {
   configuring() {
     // Copy all the files.
     this.fs.copy(this.templatePath("**/*"), this.destinationRoot(), {
-      globOptions: { dot: true, ignore: ["node_modules"] },
+      globOptions: { dot: true, ignore: ["node_modules"] }
     });
 
     // Copy over templated files
     // webpack
     this.fs.copyTpl(this.templatePath("*.config.js"), this.destinationRoot(), {
-      meta: this.meta,
+      meta: this.meta
     });
 
     // project.config.json
@@ -53,13 +53,13 @@ module.exports = class extends Generator {
       this.templatePath("*.config.json"),
       this.destinationRoot(),
       {
-        meta: this.meta,
+        meta: this.meta
       }
     );
 
     // readme
     this.fs.copyTpl(this.templatePath("*.md"), this.destinationRoot(), {
-      meta: this.meta,
+      meta: this.meta
     });
   }
 
