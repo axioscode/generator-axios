@@ -16,6 +16,7 @@ const takeScreenshot = async size => {
   let browser = await puppeteer.launch({ headless: true });
   let page = await browser.newPage();
   await page.goto(url, { waitUntil: "networkidle0", timeout: 60000 });
+  await page.waitForSelector(".chart-container");
 
   // Constrain width and adjust height to fit everything in .chart-container
   await page.setViewport({
