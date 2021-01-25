@@ -6,7 +6,9 @@ const minimist = require("minimist");
 const shell = require("gulp-shell");
 
 const projectConfig = require("./project.config.json");
-const prodUrl = `https://${projectConfig.s3.bucket}/${projectConfig.s3.folder}/index.html`;
+const prodUrl = `https://${projectConfig.s3.bucket}/${
+  projectConfig.s3.folder
+}/index.html`;
 const date = new Date();
 const timestamp = {
   year: date.getFullYear(),
@@ -75,7 +77,9 @@ gulp.task("lint").description =
 gulp.task(
   "serve",
   shell.task(
-    `./node_modules/.bin/webpack-dev-server --hot --host 0.0.0.0 --port ${argv.port} --mode development`
+    `./node_modules/.bin/webpack-dev-server --hot --host 0.0.0.0 --port ${
+      argv.port
+    } --mode development`
   )
 );
 gulp.task("serve").description =
@@ -95,15 +99,14 @@ gulp.task("localip").description =
   "Copy the local ip to your clipboard for device testing. Accepts --port, -p integer";
 
 // Publishing tasks
-gulp.task("fallbacks", shell.task("npm run fallbacks"));
-gulp.task("fallbacks").description =
-  "Generate fallback images to src/fallbacks";
 gulp.task(
   "push",
   shell.task(
     [
       "git add -A .",
-      `git commit -am "latest as of ${timestamp.year}-${timestamp.month}-${timestamp.date} ${timestamp.hour}:${timestamp.min}:${timestamp.sec}"`,
+      `git commit -am "latest as of ${timestamp.year}-${timestamp.month}-${
+        timestamp.date
+      } ${timestamp.hour}:${timestamp.min}:${timestamp.sec}"`,
       "git push"
     ],
     {
@@ -118,11 +121,33 @@ gulp.task("build").description =
 gulp.task(
   "deploy",
   shell.task(
-    `aws s3 cp dist s3://${projectConfig.s3.bucket}/${projectConfig.s3.folder} --recursive --metadata-directive REPLACE --cache-control max-age=30,public --acl public-read`
+    `aws s3 cp dist s3://${projectConfig.s3.bucket}/${
+      projectConfig.s3.folder
+    } --recursive --metadata-directive REPLACE --cache-control max-age=30,public --acl public-read`
   )
 );
 gulp.task("deploy").description =
   "Upload the dist/ subdirecotry to visuals.axios.com on AWS S3";
+gulp.task("fallbacks", shell.task("npm run fallbacks"));
+gulp.task("fallbacks").description =
+  "Generate fallback images to src/fallbacks";
+gulp.task(
+  "push-fallbacks",
+  shell.task(
+    [
+      "git add -A .",
+      `git commit -am "fallbacks created ${timestamp.year}-${timestamp.month}-${
+        timestamp.date
+      } ${timestamp.hour}:${timestamp.min}:${timestamp.sec}"`,
+      "git push"
+    ],
+    {
+      ignoreErrors: true
+    }
+  )
+);
+gulp.task("push-fallbacks").description =
+  "Push newly created fallbacks to Github";
 gulp.task("log:publish", done => {
   log("");
   log(
@@ -156,10 +181,10 @@ gulp.task(
     "push",
     "build",
     "deploy",
-    "log:publish",
-    "preview",
     "fallbacks",
-    "push"
+    "push-fallbacks",
+    "log:publish",
+    "preview"
   )
 );
 gulp.task("publish").description =
