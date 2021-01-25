@@ -177,6 +177,12 @@ gulp.task("preview").description =
   "Open a browser tab to the visual and copy the URL to your clipboard";
 gulp.task(
   "publish",
+  gulp.series("push", "build", "deploy", "log:publish", "preview")
+);
+gulp.task("publish").description =
+  "A series of commands which publishes a visual to AWS S3";
+gulp.task(
+  "publish-with-fb",
   gulp.series(
     "push",
     "build",
@@ -189,8 +195,8 @@ gulp.task(
     "preview"
   )
 );
-gulp.task("publish").description =
-  "A series of commands which publishes a visual to AWS S3";
+gulp.task("publish-with-fb").description =
+  "Publishing with automatic fallback generation";
 
 gulp.task("clean", shell.task("rm -rf dist"));
 gulp.task("clean").description = "Removes the dist/ subdirectory";
