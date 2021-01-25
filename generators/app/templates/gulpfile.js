@@ -183,6 +183,7 @@ gulp.task(
     "deploy",
     "fallbacks",
     "push-fallbacks",
+    "build",
     "deploy",
     "log:publish",
     "preview"
