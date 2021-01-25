@@ -8,7 +8,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
 
 const vizConfig = require("./project.config");
 
@@ -163,11 +162,6 @@ module.exports = (env = {}, { p } = { p: false }) => {
     },
 
     plugins: [
-      // Copy fallbacks
-      new CopyPlugin({
-        patterns: [{ from: "src/fallbacks", to: "fallbacks" }]
-      }),
-
       // Don't create a file if Webpack encounters an error while bundling
       new webpack.NoEmitOnErrorsPlugin(),
 
