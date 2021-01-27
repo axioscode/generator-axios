@@ -27,7 +27,7 @@ const takeScreenshot = async size => {
   const chartContainerSize = await example.boundingBox();
   await page.setViewport({
     width: size.width,
-    height: chartContainerSize.height,
+    height: parseInt(chartContainerSize.height),
     deviceScaleFactor: 2 // retina
   });
 
