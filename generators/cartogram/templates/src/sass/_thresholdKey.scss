@@ -1,0 +1,14 @@
+.threshold-key {
+	.axis {
+		text {
+			font-family: $mono;
+			font-size: 12px;
+			fill: $color-gray-700;
+		}
+
+		line {
+			stroke: $color-gray-800;
+			stroke-width: 1;
+		}
+	}
+}

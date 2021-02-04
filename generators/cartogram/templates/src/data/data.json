@@ -1,0 +1,257 @@
+[
+    {
+      "state": "AL",
+      "name": "Alabama",
+      "value": 1
+    },
+    {
+      "state": "AK",
+      "name": "Alaska",
+      "value": 0
+    },
+    {
+      "state": "AZ",
+      "name": "Arizona",
+      "value": 1
+    },
+    {
+      "state": "AR",
+      "name": "Arkansas",
+      "value": 1
+    },
+    {
+      "state": "CA",
+      "name": "California",
+      "value": 1
+    },
+    {
+      "state": "CO",
+      "name": "Colorado",
+      "value": 0
+    },
+    {
+      "state": "CT",
+      "name": "Connecticut",
+      "value": 0
+    },
+    {
+      "state": "DE",
+      "name": "Delaware",
+      "value": 0
+    },
+    {
+      "state": "DC",
+      "name": "District of Columbia",
+      "value": 0
+    },
+    {
+      "state": "FL",
+      "name": "Florida",
+      "value": 1
+    },
+    {
+      "state": "GA",
+      "name": "Georgia",
+      "value": 1
+    },
+    {
+      "state": "HI",
+      "name": "Hawaii",
+      "value": 0
+    },
+    {
+      "state": "ID",
+      "name": "Idaho",
+      "value": 1
+    },
+    {
+      "state": "IL",
+      "name": "Illinois",
+      "value": 0
+    },
+    {
+      "state": "IN",
+      "name": "Indiana",
+      "value": 0
+    },
+    {
+      "state": "IA",
+      "name": "Iowa",
+      "value": 0
+    },
+    {
+      "state": "KS",
+      "name": "Kansas",
+      "value": 0
+    },
+    {
+      "state": "KY",
+      "name": "Kentucky",
+      "value": 0
+    },
+    {
+      "state": "LA",
+      "name": "Louisiana",
+      "value": 0
+    },
+    {
+      "state": "ME",
+      "name": "Maine",
+      "value": 0
+    },
+    {
+      "state": "MD",
+      "name": "Maryland",
+      "value": 0
+    },
+    {
+      "state": "MA",
+      "name": "Massachusetts",
+      "value": 0
+    },
+    {
+      "state": "MI",
+      "name": "Michigan",
+      "value": 0
+    },
+    {
+      "state": "MN",
+      "name": "Minnesota",
+      "value": 0
+    },
+    {
+      "state": "MS",
+      "name": "Mississippi",
+      "value": 0
+    },
+    {
+      "state": "MO",
+      "name": "Missouri",
+      "value": 0
+    },
+    {
+      "state": "MT",
+      "name": "Montana",
+      "value": 1
+    },
+    {
+      "state": "NE",
+      "name": "Nebraska",
+      "value": 0
+    },
+    {
+      "state": "NV",
+      "name": "Nevada",
+      "value": 0
+    },
+    {
+      "state": "NH",
+      "name": "New Hampshire",
+      "value": 0
+    },
+    {
+      "state": "NJ",
+      "name": "New Jersey",
+      "value": 0
+    },
+    {
+      "state": "NM",
+      "name": "New Mexico",
+      "value": 0
+    },
+    {
+      "state": "NY",
+      "name": "New York",
+      "value": 0
+    },
+    {
+      "state": "NC",
+      "name": "North Carolina",
+      "value": 1
+    },
+    {
+      "state": "ND",
+      "name": "North Dakota",
+      "value": 0
+    },
+    {
+      "state": "OH",
+      "name": "Ohio",
+      "value": 0
+    },
+    {
+      "state": "OK",
+      "name": "Oklahoma",
+      "value": 1
+    },
+    {
+      "state": "OR",
+      "name": "Oregon",
+      "value": 1
+    },
+    {
+      "state": "PA",
+      "name": "Pennsylvania",
+      "value": 0
+    },
+    {
+      "state": "RI",
+      "name": "Rhode Island",
+      "value": 0
+    },
+    {
+      "state": "SC",
+      "name": "South Carolina",
+      "value": 1
+    },
+    {
+      "state": "SD",
+      "name": "South Dakota",
+      "value": 0
+    },
+    {
+      "state": "TN",
+      "name": "Tennessee",
+      "value": 1
+    },
+    {
+      "state": "TX",
+      "name": "Texas",
+      "value": 1
+    },
+    {
+      "state": "UT",
+      "name": "Utah",
+      "value": 0
+    },
+    {
+      "state": "VT",
+      "name": "Vermont",
+      "value": 0
+    },
+    {
+      "state": "VA",
+      "name": "Virginia",
+      "value": 0
+    },
+    {
+      "state": "WA",
+      "name": "Washington",
+      "value": 0
+    },
+    {
+      "state": "WV",
+      "name": "West Virginia",
+      "value": 1
+    },
+    {
+      "state": "WI",
+      "name": "Wisconsin",
+      "value": 0
+    },
+    {
+      "state": "WY",
+      "name": "Wyoming",
+      "value": 0
+    }
+   ]
