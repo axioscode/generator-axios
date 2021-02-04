@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer");
 const jimp = require("jimp");
 const projectConfig = require("../project.config.json");
+const fs = require("fs-extra");
 
 const destinationPath = "src/fallbacks";
 const slug = projectConfig.project.slug;
@@ -60,9 +61,10 @@ const resizeSocial = async dms => {
 };
 
 const init = async () => {
+  fs.emptyDirSync(destinationPath); // remove existing fallbacks
   await Promise.all(fallbacks.map(size => takeScreenshot(size)));
   await resizeSocial(fallbacks.filter(d => d.name === "social")[0]);
-  console.log("done ✨");
+  console.log("fallbacks created ✨");
 };
 
 init();
