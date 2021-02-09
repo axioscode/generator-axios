@@ -7,11 +7,13 @@ module.exports = class extends Generator {
   }
 
   initializing() {
+    console.log("initializing");
     this.pkg = require("../../package.json");
     this.projectConfig = require("./templates/project.config.json");
   }
 
   prompting() {
+    console.log("prompting");
     let done = this.async();
     return this.prompt([
       {
@@ -37,6 +39,7 @@ module.exports = class extends Generator {
   }
 
   configuring() {
+    console.log("configuring");
     // Copy all the files.
     this.fs.copy(this.templatePath("**/*"), this.destinationRoot(), {
       globOptions: { dot: true, ignore: ["node_modules"] }
@@ -64,10 +67,12 @@ module.exports = class extends Generator {
   }
 
   install() {
+    console.log("install");
     this.yarnInstall();
   }
 
   end() {
+    console.log("end");
     let endMessage = `
   Nice! You're ready to start making an Axios interactive!
   Start by writing code into files in the src/ subdirectory
