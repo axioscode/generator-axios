@@ -2,7 +2,7 @@
 
 Yeoman generator to make developing graphics at Axios simpler and faster.
 
-## Generator
+## Basic generator
 
 ### axios
 
@@ -28,6 +28,31 @@ function av-viz() {
 	cd "$@"
 	yo axios
 }
+```
+
+## How to make a new generator
+
+Say you have an existing project that you'd like to turn into a generator. Do the following:
+
+1. Check out a new branch to make an update to this repo (`generator-axios`)
+2. Make a copy of the `generator-template` folder and put it inside `generators`, on the same level as `app`.
+3. Rename it from `generator-template` to the name of your generator. This is how it'll be called: `yo axios:generator-name`
+4. Inside the `templates` folder, put the `src` folder of your existing project and the `package.json` file. So, the project structure should look like this:
+
+```
+└───generators
+    └───your-new-generator
+        └───templates
+            └───src
+            └───package.json
+        └───index.js
+```
+
+5. That's it! Get your changes reviewed, merge it, and you'll be able to call your generator just like the regular one.
+
+```
+mkdir [project-name] && cd $_
+yo axios:your-new-generator
 ```
 
 ## Setup
