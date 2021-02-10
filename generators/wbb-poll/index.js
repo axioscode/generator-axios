@@ -23,8 +23,8 @@ module.exports = class extends Generator {
     });
 
     // *** Use this to copy over another directory from templates to the destination ***
-    // mkdirp.sync(this.destinationPath("admin"));
-    // this.fs.copy(this.templatePath("admin/**"), this.destinationPath("admin"));
+    mkdirp.sync(this.destinationPath("admin"));
+    this.fs.copy(this.templatePath("admin/**"), this.destinationPath("admin"));
   }
 
   // 3. Extend the dependencies to include any new ones from package.json
