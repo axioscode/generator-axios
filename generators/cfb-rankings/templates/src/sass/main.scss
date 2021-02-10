@@ -1,0 +1,218 @@
+@import "~@axioscode/axios-feta/src/feta";
+@import "reset";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.table {
+  width: 100%;
+
+  @media(min-width: 600px) {
+    column-count: 2;
+    grid-column-gap: 30px;
+  }
+}
+
+.table-header {
+  text-align: right;
+  width: 100%;
+
+  @media(min-width: 600px) {
+    width: calc(50% - 15px);
+  }
+
+  span {
+    float: right;
+    text-align: right;
+    display: inline-block;
+
+    &.record {
+      width: 13%;
+    }
+    &.points {
+      width: 20%;
+    }
+    &.trend {
+      width: 15%;
+    }
+  }
+}
+
+tr {
+  border-top: 0.5px solid $color-gray-200;
+  display: inline-table;
+  min-height: 37px;
+  line-height: 37px;
+  position: relative;
+  width: 100%;
+
+  @media(max-width: 599px) {
+    min-height: 32px;
+    line-height: 32px;
+  }
+  &:nth-child(26){
+    border-top: none;
+  }
+  &:nth-child(1) ,
+  &:nth-child(14){
+    border-top: 1px solid $color-gray-700;
+  }
+
+  &:nth-child(14) {
+    @media(max-width: 599px) {
+      border-color: $color-gray-200;
+    }
+  }
+}
+
+td {
+  color: $color-text;
+  font-family: $mono;
+  font-size: 13px;
+  text-align: right;
+
+  &.rank {
+    width: 25px;
+  }
+  &.logo {
+    text-align: center;
+    width: 35px;
+
+    img {
+      height: 20px;
+      width: 20px;
+      transform: translateY(-2px);
+      mix-blend-mode: multiply;
+      vertical-align: middle;
+    }
+  }
+  &.team {
+    font-weight: bold;
+    font-family: $sans;
+    line-height: 1.25;
+    text-align: left;
+    vertical-align: middle;
+    width: calc(55% - 55px);
+  }
+  .first-place {
+    font-weight: normal;
+  }
+  &.record {
+    width: 13%;
+  }
+  &.points {
+    width: 20%;
+  }
+  &.trend {
+    color: $color-gray-500;
+    position: relative;
+    width: 15%;
+
+    img {
+      position: relative;
+      left: -3px;
+      opacity: 0.8;
+    }
+
+    &.no-change {
+      img {
+        display: none;
+      }
+    }
+  }
+}
+
+.headline {
+  font-family: $sans;
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 400;
+  color: $color-text;
+  margin-bottom: 10px;
+
+  @media (max-width: 500px) { // Same styles as .headline--small
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
+.headline--small {
+  font-family: $sans;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 400;
+  color: $color-text;
+  margin-bottom: 10px;
+}
+
+.headline-units {
+  font-family: $sans;
+  font-size: 14px;
+  line-height: 18px;
+  color: $color-text-light;
+  margin-bottom: 10px;
+}
+
+.subhead {
+  font-family: $sans;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: $color-text;
+  margin-bottom: 8px;
+}
+
+.axis-label {
+  font-family: $mono;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text;
+}
+
+.annotation {
+  font-family: $sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--bold {
+  font-family: $sans;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--number {
+  font-family: $mono;
+  font-size: 16px;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--number-large {
+  font-family: $mono;
+  font-size: 20px;
+  line-height: 28px;
+  color: $color-text;
+}
+
+.tertiary-label {
+  font-family: $sans;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text-light;
+}

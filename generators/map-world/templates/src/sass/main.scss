@@ -1,0 +1,331 @@
+@import "~@axioscode/axios-feta/src/feta";
+@import "reset";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+
+  .chart {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    @media(max-width:599px) {
+      flex-direction: column;
+    }
+
+    #table-container {
+      display: flex;
+      flex-direction: column;
+
+      #totals {
+        margin-top: 10px;
+        padding-bottom: 3px;
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+
+        #total_count,
+        #deaths {}
+
+        #recoveries .annotation--number-large {
+          color: $color-purple-600;
+        }
+
+        .subhead {
+          margin-bottom: 0;
+        }
+
+        .change {
+          color: $color-text-light;
+          font-size: 14px;
+          font-family: $sans;
+          line-height: 1.15;
+
+          @media (max-width: 400px) {
+            font-size: 11px;
+          }
+
+          span {
+            font-family: $sans;
+            font-size: 14px;
+            line-height: 1.15;
+
+            @media (max-width: 400px) {
+              font-size: 11px;
+            }
+          }
+        }
+      }
+    }
+
+    #map_container {
+      @media(min-width:601px) {
+        margin-left: 10px;
+      }
+
+      #map {
+        margin-bottom: 8px;
+
+        svg {
+
+          .annotation {
+            font-size: 12px;
+          }
+
+          path {
+            stroke-width: 0.25px;
+            stroke-opacity: 0.5;
+          }
+
+          .country-annotation {
+            font-family: $sans;
+            fill: $color-text;
+            font-size: 11px;
+            text-anchor: middle;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 1);
+
+            @media(max-width: 601px) {
+              font-size: 10px;
+            }
+
+            @media(max-width: 400px) {
+              display: none;
+            }
+
+            &.diamond {
+              display: block !important;
+            }
+          }
+
+          .country-annotation-number {
+            font-family: $mono;
+            fill: $color-red-800;
+            font-size: 11px;
+            text-anchor: middle;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 1);
+
+            @media(max-width: 599px) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    #table {
+      column-count: 3;
+      column-gap: 30px;
+
+      @media(max-width: 599px) {
+        column-count: 3;
+        column-gap: 20px;
+      }
+
+      @media(max-width: 500px) {
+        column-count: 2;
+        column-gap: 20px;
+      }
+
+      thead {}
+
+      tbody {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      tr {
+        display: table;
+        width: 100%;
+
+        @media(max-width:599px) {}
+      }
+
+      td {
+        display: inline-table;
+        vertical-align: middle;
+
+        @media(max-width:599px) {
+          // flex-basis: 50%;
+        }
+      }
+
+      td:nth-of-type(1) {
+        text-align: right;
+        font-family: $mono;
+        font-size: 13px;
+        color: $color-text;
+        padding-right: 2px;
+        width: 29px;
+
+        @media(max-width: 599px) {
+          width: 28px;
+          font-size: 12px;
+        }
+      }
+
+      td:nth-of-type(2) {
+        font-family: $sans;
+        font-size: 13px;
+        color: $color-text;
+        text-align: left;
+        width: calc(50% - 15px);
+
+        @media(max-width: 599px) {
+          font-size: 12px;
+          text-align: left;
+          width: calc(63% - 14px);
+        }
+      }
+
+      td:nth-of-type(3) {
+        text-align: right;
+        font-family: $mono;
+        font-size: 13px;
+        color: $color-red-700;
+        width: calc(50% - 15px);
+
+        @media(max-width: 599px) {
+          font-size: 12px;
+          width: calc(37% - 14px);
+        }
+      }
+    }
+  }
+
+  .legend {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .legend_item {
+      display: flex;
+    }
+
+    // LEGEND COLORS
+    #legend1 {
+      width: 15px;
+      height: 15px;
+      background-color: #3FB4FF;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+
+    #legend2 {
+      width: 15px;
+      height: 15px;
+      background-color: #FFBC3B;
+      margin-right: 10px;
+    }
+
+    span {
+      margin-right: 20px;
+    }
+  }
+}
+
+.headline {
+  font-family: $sans;
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 400;
+  color: $color-text;
+  margin-bottom: 10px;
+
+  @media (max-width: 500px) {
+    // Same styles as .headline--small
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
+.headline--small {
+  font-family: $sans;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 400;
+  color: $color-text;
+  margin-bottom: 10px;
+}
+
+.headline-units {
+  font-family: $sans;
+  font-size: 12px;
+  line-height: 18px;
+  color: $color-text-light;
+  margin-bottom: 10px;
+}
+
+.subhead {
+  font-family: $sans;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: $color-text;
+  margin-bottom: 8px;
+}
+
+.axis-label {
+  font-family: $mono;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text;
+}
+
+.annotation {
+  font-family: $sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--bold {
+  font-family: $sans;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--number {
+  font-family: $mono;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.annotation--number-large {
+  font-family: $sans;
+  font-size: 24px;
+  line-height: 32px;
+  color: $color-red-700;
+
+  @media(max-width: 400px) {
+    font-size: 18px;
+    line-height: 20px;
+    margin: 4px 0;
+  }
+
+  @media(max-width: 280px) {
+    font-size: 16px;
+  }
+}
+
+.tertiary-label {
+  font-family: $sans;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text-light;
+}

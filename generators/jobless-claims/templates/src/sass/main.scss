@@ -1,0 +1,169 @@
+@import "~@axioscode/axios-feta/src/feta";
+@import 'reset';
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bar {
+  fill: $color-orange-300;
+}
+
+.bar-new {
+  fill: $color-orange-600;
+}
+
+.last-week-line {
+  stroke: $color-gray-900;
+  stroke-width: 0.75;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+
+  .chart {
+    display: inline-block;
+    height: 350px;
+    width: 100%;
+
+    .axis {
+      text {
+        font-family: $mono;
+        fill: $color-gray-500;
+        pointer-events: none;
+      }
+
+      .tick text {
+        font-size: 11px;
+        @media(max-width: 599px) {
+          font-size: 9px;
+        }
+      }
+
+      line,
+      path {
+        stroke: $color-gray-200;
+        stroke-width: 0.5;
+        pointer-events: none;
+      }
+
+      .domain {
+        display: none;
+      }
+    }
+  }
+}
+
+.headline {
+  font-family: $sans;
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 400;
+  color: $color-text;
+  margin-bottom: 10px;
+
+  @media (max-width: 500px) { // Same styles as .headline--small
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
+.headline--small {
+  font-family: $sans;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 400;
+  color: $color-text;
+  margin-bottom: 10px;
+}
+
+.headline-units {
+  font-family: $sans;
+  font-size: 12px;
+  line-height: 18px;
+  color: $color-text-light;
+  margin-bottom: 0;
+}
+
+.subhead {
+  font-family: $sans;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: $color-text;
+  margin-bottom: 8px;
+}
+
+.axis-label {
+  font-family: $mono;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text;
+}
+
+.annotation {
+  font-family: $sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--bold {
+  font-family: $sans;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--number {
+  font-family: $mono;
+  font-size: 16px;
+  line-height: 22px;
+  fill: $color-orange-800;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+
+  @media(max-width: 599px) {
+    font-size: 14px;
+  }
+}
+
+.annotation--number-large {
+  font-family: $mono;
+  font-size: 20px;
+  line-height: 28px;
+  color: $color-text;
+}
+
+.tertiary-label {
+  font-family: $sans;
+  font-size: 14px;
+  line-height: 20px;
+  fill: $color-text-light;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+
+  &.historical {
+    fill: $color-orange-300;
+  }
+
+  @media(max-width: 599px) {
+    font-size: 12px;
+  }
+}
