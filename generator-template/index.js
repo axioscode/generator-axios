@@ -1,6 +1,7 @@
 const Generator = require("yeoman-generator");
 const AxiosGenerator = require("../app/index.js");
 const packages = require("./templates/package.json");
+const mkdirp = require("mkdirp");
 
 module.exports = class extends Generator {
   constructor(args, opts) {
