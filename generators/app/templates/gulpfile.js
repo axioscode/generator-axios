@@ -4,6 +4,7 @@ const gulp = require("gulp");
 const log = require("fancy-log");
 const minimist = require("minimist");
 const shell = require("gulp-shell");
+const inquirer = require("inquirer");
 
 const projectConfig = require("./project.config.json");
 const prodUrl = `https://${projectConfig.s3.bucket}/${
@@ -175,14 +176,34 @@ gulp.task(
 );
 gulp.task("preview").description =
   "Open a browser tab to the visual and copy the URL to your clipboard";
-gulp.task(
-  "publish",
-  gulp.series("push", "build", "deploy", "log:publish", "preview")
-);
+gulp.task("publish", done => {
+  inquirer.prompt(
+    [
+      {
+        type: "confirm",
+        message: "Do you really want to start?",
+        default: true,
+        name: "fallbacks"
+      }
+    ],
+    function(answers) {
+      if (answers.fallbacks) {
+        gulp.start("publish-fallbacks");
+      } else {
+        gulp.series("push", "build", "deploy", "log:publish", "preview");
+      }
+      done();
+    }
+  );
+});
+// gulp.task(
+//   "run-publish",
+//   gulp.series("push", "build", "deploy", "log:publish", "preview")
+// );
 gulp.task("publish").description =
   "A series of commands which publishes a visual to AWS S3";
 gulp.task(
-  "publish-with-fb",
+  "publish-fallbacks",
   gulp.series(
     "push",
     "build",
@@ -195,7 +216,7 @@ gulp.task(
     "preview"
   )
 );
-gulp.task("publish-with-fb").description =
+gulp.task("publish-fallbacks").description =
   "Publishing with automatic fallback generation";
 
 gulp.task("clean", shell.task("rm -rf dist"));
