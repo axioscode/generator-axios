@@ -177,47 +177,36 @@ gulp.task(
 gulp.task("preview").description =
   "Open a browser tab to the visual and copy the URL to your clipboard";
 gulp.task("publish", done => {
-  inquirer.prompt(
-    [
+  inquirer
+    .prompt([
       {
         type: "confirm",
-        message: "Do you really want to start?",
-        default: true,
+        message: "Create new fallbacks?",
+        default: false,
         name: "fallbacks"
       }
-    ],
-    function(answers) {
+    ])
+    .then(answers => {
       if (answers.fallbacks) {
-        gulp.start("publish-fallbacks");
+        gulp.parallel(
+          "serve",
+          gulp.series(
+            "fallbacks",
+            "push",
+            "build",
+            "deploy",
+            "log:publish",
+            "preview"
+          )
+        )();
       } else {
-        gulp.series("push", "build", "deploy", "log:publish", "preview");
+        gulp.series("push", "build", "deploy", "log:publish", "preview")();
       }
       done();
-    }
-  );
+    });
 });
-// gulp.task(
-//   "run-publish",
-//   gulp.series("push", "build", "deploy", "log:publish", "preview")
-// );
 gulp.task("publish").description =
   "A series of commands which publishes a visual to AWS S3";
-gulp.task(
-  "publish-fallbacks",
-  gulp.series(
-    "push",
-    "build",
-    "deploy",
-    "fallbacks",
-    "push-fallbacks",
-    "build",
-    "deploy",
-    "log:publish",
-    "preview"
-  )
-);
-gulp.task("publish-fallbacks").description =
-  "Publishing with automatic fallback generation";
 
 gulp.task("clean", shell.task("rm -rf dist"));
 gulp.task("clean").description = "Removes the dist/ subdirectory";

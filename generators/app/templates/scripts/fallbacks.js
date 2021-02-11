@@ -5,7 +5,8 @@ const fs = require("fs-extra");
 
 const destinationPath = "src/fallbacks";
 const slug = projectConfig.project.slug;
-const url = `https://graphics.axios.com/${slug}/index.html`;
+// const url = `https://graphics.axios.com/${slug}/index.html`;
+const url = "http://0.0.0.0:3000/";
 
 const fallbacks = [
   { name: "apple", width: 375 },
@@ -13,10 +14,20 @@ const fallbacks = [
   { name: "social", width: 800, height: 450 }
 ];
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 const takeScreenshot = async size => {
   let browser = await puppeteer.launch({ headless: true });
   let page = await browser.newPage();
-  await page.goto(url, { waitUntil: "networkidle0", timeout: 60000 });
+  await page.setCacheEnabled(false);
+
+  // Waits to make sure the server is spun up. You can increase this if necessary.
+  await sleep(4000);
+
+  await page.goto(url, { waitUntil: "networkidle0" });
+
   await page.waitForSelector(".chart-container");
 
   // Constrain width and adjust height to fit everything in .chart-container
@@ -48,6 +59,8 @@ const takeScreenshot = async size => {
   });
   await page.close();
   await browser.close();
+
+  return size;
 };
 
 const resizeSocial = async dms => {
@@ -62,7 +75,9 @@ const resizeSocial = async dms => {
 
 const init = async () => {
   fs.emptyDirSync(destinationPath); // remove existing fallbacks
-  await Promise.all(fallbacks.map(size => takeScreenshot(size)));
+  const results = await Promise.all(
+    fallbacks.map(size => takeScreenshot(size))
+  );
   await resizeSocial(fallbacks.filter(d => d.name === "social")[0]);
   console.log("fallbacks created ✨");
 };
