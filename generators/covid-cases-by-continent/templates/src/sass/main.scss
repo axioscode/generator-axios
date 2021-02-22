@@ -56,6 +56,16 @@ body {
   }
 }
 
+.x-axis-years {
+  font-family: $mono;
+  fill: $color-gray-500;
+  font-size: 11px;
+  text-anchor: middle;
+  @media(max-width: 500px) {
+    font-size: 10px;
+  }
+}
+
 .headline {
   font-family: $sans;
   font-size: 26px;
