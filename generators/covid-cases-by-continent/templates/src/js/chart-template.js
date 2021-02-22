@@ -1,6 +1,6 @@
 import { axisBottom, axisLeft } from "d3-axis";
 import { scaleLinear, scaleTime } from "d3-scale";
-import { select } from "d3-selection";
+import { select, selectAll } from "d3-selection";
 import { line } from "d3-shape";
 import { nest } from "d3-collection";
 import { sum, extent } from "d3-array";
@@ -10,8 +10,11 @@ import { timeParse, timeFormat } from "d3-time-format";
 export default class makeChart {
   constructor(opts) {
     Object.assign(this, opts);
-    
+
     this.parser = timeParse("%Y-%m-%d");
+    this.size = window.innerWidth <= 500 ? "mobile" : "desktop";
+    this.xVals = this.size == "mobile" ? [this.parser("2020-04-01"),this.parser("2020-07-01"), this.parser("2020-10-01"), this.parser("2021-01-01")] : [this.parser("2020-03-01"),this.parser("2020-05-01"), this.parser("2020-07-01"), this.parser("2020-09-01"), this.parser("2020-11-01"), this.parser("2021-01-01")];
+
     this._setData();
     this.appendElements();
     this.update();
@@ -37,7 +40,7 @@ export default class makeChart {
     }
     this.datetimeExtent = extent(this.flattenedData, d => d.date)
 
-    // take out any "undefined" continents 
+    // take out any "undefined" continents
     var continents = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania"]
     this.filteredData = this.flattenedData.filter(d => {
       return continents.includes(d.continent)
@@ -50,7 +53,7 @@ export default class makeChart {
     this.dateTrimmed = this.filteredData.filter(d =>{
       return this.parser(d.date) > this.parser("2020-02-01")
     })
-    
+
     this.linesData = nest()
       .key(function(d) { return d.continent; })
       .key(function(d) { return d.date; })
@@ -69,11 +72,10 @@ export default class makeChart {
   }
 
   _setDimensions() {
-    this.size = window.innerWidth <= 500 ? "mobile" : "desktop";
     this.margin = {
       top: 20,
-      right: 175,
-      bottom: 35,
+      right: this.size === "desktop" ? 175 : 130,
+      bottom: 45,
       left: this.size === "desktop" ? 53 : 51
     };
 
@@ -90,7 +92,7 @@ export default class makeChart {
       .range([this.height, 0])
       .domain([0, 300000]);
 
-    // chart 7 day moving average 
+    // chart 7 day moving average
     this.lineGenerator = line()
       .x(d => this.xScale(this.parser(d.key)))
       .y((d,i,e) => {
@@ -118,7 +120,7 @@ export default class makeChart {
       .data(this.annoPositions)
       .enter()
       .append("circle").attr('class', d => "dot " + slugify(d.continent))
-      .attr("r", 5);
+      .attr("r", 4);
 
     this.annoContainer = this.plot.selectAll(".anno")
       .data(this.annoPositions)
@@ -127,17 +129,21 @@ export default class makeChart {
 
     this.continentLabel = this.annoContainer.append("text")
       .attr("class", "continent")
-      .text(d => d.continent);
-    
+
     this.casesLabel = this.annoContainer.append("text")
       .attr("class", "cases")
       .text(d => formatNumber(d.lastValue));
 
-    // this.annos = this.plot.selectAll(".anno")
-    //   .data(this.annoPositions)
-    //   .enter().append("g")
-    //   .attr("class", d => "anno " + slugify(d.continent) + " annotation")
-    //   .text(d => d.continent);
+    // Note, hacky adding of years to x-axis
+    this.xAxisYears = this.plot.selectAll(".x-axis-years")
+      .data([this.xVals[0], this.xVals[this.xVals.length-1]])
+      .enter()
+      .append("text")
+      .text(d=> {
+        let yearString = d.toString().split(" ")[3].substring(2)
+        return "`" + yearString
+      })
+      .attr("class", "x-axis-years");
   }
 
   render() {
@@ -148,21 +154,14 @@ export default class makeChart {
       "transform",
       `translate(${this.margin.left},${this.margin.top})`
     );
-    var xVals = this.size == "mobile" ? [this.parser("2020-03-01"),this.parser("2020-06-01"), this.parser("2020-09-01"), this.parser("2020-12-01")] : [this.parser("2020-03-01"),this.parser("2020-05-01"), this.parser("2020-07-01"), this.parser("2020-09-01"), this.parser("2020-11-01"), this.parser("2021-01-01")]
 
     this.xAxis
       .attr("transform", "translate(0," + (this.height) + ")")
       .call(
         axisBottom(this.xScale)
           .tickSize(20)
-          .tickValues(xVals)
-          .tickFormat(d =>{
-            // if(this.size === "mobile"){
-              return formatDateString(d)
-            // }else{
-            //   return timeFormat("%B")(d)
-            // }
-          })
+          .tickValues(this.xVals)
+          .tickFormat(d =>formatDateString(d))
       );
 
     this.yAxis
@@ -190,12 +189,33 @@ export default class makeChart {
       .attr("cy", d =>  this.yScale(d.lastValue));
 
     this.continentLabel
+      .text(d => {
+        if (this.size == "mobile" && d.continent == "North America") {
+          return "N. America"
+        } else if (this.size == "mobile" && d.continent == "South America") {
+          return "S. America"
+        } else {
+          return d.continent
+        }
+      })
       .attr("y", d => this.yScale(d.lastValue) + 6)
       .attr("x", this.width + 8)
 
     this.casesLabel
       .attr("y", d => this.yScale(d.lastValue) + 6)
-      .attr("x", this.width + 125)
+      .attr("x", this.size == "desktop" ? this.width + 125 : this.width + 85)
+
+    this.xAxisYears
+      .attr("x", d=> this.xScale(d) - 3)
+      .attr("y", this.height + this.margin.bottom)
+
+    selectAll(".x-axis .tick text")
+      .attr("dx", d=> {
+        return formatDateString(d).includes(".") ? 3 : 0
+      })
+
+    let headlineText = this.size == "desktop" ? "Daily reported COVID-19 cases, by continent" : "Daily reported COVID-19</br>cases, by continent"
+    select(".headline").html(headlineText)
   }
 }
 
