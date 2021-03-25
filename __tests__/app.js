@@ -17,7 +17,7 @@ describe("generator-axios unit tests", () => {
       "gulpfile.js",
       "package.json",
       "project.config.json",
-      "README.md",
+      "README.md"
     ]);
   });
 });

@@ -4,6 +4,7 @@ const gulp = require("gulp");
 const log = require("fancy-log");
 const minimist = require("minimist");
 const shell = require("gulp-shell");
+const inquirer = require("inquirer");
 
 const projectConfig = require("./project.config.json");
 const prodUrl = `https://${projectConfig.s3.bucket}/${
@@ -16,17 +17,17 @@ const timestamp = {
   date: (date.getDate() < 10 ? "0" : "") + date.getDate(),
   hour: (date.getHours() < 10 ? "0" : "") + date.getHours(),
   min: (date.getMinutes() < 10 ? "0" : "") + date.getMinutes(),
-  sec: (date.getSeconds() < 10 ? "0" : "") + date.getSeconds(),
+  sec: (date.getSeconds() < 10 ? "0" : "") + date.getSeconds()
 };
 
 const defaultOptions = {
   string: "port",
   default: {
-    port: 3000,
+    port: 3000
   },
   alias: {
-    p: "port",
-  },
+    p: "port"
+  }
 };
 const argv = minimist(process.argv.slice(2), defaultOptions);
 
@@ -92,7 +93,7 @@ gulp.task(
   shell.task([
     `echo "http://\`ipconfig getifaddr en0\`:${argv.port}" | pbcopy`,
     'echo "\ncopied url to your clipboard:"',
-    `echo "http://\`ipconfig getifaddr en0\`:${argv.port}\n"`,
+    `echo "http://\`ipconfig getifaddr en0\`:${argv.port}\n"`
   ])
 );
 gulp.task("localip").description =
@@ -107,10 +108,10 @@ gulp.task(
       `git commit -am "latest as of ${timestamp.year}-${timestamp.month}-${
         timestamp.date
       } ${timestamp.hour}:${timestamp.min}:${timestamp.sec}"`,
-      "git push",
+      "git push"
     ],
     {
-      ignoreErrors: true,
+      ignoreErrors: true
     }
   )
 );
@@ -128,6 +129,26 @@ gulp.task(
 );
 gulp.task("deploy").description =
   "Upload the dist/ subdirecotry to visuals.axios.com on AWS S3";
+gulp.task("fallbacks", shell.task("npm run fallbacks"));
+gulp.task("fallbacks").description =
+  "Generate fallback images to src/fallbacks";
+gulp.task(
+  "push-fallbacks",
+  shell.task(
+    [
+      "git add -A .",
+      `git commit -am "fallbacks created ${timestamp.year}-${timestamp.month}-${
+        timestamp.date
+      } ${timestamp.hour}:${timestamp.min}:${timestamp.sec}"`,
+      "git push"
+    ],
+    {
+      ignoreErrors: true
+    }
+  )
+);
+gulp.task("push-fallbacks").description =
+  "Push newly created fallbacks to Github";
 gulp.task("log:publish", done => {
   log("");
   log(
@@ -150,15 +171,37 @@ gulp.task(
     `echo ${prodUrl} | pbcopy`,
     'echo "\ncopied to your clipboard:"',
     `echo "${prodUrl}\n"`,
-    `open ${prodUrl}`,
+    `open ${prodUrl}`
   ])
 );
 gulp.task("preview").description =
   "Open a browser tab to the visual and copy the URL to your clipboard";
-gulp.task(
-  "publish",
-  gulp.series("push", "build", "deploy", "log:publish", "preview")
-);
+gulp.task("publish", done => {
+  inquirer
+    .prompt([
+      {
+        type: "confirm",
+        message: "Create new fallbacks?",
+        default: false,
+        name: "fallbacks"
+      }
+    ])
+    .then(answers => {
+      if (answers.fallbacks) {
+        gulp.series(
+          "fallbacks",
+          "push-fallbacks",
+          "build",
+          "deploy",
+          "log:publish",
+          "preview"
+        )();
+      } else {
+        gulp.series("push", "build", "deploy", "log:publish", "preview")();
+      }
+      done();
+    });
+});
 gulp.task("publish").description =
   "A series of commands which publishes a visual to AWS S3";
 
