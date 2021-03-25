@@ -25,7 +25,6 @@ const takeScreenshot = async size => {
 
   // Waits to make sure the server is spun up. You can increase this if necessary.
   await sleep(4000);
-
   await page.goto(url, { waitUntil: "networkidle0" });
 
   await page.waitForSelector(".chart-container");

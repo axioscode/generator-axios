@@ -188,16 +188,13 @@ gulp.task("publish", done => {
     ])
     .then(answers => {
       if (answers.fallbacks) {
-        gulp.parallel(
-          "serve",
-          gulp.series(
-            "fallbacks",
-            "push",
-            "build",
-            "deploy",
-            "log:publish",
-            "preview"
-          )
+        gulp.series(
+          "fallbacks",
+          "push-fallbacks",
+          "build",
+          "deploy",
+          "log:publish",
+          "preview"
         )();
       } else {
         gulp.series("push", "build", "deploy", "log:publish", "preview")();
