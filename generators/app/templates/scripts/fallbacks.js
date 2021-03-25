@@ -1,3 +1,4 @@
+"use strict";
 const puppeteer = require("puppeteer");
 const jimp = require("jimp");
 const projectConfig = require("../project.config.json");
