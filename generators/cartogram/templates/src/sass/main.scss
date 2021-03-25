@@ -1,0 +1,206 @@
+@import "~@axioscode/axios-feta/src/feta";
+@import "reset";
+@import '_thresholdKey';
+
+
+html,
+body {
+  margin: 5;
+  padding: 0;
+  overflow: hidden;
+  width: auto;
+  height: auto;
+}
+.legend {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .legend_item {
+    display: flex;
+  }
+
+ // LEGEND COLORS
+  #legend1 {
+    width: 15px;
+    height: 15px;;
+    background-color: #E19310;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  #legend2 {
+    width: 15px;
+    height: 15px;;
+    background-color: #ccc;
+    margin-right: 10px;
+  }
+
+  span {
+    margin-right: 20px;
+  }
+}
+
+.chart {
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	max-width: 700px;
+
+	rect.state-bkgd {
+		fill: #ccc;
+		stroke: #fff;
+		stroke-width: 1;
+	}
+
+	text {
+		font-family: $mono;
+		fill: $color-gray-800;
+		font-size: 12px;
+		text-transform: uppercase;
+  }
+
+  // IF STATES NEED A TEXT COLOR CHANGE, CHANGE IT HERE
+
+  // g.state.FL,
+  // g.state.GA
+  // {
+  //   text {
+  //     fill: #fff;
+  //   }
+  // }
+
+}
+
+
+@import "~@axioscode/axios-feta/src/feta";
+@import 'reset';
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.chart-container {
+  width: 100%;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+
+  .chart {
+    display: inline-block;
+    width: 100%;
+
+    .axis {
+      text {
+        font-family: $mono;
+        fill: $color-gray-500;
+        pointer-events: none;
+      }
+
+      .tick text {
+        font-size: 11px;
+      }
+
+      line,
+      path {
+        stroke: $color-gray-200;
+        stroke-width: 0.5;
+        pointer-events: none;
+      }
+
+      .domain {
+        display: none;
+      }
+    }
+  }
+}
+
+.headline {
+  font-family: $sans;
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 400;
+  color: $color-text;
+  margin-bottom: 10px;
+
+  @media (max-width: 500px) { // Same styles as .headline--small
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
+.headline--small {
+  font-family: $sans;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 400;
+  color: $color-text;
+  margin-bottom: 10px;
+}
+
+.headline-units {
+  font-family: $sans;
+  font-size: 12px;
+  line-height: 18px;
+  color: $color-text-light;
+  margin-bottom: 10px;
+}
+
+.subhead {
+  font-family: $sans;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: $color-text;
+  margin-bottom: 8px;
+  display: inline-flex;
+}
+
+.axis-label {
+  font-family: $mono;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text;
+}
+
+.annotation {
+  font-family: $sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--bold {
+  font-family: $sans;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--number {
+  font-family: $mono;
+  font-size: 16px;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--number-large {
+  font-family: $mono;
+  font-size: 20px;
+  line-height: 28px;
+  color: $color-text;
+}
+
+.tertiary-label {
+  font-family: $sans;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text-light;
+}

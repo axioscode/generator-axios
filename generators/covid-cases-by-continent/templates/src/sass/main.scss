@@ -1,0 +1,203 @@
+@import "~@axioscode/axios-feta/src/feta";
+@import 'reset';
+
+$asia: #69c1f9;
+$south-america: #917ef7;
+$north-america: #1a60b1;
+$africa: #d58a2b;
+$europe: #c43724;
+$oceania: #f8b546;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+
+  .chart {
+    display: inline-block;
+    height: 400px;
+    width: 100%;
+
+    .axis {
+      text {
+        font-family: $mono;
+        fill: $color-gray-500;
+        pointer-events: none;
+      }
+
+      .tick text {
+        font-size: 11px;
+        @media(max-width: 500px) {
+          font-size: 10px;
+        }
+      }
+
+      line,
+      path {
+        stroke: $color-gray-200;
+        stroke-width: 0.5;
+        pointer-events: none;
+      }
+
+      .domain {
+        display: none;
+      }
+    }
+  }
+}
+
+.x-axis-years {
+  font-family: $mono;
+  fill: $color-gray-500;
+  font-size: 11px;
+  text-anchor: middle;
+  @media(max-width: 500px) {
+    font-size: 10px;
+  }
+}
+
+.headline {
+  font-family: $sans;
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 400;
+  color: $color-text;
+  margin-bottom: 10px;
+
+  @media (max-width: 500px) { // Same styles as .headline--small
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+.headline-units {
+  font-family: $sans;
+  font-size: 13px;
+  line-height: 18px;
+  color: $color-text-light;
+  margin-bottom: 10px;
+  @media (max-width: 500px) { 
+    font-size: 12px;
+  }
+}
+.subhead {
+  font-family: $sans;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: $color-text;
+  margin-bottom: 8px;
+}
+.axis-label {
+  font-family: $mono;
+  font-size: 13px;
+  line-height: 20px;
+  fill: $color-gray-500;
+}
+.annotation {
+  font-family: $sans;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22px;
+  color: $color-text;
+  @media (max-width: 500px) { // Same styles as .headline--small
+    font-size: 14px;
+    line-height: 26px;
+  }
+}
+.annotation--number {
+  font-family: $mono;
+  font-size: 16px;
+  line-height: 22px;
+  color: $color-text;
+}
+// -----------------------------------
+.line {
+  fill: none;
+  stroke: $color-green-700;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  &.asia{
+    stroke:$asia;
+  }
+  &.africa{
+    stroke:$africa;
+  }
+  &.oceania{
+    stroke:$oceania;
+  }
+  &.north-america{
+    stroke:$north-america;
+  }
+  &.south-america{
+    stroke:$south-america;
+  }
+  &.europe{
+    stroke:$europe;
+  }
+
+  &.white-stroke {
+    stroke: #FFF;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+}
+// -----------------------------------
+.dot{
+  stroke: white;
+  stroke-width: 2px;
+  &.asia{
+    fill:$asia;
+  }
+  &.africa{
+    fill:$africa;
+  }
+  &.oceania{
+    fill:$oceania;
+  }
+  &.north-america{
+    fill:$north-america;
+  }
+  &.south-america{
+    fill:$south-america;
+  }
+  &.europe{
+    fill:$europe;
+  }
+}
+
+.anno{
+  .cases{
+    text-align: right;
+  }
+  &.asia{
+    fill:$asia;
+  }
+  &.africa{
+    fill:$africa;
+  }
+  &.oceania{
+    fill:$oceania;
+  }
+  &.north-america{
+    fill:$north-america;
+  }
+  &.south-america{
+    fill:$south-america;
+  }
+  &.europe{
+    fill:$europe;
+  }
+}

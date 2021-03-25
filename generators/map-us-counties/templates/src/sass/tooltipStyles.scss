@@ -1,0 +1,272 @@
+.has-tooltip {
+	position: relative;
+	display: inline-block;
+}
+
+.tooltip {
+	color: $color-text;
+	font-family: $sans;
+	text-align: left;
+	position: absolute;
+	z-index: 9999;
+	display: none;
+	pointer-events: none;
+	width: 0px;
+	height: 0px;
+	transform: translate(-50%,-50%);
+
+  @media(max-width: 599px) {
+  	bottom: 0;
+  	height: auto;
+  	left: 0!important;
+  	transform: none!important;
+  	top: auto!important;
+  	width: 100%;
+  }
+
+	&.tooltip-active {
+		display: block
+	}
+
+	& .tooltip-inner {
+		position: relative;
+		border: 1px solid #aaa;
+		border-radius: 2px;
+		background: #fff;
+		padding: 10px;
+		min-width: 200px;
+
+		@media(max-width: 599px) {
+			background: rgba(255,255,255,0.94);
+			box-shadow: 0 -7px 9px rgba(0,0,0,0.1);
+			border-radius: 0;
+			min-width: auto;
+			padding: 10px 0;
+			border: none;
+		}
+
+		& .clear {
+			display: block;
+			clear: both;
+		}
+
+		&:after {
+			display: block;
+			content: ' ';
+			background: #fff;
+			width: 10px;
+			height: 10px;
+			border-top: 1px solid #aaa;
+			border-right: 1px solid #aaa;
+			border-top-right-radius: 2px;
+			position: absolute;
+		}
+	}
+}
+
+.tooltip-n .tooltip-inner {
+	transform: translate(-50%, 0%);
+	top: 15px;
+	left: 0px;
+
+	&:after {
+		top: -9px;
+		left: 50%;
+		transform: rotate(-45deg) translate(-50%, 0%);
+	}
+	@media(max-width: 599px) {
+		transform: none;
+		bottom: 0;
+		top: 0;
+		&:after {
+			display: none;
+		}
+	}
+}
+
+.tooltip-s .tooltip-inner {
+	transform: translate(-50%, -100%);
+	bottom: 15px;
+	left: 0px;
+
+	&:after {
+		top: 100%;
+		left: 50%;
+		transform: translate(-50%, -4px) rotate(135deg);
+	}
+	@media(max-width: 599px) {
+		transform: none;
+		bottom: 0;
+		top: 0;
+		&:after {
+			display: none;
+		}
+	}
+}
+
+.tooltip-nw .tooltip-inner {
+	transform: translate(-10%, 0%);
+	top: 15px;
+	left: 0px;
+
+	&:after {
+		top: -9px;
+		left: 10%;
+		transform: rotate(-45deg) translate(-50%, 0%);
+	}
+	@media(max-width: 599px) {
+		transform: none;
+		bottom: 0;
+		top: 0;
+		&:after {
+			display: none;
+		}
+	}
+}
+
+.tooltip-ne .tooltip-inner {
+	transform: translate(-90%, 0%);
+	top: 15px;
+	right: 0px;
+
+	&:after {
+		top: -9px;
+		left: 90%;
+		transform: rotate(-45deg) translate(-50%, 0%);
+	}
+	@media(max-width: 599px) {
+		transform: none;
+		bottom: 0;
+		top: 0;
+		&:after {
+			display: none;
+		}
+	}
+}
+
+.tooltip-sw .tooltip-inner {
+	transform: translate(-10%, -100%);
+	bottom: 15px;
+	left: 0px;
+
+	&:after {
+		top: 100%;
+		left: 10%;
+		transform: translate(-50%, -4px) rotate(135deg);
+	}
+	@media(max-width: 599px) {
+		transform: none;
+		bottom: 0;
+		top: 0;
+		&:after {
+			display: none;
+		}
+	}
+}
+
+.tooltip-se .tooltip-inner {
+	transform: translate(-90%, -100%);
+	bottom: 15px;
+	right: 0px;
+
+	&:after {
+		top: 100%;
+		left: 90%;
+		transform: translate(-50%, -4px) rotate(135deg);
+	}
+	@media(max-width: 599px) {
+		transform: none;
+		bottom: 0;
+		top: 0;
+		&:after {
+			display: none;
+		}
+	}
+}
+
+.tooltip-inner {
+
+	.tt-header {
+
+		@media(max-width: 599px) {
+			width: calc(100% - 40px);
+		}
+
+		.name {
+			display: block;
+			font-size: 16px;
+			line-height: 1.25;
+			vertical-align: top;
+			width: 100%;
+		}
+	}
+}
+
+
+.tt-row {
+	display: flex;
+	@media(max-width: 599px) {
+		width: calc(100% - 40px);
+	}
+
+	&.with-rule {
+		margin-top: 5px;
+		padding-top: 5px;
+		border-top: 1px dotted #ccc;
+	}
+
+	span {
+		color: $color-text;
+		font-size: 12px;
+
+		@media(max-width: 599px) {
+			font-size: 14px;
+		}
+	}
+
+	.label {
+		flex-grow: 1;
+	}
+
+	.value {
+		font-family: $mono;
+		text-align: right;
+	}
+}
+
+.chart-container.tooltip-active {
+	@media(max-width: 599px) {
+		.tooltip-close {
+			pointer-events: all;
+		}
+	}
+}
+
+.tooltip-close {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 40px;
+	width: 40px;
+
+  .close-icon {
+  	background: #fff;
+  	border-radius: 2px;
+		box-shadow: 0 0 0 1px $color-gray-200;
+		display: block;
+		color: $color-text-light;
+		font-family: $mono;
+		line-height: 23px;
+		position: relative;
+		text-align: center;
+		right: -16px;
+		top: 8px;
+		height: 23px;
+	  width: 23px;
+  }
+
+	@media(max-width: 599px) {
+		display: block;
+	}
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta property="fullbleed" content="<%= htmlWebpackPlugin.options.isFullbleed %>" />
+  <meta property="slug" content="<%= htmlWebpackPlugin.options.project.slug %>" />
+  <link rel="icon" type="image/png" href="https://static.axios.com/img/axiosvisuals-favicon-128x128.png"
+    sizes="128x128" />
+  <meta property="apple-fallback" content="<%= htmlWebpackPlugin.options.appleFallback %>" />
+  <meta property="newsletter-fallback" content="<%= htmlWebpackPlugin.options.newsletterFallback %>" />
+  <title><%= htmlWebpackPlugin.options.title %> | Axios Visuals</title>
+</head>
+
+<body>
+  <div class="chart-container">
+    <h2 class="headline">Headline</h2>
+    <div class="headline-units">Dek</div>
+    <div class="key"></div>
+    <div class="legend subhead">Legend text
+      <div class="legend_item"><div id="legend1"></div><span>Legend item 1</span></div>
+      <div class="legend_item"><div id="legend2"></div><span>Legend item 2</span></div>
+    </div>
+    <div class="chart">
+
+      <div id="map_container">
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

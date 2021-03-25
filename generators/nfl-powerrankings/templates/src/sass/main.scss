@@ -1,0 +1,200 @@
+@import "~@axioscode/axios-feta/src/feta";
+@import "reset";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.table {
+  width: 100%;
+
+  @media(min-width: 575px) {
+    column-count: 2;
+    grid-column-gap: 50px;
+  }
+}
+
+tr {
+  border-top: 0.5px solid $color-gray-200;
+  display: table;
+  min-height: 36px;
+  line-height: 36px;
+  width: 100%;
+
+  @media(max-width: 574px) {
+    min-height: 28px;
+    line-height: 28px;
+  }
+
+  &:nth-child(1),
+  &:nth-child(17) {
+    border-color: transparent;
+  }
+
+  &:nth-child(17) {
+    @media(max-width: 574px) {
+      border-color: $color-gray-200;
+    }
+  }
+}
+
+td {
+  color: $color-text;
+  font-family: $mono;
+  font-size: 14px;
+  text-align: right;
+
+  &.rank {
+    width: 30px;
+  }
+
+  &.logo {
+    text-align: center;
+    width: 40px;
+
+    img {
+      height: 26px;
+      width: 26px;
+      vertical-align: middle;
+
+      @media(max-width: 574px) {
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
+
+  &.team {
+    text-align: left;
+    vertical-align: middle;
+    width: calc(48% - 90px);
+  }
+
+  .team-name {
+    font-weight: bold;
+    font-family: $sans;
+  }
+
+  .record {
+    color: $color-gray-600;
+    font-family: $mono;
+    font-size: 12px;
+    margin-left: 4px;
+  }
+
+  &.trend {
+    color: $color-gray-500;
+    position: relative;
+    width: 15%;
+
+    img {
+      position: relative;
+      left: -3px;
+      opacity: 0.8;
+    }
+
+    &.no-change {
+      img {
+        display: none;
+      }
+    }
+  }
+}
+
+.headline {
+  font-family: $sans;
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 400;
+  color: $color-text;
+  margin-bottom: 10px;
+
+  @media (max-width: 500px) { // Same styles as .headline--small
+    font-size: 22px;
+    line-height: 26px;
+  }
+}
+
+.headline--small {
+  font-family: $sans;
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: 400;
+  color: $color-text;
+  margin-bottom: 10px;
+}
+
+.headline-units {
+  font-family: $sans;
+  font-size: 12px;
+  line-height: 18px;
+  color: $color-text-light;
+  margin-bottom: 10px;
+}
+
+.subhead {
+  font-family: $sans;
+  font-size: 14px;
+  line-height: 16px;
+  color: $color-text;
+  margin-bottom: 8px;
+}
+
+.axis-label {
+  font-family: $mono;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text;
+}
+
+.annotation {
+  font-family: $sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--bold {
+  font-family: $sans;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--number {
+  font-family: $mono;
+  font-size: 16px;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--number-large {
+  font-family: $mono;
+  font-size: 24px;
+  line-height: 28px;
+  color: $color-text;
+
+  @media(max-width: 599px) {
+    font-size: 22px;
+    line-height: 22px;
+  }
+}
+
+.tertiary-label {
+  font-family: $sans;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text-light;
+}

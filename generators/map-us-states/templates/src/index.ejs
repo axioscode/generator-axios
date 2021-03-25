@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta property="fullbleed" content="<%= htmlWebpackPlugin.options.isFullbleed %>" />
+    <meta property="slug" content="<%= htmlWebpackPlugin.options.project.slug %>" />
+    <link rel="icon" type="image/png" href="https://static.axios.com/img/axiosvisuals-favicon-128x128.png" sizes="128x128" />
+    <meta property="apple-fallback" content="<%= htmlWebpackPlugin.options.appleFallback %>" />
+    <meta property="newsletter-fallback" content="<%= htmlWebpackPlugin.options.newsletterFallback %>" />
+    <title><%= htmlWebpackPlugin.options.title %> | Axios Visuals</title>
+  </head>
+  <body>
+    <div class="chart-container">
+      <div class="map"></div>
+      <div class="tooltip">
+        <div class="tooltip-inner">
+          <div class="tooltip-close">
+            <span class="close-icon"><img src="./img/close.png" height="11px" width="11px"></span>
+          </div>
+          <h4 class="tt-header">
+            <span class="tt-update name" data-field="st" data-format="state"></span>
+          </h4>
+          <div class="tt-row with-rule">
+            <span class="label">Label</span>
+            <span class="tt-update value" data-field="" data-format=""></span>
+          </div>
+        </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,230 @@
+@import "~@axioscode/axios-feta/src/feta";
+@import 'reset';
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/// edit to match your labels as needed /// 
+$color-established: $color-green-700;
+$color-commitment: $color-green-300;
+$color-none: #fff;
+
+
+.legend {
+  list-style: none;
+
+  li {
+    display: inline-block;
+    color: $color-text-light;
+    font-family: $sans;
+    font-size: 13px;
+    margin-right: 8px;
+
+    @media(max-width: 599px) {
+      font-size: 12px;
+    }
+  }
+
+  .legend-dot {
+    border-radius: 100%;
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    margin-right: 3px;
+
+    &.established {
+      background-color: $color-established;
+    }
+
+    &.commitment {
+      background-color: $color-commitment;
+    }
+
+    &.none {
+      background-color: $color-none;
+      box-shadow: inset 0 0 0 1px $color-gray-600;
+    }
+  }
+}
+
+.city-group {
+
+  .city-circle {
+    pointer-events: none;
+    stroke-width: 1;
+    r: 5;
+
+    @media(max-width: 599px) {
+      r: 3;
+    }
+  }
+
+  &.c-1 .city-circle {
+    fill: rgba($color-established, 0.7);
+    stroke: $color-established;
+  }
+
+  &.c-2 .city-circle {
+    fill: rgba($color-commitment, 0.7);
+    stroke: $color-commitment;
+
+  }
+
+  &.c-3 .city-circle {
+    fill: rgba($color-none, 0.7);
+    stroke: $color-gray-600;
+  }
+
+  .city-text {
+    font-family: $sans;
+    font-size: 11px;
+    font-weight: bold;
+    fill: $color-text;
+    text-anchor: middle;
+    paint-order: stroke;
+    stroke: #fff;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3px;
+
+    @media(max-width: 599px) {
+      font-size: 9px;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////
+// Map stuff
+//////////////////////////////////////////////////////////////
+.map {
+  position: relative;
+}
+
+.state-borders {
+  fill: none;
+  stroke: none;
+  stroke-width: 0.25;
+}
+
+.state {
+  fill: rgba(0, 0, 0, 0.02);
+  stroke: rgba(0, 0, 0, 0.3);
+  stroke-width: 0.25;
+
+}
+
+
+//////////////////////////////////////////////////////////////
+// Default styles
+//////////////////////////////////////////////////////////////
+
+.chart-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+.headline {
+  font-family: $sans;
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 400;
+  color: $color-text;
+  margin-bottom: 10px;
+
+  @media (max-width: 500px) {
+    // Same styles as .headline--small
+    font-size: 22px;
+    line-height: 26px;
+  }
+}
+
+.headline--small {
+  font-family: $sans;
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: 400;
+  color: $color-text;
+  margin-bottom: 10px;
+}
+
+.headline-units {
+  font-family: $sans;
+  font-size: 12px;
+  line-height: 18px;
+  color: $color-text-light;
+  margin-bottom: 10px;
+}
+
+.subhead {
+  font-family: $sans;
+  font-size: 14px;
+  line-height: 16px;
+  color: $color-text;
+  margin-bottom: 8px;
+
+  @media (max-width: 599px) {
+    margin-bottom: 2px;
+  }
+
+  @media (max-width: 320px) {
+    font-size: 12px;
+  }
+}
+
+.axis-label {
+  font-family: $mono;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text;
+}
+
+.annotation {
+  font-family: $sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--bold {
+  font-family: $sans;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--number {
+  font-family: $mono;
+  font-size: 16px;
+  line-height: 22px;
+  color: $color-text;
+}
+
+.annotation--number-large {
+  font-family: $mono;
+  font-size: 24px;
+  line-height: 28px;
+  color: $color-text;
+
+  @media(max-width: 599px) {
+    font-size: 22px;
+    line-height: 22px;
+  }
+}
+
+.tertiary-label {
+  font-family: $sans;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text-light;
+}

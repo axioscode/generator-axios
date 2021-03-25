@@ -1,0 +1,149 @@
+[
+  {
+    "year": 2018,
+    "type": "event",
+    "text": "President Trump emphasizes “race-neutral” methods to place students, rescinding Obama administration guidance on using race to promote diversity.",
+    "illo_filename": "none",
+    "y_nudge": 0
+  },
+  {
+    "year": 2017,
+    "type": "event",
+    "text": "A federal court rules a law banning Mexican American Studies in Tucson, Ariz., schools was racist and unconstitutional.",
+    "illo_filename": "none",
+    "y_nudge": -5
+  },
+  {
+    "year": 2007,
+    "type": "event",
+    "text": "Supreme Court limits the constitutionality of considering race when admitting students to public schools, in a blow to voluntary school desegregation.",
+    "illo_filename": "none",
+    "y_nudge": 0
+  },
+  {
+    "year": 1992,
+    "type": "milestone",
+    "text": "Nation’s first charter school opens in St. Paul, Minn.",
+    "illo_filename": "2020-11-04-ht-education-timeline-minis-First-Charter-School.png",
+    "y_nudge": 10
+  },
+  {
+    "year": 1981,
+    "type": "event",
+    "text": "Supreme Court says it’s illegal for states to deny students public education on the basis of their immigration status.",
+    "illo_filename": "none",
+    "y_nudge": 0
+  },
+  {
+    "year": 1975,
+    "type": "milestone",
+    "text": "Riots break out in high schools in Boston after judge orders busing to desegregate public schools.",
+    "illo_filename": "2020-11-04-ht-education-timeline-minis-Boston-Riots.png",
+    "y_nudge": -24
+  },
+  {
+    "year": 1973,
+    "type": "event",
+    "text": "Supreme Court rules in San Antonio v. Rodriguez that education is not a “fundamental right,” affirming the constitutionality of property-tax-based funding for schools.",
+    "illo_filename": "none",
+    "y_nudge": 20
+  },
+  {
+    "year": 1971,
+    "type": "event",
+    "text": "Supreme Court rules schools can use busing, magnet schools and other tools to further integrate schools in all-white neighborhoods.",
+    "illo_filename": "none",
+    "y_nudge": 10
+  },
+  {
+    "year": 1963,
+    "type": "milestone",
+    "text": "The nation’s first bilingual and bicultural public school opens in Miami to accommodate Cuban refugee children.",
+    "illo_filename": "2020-11-04-ht-education-timeline-minis-Coral-Way-Elementary.png",
+    "y_nudge": 10
+  },
+  {
+    "year": 1958,
+    "type": "milestone",
+    "text": "Flint, Mich., is first district to permanently place police officer in public school.",
+    "illo_filename": "2020-11-04-ht-education-timeline-minis-Police-Schools.png",
+    "y_nudge": -40
+  },
+  {
+    "year": 1957,
+    "type": "milestone",
+    "text": "The National Guard is called to protect nine Black students integrating an all-white high school in Little Rock, Ark.",
+    "illo_filename": "2020-11-04-ht-education-timeline-minis-Little-Rock-Nine.png",
+    "y_nudge": -35
+  },
+  {
+    "year": 1954,
+    "type": "event",
+    "text": "Supreme Court rules separate schools are “inherently unequal” in Brown v. Board of Education.",
+    "illo_filename": "none",
+    "y_nudge": 0
+  },
+  {
+    "year": 1946,
+    "type": "event",
+    "text": "Los Angeles court says educating Mexican children in separate schools is unconstitutional.",
+    "illo_filename": "none",
+    "y_nudge": 20
+  },
+  {
+    "year": 1927,
+    "type": "event",
+    "text": "Gong Lum v. Rice ruling says states can deem Chinese students as nonwhite when segregating public schools.",
+    "illo_filename": "none",
+    "y_nudge": 30
+  },
+  {
+    "year": 1899,
+    "type": "event",
+    "text": "Supreme Court rules states can tax all citizens, even if they provide no high school for Black boys.",
+    "illo_filename": "none",
+    "y_nudge": 60
+  },
+  {
+    "year": 1896,
+    "type": "event",
+    "text": "Plessy v. Ferguson sets legal precedent for “separate but equal” policies used to justify segregated schools.",
+    "illo_filename": "none",
+    "y_nudge": 70
+  },
+  {
+    "year": 1870,
+    "type": "milestone",
+    "text": "What’s believed to be the nation’s first Black public secondary school opens in a church basement in Washington, D.C.",
+    "illo_filename": "2020-11-04-ht-education-timeline-minis-First-Black-School.png",
+    "y_nudge": 0
+  },
+  {
+    "year": 1862,
+    "type": "event",
+    "text": "Lincoln signs the Emancipation Proclamation, freeing enslaved people in the U.S.",
+    "illo_filename": "none",
+    "y_nudge": -60
+  },
+  {
+    "year": 1860,
+    "type": "milestone",
+    "text": "The first Indian boarding school to assimilate Native Americans opens on the Yakima Reservation.",
+    "illo_filename": "2020-11-04-ht-education-timeline-minis-Native-American-Boarding-School.png",
+    "y_nudge": -50
+  },
+  {
+    "year": 1791,
+    "type": "event",
+    "text": "Congress passes the Bill of Rights. The Tenth Amendment lays the foundation for state control of education.",
+    "illo_filename": "none",
+    "y_nudge": -30
+  },
+  {
+    "year": 1740,
+    "type": "event",
+    "text": "South Carolina passes one of America’s first laws that shut out slaves from schooling.",
+    "illo_filename": "none",
+    "y_nudge": 0
+  }
+]
