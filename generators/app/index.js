@@ -31,7 +31,10 @@ module.exports = class extends Generator {
         s3folder: slugify(this.appname),
         slug: slugify(this.appname),
         appleFallback: `fallbacks/${slugify(this.appname)}-apple.png`,
-        newsletterFallback: `fallbacks/${slugify(this.appname)}-fallback.png`
+        newsletterFallback: `fallbacks/${slugify(this.appname)}-fallback.png`,
+        readMeFallbackSrc: `![alt](/src/fallbacks/${slugify(
+          this.appname
+        )}-fallback.png)`
       };
     });
   }

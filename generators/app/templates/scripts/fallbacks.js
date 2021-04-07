@@ -74,9 +74,17 @@ const resizeSocial = async dms => {
 
 const init = async () => {
   fs.emptyDirSync(destinationPath); // remove existing fallbacks
-  const results = await Promise.all(
-    fallbacks.map(size => takeScreenshot(size))
-  );
+
+  try {
+    const results = await Promise.all(
+      fallbacks.map(size => takeScreenshot(size))
+    );
+  } catch {
+    console.error(
+      "Unable to connect at http://0.0.0.0:3000/. 🚨 Make sure you have gulp serve running. 🚨"
+    );
+  }
+
   await resizeSocial(fallbacks.filter(d => d.name === "social")[0]);
   console.log("fallbacks created ✨");
 };
