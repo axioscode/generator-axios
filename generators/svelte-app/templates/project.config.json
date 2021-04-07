@@ -1,0 +1,30 @@
+{
+  "project": {
+    "name": "<%= meta.name %>",
+    "slug": "<%= meta.slug %>"
+  },
+  "s3": {
+    "bucket": "<%= meta.s3bucket %>",
+    "folder": "<%= meta.s3folder %>"
+  },
+  "files": [],
+  "isFullbleed": false,
+  "appleFallback": "<%= meta.appleFallback %>",
+  "newsletterFallback": "<%= meta.newsletterFallback %>",
+  "embedVersion": "1.0",
+  "google": {
+    "doc": [
+      {
+        "id": "",
+        "filepath": "src/data/copy.json"
+      }
+    ],
+    "sheet": [
+      {
+        "id": "",
+        "gid": "",
+        "filepath": ""
+      }
+    ]
+  } 
+}
