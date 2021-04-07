@@ -25,6 +25,7 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "@axioscode/axios-feta": "^1.0.2",
     "d3-axis": "^2.1.0",
     "d3-collection": "^1.0.7",
     "d3-fetch": "^2.0.0",

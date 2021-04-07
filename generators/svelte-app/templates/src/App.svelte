@@ -2,17 +2,12 @@
 </script>
 
 <main>
-  <h1>Hello world!</h1>
+  <h1 class="headline">Hello world!</h1>
+  <div>Testing, testing, 1, 2, 3.</div>
 </main>
 
 <style>
   main {
     text-align: center;
-  }
-
-  h1 {
-    color: cornflowerblue;
-    font-size: 4em;
-    font-weight: 100;
   }
 </style>
