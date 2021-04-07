@@ -34,7 +34,7 @@ Sets up a local server run out of `.tmp`. Watches your Sass, Handlebars and Java
 
 If you've set up your AWS credentials correctly and have the proper s3 configuration in `project.config.js` then this command will automatically run the production build script and deploy the s3 folder you specified.
 
-You'll be prompted to indicate whether you want fallbacks to be created before publishing. For this to work, you'll need to have `gulp serve` running in parallel - the fallbacks are taken from the current dev version.
+You'll be prompted to indicate whether you want fallbacks to be created before publishing. 🚨 For the fallback script to work, you'll need to have `gulp serve` running in parallel - the fallbacks are taken from the current dev version.
 
 ### `gulp lint`
 
