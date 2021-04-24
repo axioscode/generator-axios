@@ -36,7 +36,7 @@
     "jest": "^25.1.0",
     "jest-junit": "^10.0.0",
     "prettier": "^1.18.2",
-    "stylelint-config-standard": "^19.0.0",
+    "stylelint-config-standard": "^22.0.0",
     "yeoman-assert": "^3.1.1",
     "yeoman-test": "^2.1.0"
   },
